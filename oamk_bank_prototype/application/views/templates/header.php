@@ -7,8 +7,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="http://cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
+    <script src="<?php echo base_url(); ?>assets/jvscript/timestamp.js"></script>
 	</head>
-	<body>
+	<body onload="timeStamp(); Greetings()">
 	<nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -29,7 +30,33 @@
               </ul>
             </li>
             <?php if($this->session->userdata('logged_in')) : ?>
-              <p class="navbar-text">Welcome,  <a href="#" style="color:white"><?php echo $this->session->userdata('name'); ?></a>!</p>
+              <p id="greeting" class="navbar-text"></p>
+              <script>
+                function Greetings(){
+                  var time = new Date();
+                  var a = "<?php echo $this->session->userdata('name'); ?>";
+                  if (time.getHours() >= 5 && time.getHours() < 13){
+                    a = 'Good Morning, <a href="#" style="color:white"> ' + a + '</a>!';
+                    document.getElementById("greeting").innerHTML= a;
+                    console.log(1);
+                  }
+                  if (time.getHours() >= 13 && time.getHours() < 18) {                
+                    a = 'Good Afternoon, <a href="#" style="color:white"> ' + a + '</a>!';
+                    document.getElementById("greeting").innerHTML= a;
+                    console.log(2);
+                  }
+                  if (time.getHours() >= 18 && time.getHours() < 22 ) {                
+                    a = 'Good Evening, <a href="#" style="color:white">' + a + '</a>!';
+                    document.getElementById("greeting").innerHTML= a;
+                    console.log(3);
+                  }
+                  if (time.getHours() >= 22 && time.getHours() < 5) {                
+                    a = 'Good Night, <a href="#" style="color:white"> ' + a + '</a>!';
+                    document.getElementById("greeting").innerHTML= a;
+                  }
+                  console.log(time.getHours());
+                }
+              </script>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Payments <span class="caret"></span></a>
                 <ul id="myDropdown" class="dropdown-menu" role="menu">
