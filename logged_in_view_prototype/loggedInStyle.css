@@ -1,0 +1,92 @@
+.navbar {
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: orangered;
+    border: 1px solid orangered;
+
+}
+
+.navmenudiv {
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    cursor: pointer;
+    font-size: 16px;    
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+    
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
+    background-color: white;
+    color: orangered;
+
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: orangered;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content button {
+    float: none;
+    color: white;
+    border: none;
+    background-color: orangered;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: inline-block;
+    text-align: left;
+    width: 100%;
+}
+
+.dropdown-content button:hover {
+    background-color: white;
+    color: orangered;
+}
+
+.show {
+    display: block;
+}
+
+.signout-btn{
+    float: right;
+    border:none;
+    background-color: orangered;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+}
+
+.signout-btn:hover{
+    background-color: white;
+    color: orangered;
+}
+
+ul {
+    list-style-type: none;
+    margin-left: -20%;
+  }
