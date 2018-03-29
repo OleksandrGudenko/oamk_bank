@@ -16,7 +16,7 @@ window.onclick = function(e) {
 }
 
 var br = document.createElement('br');
-
+var btncheck = 0;
 
 function paymentbtn1(){
   var paymentoptionbtn1 = document.createElement("input");
@@ -46,10 +46,9 @@ var btndivempty = document.getElementById('formdiv').innerHTML === " ";
 }
 
 function trasferformFunction(){
-  var brele = document.getElementById('formdiv');
-
-  document.getElementById('formdiv').innerHTML = " ";
+  if(btncheck == 0 || btncheck == 2){
   
+  document.getElementById('formdiv').innerHTML = " ";
 
   createListFunction(); 
   var sender = document.createElement("input");
@@ -78,6 +77,10 @@ function trasferformFunction(){
   sendbtn.setAttribute('id', 'sendbtn');
   sendbtn.setAttribute('value', 'Proceed');
   document.getElementById('formdiv').appendChild(sendbtn);
+  btncheck = 1;
+  } else {
+    return;
+  }
 
 
 }
@@ -85,6 +88,7 @@ function trasferformFunction(){
 function paymentformFunction(){
   document.getElementById('formdiv').innerHTML = " ";
 
+  if(btncheck == 0 || btncheck == 1){
   createListFunction();
   var sender = document.createElement("input");
   sender.setAttribute('type', 'text');
@@ -123,6 +127,12 @@ function paymentformFunction(){
   sendbtn.setAttribute('id', 'sendbtn');
   sendbtn.setAttribute('value', 'Proceed');
   document.getElementById('formdiv').appendChild(sendbtn);
+
+  btncheck = 2
+  } else{
+    return;
+  }
+
 } 
 
 function createListFunction(){
