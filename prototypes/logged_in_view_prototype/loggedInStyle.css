@@ -1,9 +1,12 @@
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
 .navbar {
     overflow: hidden;
     font-family: Arial, Helvetica, sans-serif;
     background-color: #F2882F;
     border: 1px solid #F2882F;
-
 }
 
 .navmenudiv {
@@ -90,3 +93,36 @@ ul {
     list-style-type: none;
     margin-left: -20%;
   }
+
+#payoptbtn {
+    background-color: white;
+    float: right;
+    border: 1px solid #F2882F;
+    color:  #F2882F;
+
+    text-align: center;
+    font-size: 4vw;
+    position: relative;
+    width: 35%;
+    height: 100%;
+}
+
+#payoptbtn:first-child(even){
+    margin-right: 5%;
+}
+
+#payoptbtn:hover{
+    background-color: #F2882F;
+    color: white;
+}
+
+#container{
+    margin-top: 10px;
+    margin-bottom: 5%;
+
+    text-align: center;
+    justify-content: center;
+    display: flex;
+}
+
+

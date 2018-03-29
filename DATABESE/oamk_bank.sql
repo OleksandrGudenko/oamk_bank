@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `accounts_table`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `accounts_table` (
   `user_id` int(11) NOT NULL,
-  `account_id` int(11) NOT NULL AUTO_INCREMENT,
+  `account_id` varchar(255) NOT NULL,
   `Balance` int(11) NOT NULL,
   `credit` int(11) NOT NULL,
   `loan_id` int(11) DEFAULT NULL,
@@ -168,4 +168,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-26 13:27:05
+-- Dump completed on 2018-03-28 12:25:22
