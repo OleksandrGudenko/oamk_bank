@@ -49,36 +49,43 @@ function trasferformFunction(){
   var brele = document.getElementById('formdiv');
 
   document.getElementById('formdiv').innerHTML = " ";
+  
+
+  createListFunction(); 
   var sender = document.createElement("input");
   sender.setAttribute('type', 'text');
   sender.setAttribute('id', 'sender')
   sender.setAttribute('placeholder', 'your bank account')
   document.getElementById('formdiv').appendChild(sender);
 
+  createListFunction(); 
   var reciever = document.createElement("input");
   reciever.setAttribute('type', 'text');
   reciever.setAttribute('id', 'reciever');
   reciever.setAttribute('placeholder', 'IBAN where money will go');
   document.getElementById('formdiv').appendChild(reciever);
 
+  createListFunction(); 
   var amount = document.createElement("input");
   amount.setAttribute('type', 'number');
   amount.setAttribute('id', 'amount');
   amount.setAttribute('placeholder', 'amount to transfer');
   document.getElementById('formdiv').appendChild(amount);
 
+  createListFunction(); 
   var sendbtn = document.createElement('input');
   sendbtn.setAttribute('type', 'button');
   sendbtn.setAttribute('id', 'sendbtn');
-  sendbtn.setAttribute('value', 'send');
-  sendbtn.innerHTML = 'Proceed';
+  sendbtn.setAttribute('value', 'Proceed');
   document.getElementById('formdiv').appendChild(sendbtn);
 
-  fodiv.insertBefore(br, reciever.childNodes[0]);
+
 }
 
 function paymentformFunction(){
   document.getElementById('formdiv').innerHTML = " ";
+
+  createListFunction();
   var sender = document.createElement("input");
   sender.setAttribute('type', 'text');
   sender.setAttribute('id', 'sender')
@@ -86,7 +93,7 @@ function paymentformFunction(){
   document.getElementById('formdiv').appendChild(sender);
 
 
-
+  createListFunction();
   var reciever = document.createElement("input");
   reciever.setAttribute('type', 'text');
   reciever.setAttribute('id', 'reciever');
@@ -94,7 +101,7 @@ function paymentformFunction(){
   document.getElementById('formdiv').appendChild(reciever);
 
 
-
+  createListFunction();
   var amount = document.createElement("input");
   amount.setAttribute('type', 'number');
   amount.setAttribute('id', 'amount');
@@ -102,7 +109,7 @@ function paymentformFunction(){
   document.getElementById('formdiv').appendChild(amount);
 
 
-  
+  createListFunction();  
   var refnum = document.createElement('input');
   refnum.setAttribute('type','number');
   refnum.setAttribute('id','refnum');
@@ -110,14 +117,23 @@ function paymentformFunction(){
   document.getElementById('formdiv').appendChild(refnum);
 
 
-
+  createListFunction();
   var sendbtn = document.createElement('input');
   sendbtn.setAttribute('type', 'button');
   sendbtn.setAttribute('id', 'sendbtn');
-  sendbtn.setAttribute('value', 'send');
-  sendbtn.innerHTML = 'Proceed';
+  sendbtn.setAttribute('value', 'Proceed');
   document.getElementById('formdiv').appendChild(sendbtn);
 } 
+
+function createListFunction(){
+  var list = document.createElement('ul');
+  list.setAttribute( 'id', 'formlist');
+  document.getElementById('formdiv').appendChild(list);
+
+  var ul = document.createElement('li');
+  ul.setAttribute('id', 'ul');
+  list.appendChild(ul);
+}
 
 function paymentFunction(){
   document.getElementById('container').innerHTML = " ";

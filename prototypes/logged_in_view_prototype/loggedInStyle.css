@@ -125,4 +125,53 @@ ul {
     display: flex;
 }
 
+#formdiv{
+    text-align: center;
+}
 
+input[type=text]{
+    border: 1px solid #F2882F;
+    border-radius: 2px;
+    width: 25vw;
+    background-color: #F2882F;
+    color: white;
+    text-align: center;
+
+    font-size: 1vw;
+}
+input[type=text]:focus {
+    color: #F2882F;
+    background-color: white;
+}
+input[type=number]{
+    border: 1px solid #F2882F;
+    border-radius: 2px;
+    width: 25vw;
+    background-color: #F2882F;
+    color: white;
+    text-align: center;
+    font-size: 1vw;
+}
+input[type=number]:focus {
+    color: #F2882F;
+    background-color: white;
+}
+
+::placeholder{
+    color: #FFD6CD;
+    opacity: 1; /* Firefox */
+}
+
+#sendbtn{
+    background-color: white;
+    border: 1px solid #F2882F;
+    font-size: 2vw;
+    border-radius: 25px;
+    padding: 1vw 1vw 1vw 1vw;
+    margin-top: 3vw;
+}
+
+#sendbtn:hover{
+    background-color: #F2882F;
+    color: white;
+}
