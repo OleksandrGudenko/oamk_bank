@@ -1,4 +1,4 @@
-OAMK Bank
+﻿OAMK Bank
 
 This is a fictional online-only retail bank named OAMK Bank. The project is part of curriculum needed to complete first year studies at OUAS. Intended audience of this project work is students of DIN17SP group and project supervisors, Kari Laitinen and Pekka Alaluukas.
 
