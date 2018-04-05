@@ -1,4 +1,6 @@
-function contactBankFunction(){
+function contact_show()
+{
+  document.getElementById('hide_form').style.display="block";
 
   document.getElementById('contact_btn').disabled = true;
   document.getElementById('edit_btn').disabled = false;
@@ -12,37 +14,47 @@ function contactBankFunction(){
   }
   document.getElementById('result').innerHTML = " ";
   document.getElementById('result').style.display = "none";
-  document.getElementById('formdiv4').innerHTML = " ";
-  document.getElementById('formdiv4').style.display = "block";
+  document.getElementById('formdiv6').style.display = "block";
 
-  createListFunction(4);
+}
+
+function contactBankFunction(){
+
+
+  createListFunction(6);
   var title_label = document.createElement("label");
   var title_text = document.createTextNode("Title");
   title_label.appendChild(title_text);
-  document.getElementById('formdiv4').appendChild(title_label);
-  createListFunction(4);
+  document.getElementById('formdiv6').appendChild(title_label);
+  createListFunction(6);
   var title = document.createElement("input");
   title.setAttribute('type', 'text');
   title.setAttribute('id', 'title');
   title.setAttribute('name', 'title');
-  document.getElementById('formdiv4').appendChild(title);
+  document.getElementById('formdiv6').appendChild(title);
 
   //here for text area
-
-  createListFunction(4);
-  var area_label = document.createElement("label");
-  var area_text = document.createTextNode("Request");
-  area_label.appendChild(area_text);
-  document.getElementById('formdiv4').appendChild(area_label);
-
-  createListFunction(4);
+createListFunction(6);
+var test_label = document.createElement("label");
+var test_text = document.createTextNode("Characters remaining: ");
+test_label.appendChild(test_text);
+document.getElementById('formdiv6').appendChild(test_label);
 
   var counter = document.createElement('input');
   counter.disabled = true;
-  counter.size = "2";
-  counter.value = "299";
+  counter.size = "1";
+  counter.value = "300";
   counter.id = "textcounter";
-  document.getElementById('formdiv4').appendChild(counter);
+  document.getElementById('formdiv6').appendChild(counter);
+
+
+  createListFunction(6);
+  var area_label = document.createElement("label");
+  var area_text = document.createTextNode("Message");
+  area_label.appendChild(area_text);
+  document.getElementById('formdiv6').appendChild(area_label);
+
+  createListFunction(6);
 
   var area = document.createElement("textarea");
   area.setAttribute('type', 'text');
@@ -52,7 +64,7 @@ function contactBankFunction(){
   area.cols = 100;
   area.rows = 20;
   area.maxLength = "300";
-  document.getElementById('formdiv4').appendChild(area);
+  document.getElementById('formdiv6').appendChild(area);
 
 
 
@@ -63,7 +75,7 @@ id.setAttribute('id', 'id');
 id.setAttribute('name', 'id');
 id.setAttribute('value', '0');
 id.setAttribute('type', 'hidden');
-document.getElementById('formdiv4').appendChild(id);
+document.getElementById('formdiv6').appendChild(id);
 
 var userid = document.createElement("input");
 userid.setAttribute('type', 'number');
@@ -71,7 +83,7 @@ userid.setAttribute('id', 'user_id');
 userid.setAttribute('name', 'user_id');
 userid.setAttribute('value', '1');
 userid.setAttribute('type' ,'hidden');
-document.getElementById('formdiv4').appendChild(userid);
+document.getElementById('formdiv6').appendChild(userid);
 
 var timestamp = document.createElement("input");
 timestamp.setAttribute('type', 'text');
@@ -79,15 +91,15 @@ timestamp.setAttribute('id', 'timestamp');
 timestamp.setAttribute('name', 'timestamp');
 timestamp.setAttribute('value', '');
 timestamp.setAttribute('type', 'hidden');
-document.getElementById('formdiv4').appendChild(timestamp);
+document.getElementById('formdiv6').appendChild(timestamp);
 
-createListFunction(4);
+createListFunction(6);
 var sendbtn = document.createElement('input');
 sendbtn.setAttribute('type', 'button');
-sendbtn.setAttribute('id', ' sendbtn');
+sendbtn.setAttribute('id', 'sendbtn');
 sendbtn.setAttribute('value', 'send');
 sendbtn.setAttribute('onclick', 'request_add()');
-document.getElementById('formdiv4').appendChild(sendbtn);
+document.getElementById('formdiv6').appendChild(sendbtn);
 
 document.getElementById('loading').innerHTML = " ";
 document.getElementById('loading').style.display = "none";
@@ -116,12 +128,14 @@ function request_add()
       var form = document.getElementById('requestform');
       document.getElementById('hide_form').style.display="none";
 
+      document.getElementById('body').required=true;
       var url = "http://localhost/oamk_bank/index.php/api/bank/requests/";
       var xhttp = new XMLHttpRequest();
       xhttp.open('POST', url, true);
 
       var formData = new FormData(form);
-
+if(!document.getElementById('body').value == false)
+{
       xhttp.onreadystatechange=function()
       {
         if(xhttp.readyState==4 && xhttp.status==201)
@@ -137,6 +151,12 @@ function request_add()
       };
       xhttp.send(formData);
 }
+else
+{
+  document.getElementById('result').innerHTML = "Something went wrong";
+  document.getElementById('hide_form').style.display="block";
+}
+}//here is end of function
 
 
 function counter_text(textarea,id,max)

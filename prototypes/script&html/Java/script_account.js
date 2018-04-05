@@ -31,16 +31,16 @@ function account_own()
 
 function getaccountinfo(account_id,Balance,credit){
     document.getElementById('pagetitle').innerHTML = '<h2>' + account_id + '</h2>';
-    document.getElementById('formdiv1').innerHTML = 'Balance: ' + Balance + '€';
-    document.getElementById('formdiv1').style.display = 'block';
+    document.getElementById('formdiv0').innerHTML = 'Balance: ' + Balance + '€';
+    document.getElementById('formdiv0').style.display = 'block';
 
-    document.getElementById('formdiv2').innerHTML = 'Credit Limit: ' + credit + '€';
-    document.getElementById('formdiv2').style.display = 'block';
+    document.getElementById('formdiv1').innerHTML = 'Credit Limit: ' + credit + '€';
+    document.getElementById('formdiv1').style.display = 'block';
 }
 
 function createaccount(){
     document.getElementById('pagetitle').innerHTML = '<h2>Create New Account</h2>'
-    var place = document.getElementById('formdiv1');
+    var place = document.getElementById('test1');
     var create = document.createElement('input');
     create.setAttribute('type', 'button');
     create.setAttribute('id', 'sendbtn');

@@ -1,3 +1,19 @@
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function dropdownFunction() {
+    document.getElementById("navDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+    var navDropdown = document.getElementById("navDropdown");
+      if (navDropdown.classList.contains('show')) {
+        navDropdown.classList.remove('show');
+      }
+  }
+}
+
 function createListFunction(number){
 
   var div_name = 'formdiv' ;
@@ -60,6 +76,15 @@ function for_onload()
   real_time();
   get_user(1);
   account_own();
+  paymentFunction();
+  editCredFunction();
+  contactBankFunction();
+  for (var i = 0; i < 7; i++)
+  {
+    var name_div = "formdiv" ;
+    document.getElementById(name_div + i).style.display="none";
+  }
+  document.getElementById('container').style.display="none";
 }
 
 function get_user(id)

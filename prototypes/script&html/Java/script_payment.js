@@ -1,9 +1,9 @@
 
-function paymentFunction(){
+function payment_show()
+{
   document.getElementById('pay_btn').disabled = true;
   document.getElementById('contact_btn').disabled = false;
   document.getElementById('edit_btn').disabled = false;
-  document.getElementById('loading').style.display = "block";
   document.getElementById('result').innerHTML = " ";
   document.getElementById('result').style.display = "none";
   for (var i = 0; i < 7; i++)
@@ -12,11 +12,12 @@ function paymentFunction(){
     document.getElementById(name_div + i).style.display="none";
   }
 
-  document.getElementById('container').innerHTML = " ";
   document.getElementById('container').style.display="flex";
   var paymentsection = "<h2>Payments</h2>";
   document.getElementById("pagetitle").innerHTML = paymentsection;
+}
 
+function paymentFunction(){
   paymentbtn1();
   paymentbtn2();
   trasferformFunction();
@@ -27,19 +28,17 @@ function paymentbtn1(){
   var paymentoptionbtn1 = document.createElement("input");
   paymentoptionbtn1.setAttribute('type', 'button');
   paymentoptionbtn1.setAttribute('value', 'Own Transfer');
-  paymentoptionbtn1.setAttribute('id', 'payoptbtn');
+  paymentoptionbtn1.setAttribute('id', 'payoptbtn1');
   paymentoptionbtn1.setAttribute('onclick', 'transferTrigger()');
   document.getElementById('container').appendChild(paymentoptionbtn1);
 }
-
-var br = document.createElement('br');
 
 function paymentbtn2(){
 
   var paymentoptionbtn2 = document.createElement("input");
   paymentoptionbtn2.setAttribute('type', 'button');
   paymentoptionbtn2.setAttribute('value', 'Payment');
-  paymentoptionbtn2.setAttribute('id', 'payoptbtn');
+  paymentoptionbtn2.setAttribute('id', 'payoptbtn2');
   paymentoptionbtn2.setAttribute('onclick', 'paymenttrigger()');
   document.getElementById('container').appendChild(paymentoptionbtn2);
 
@@ -47,20 +46,24 @@ function paymentbtn2(){
 
 
 function transferTrigger(){
-  var transf = document.getElementById('formdiv1').style.display = 'none';
+  var transf = document.getElementById('formdiv2').style.display = 'none';
   if(transf){
-    document.getElementById('formdiv1').style.display = 'block';
-    document.getElementById('formdiv2').style.display = 'none';
+    document.getElementById('payoptbtn1').disabled = true ;
+    document.getElementById('payoptbtn2').disabled = false ;
+    document.getElementById('formdiv2').style.display = 'block';
+    document.getElementById('formdiv3').style.display = 'none';
   }
   else{
 return;  }
 }
 
 function paymenttrigger(){
-  var payment = document.getElementById('formdiv2').style.display = 'none';
+  var payment = document.getElementById('formdiv3').style.display = 'none';
   if(payment){
-    document.getElementById('formdiv2').style.display = 'block';
-    document.getElementById('formdiv1').style.display = 'none';
+    document.getElementById('payoptbtn1').disabled = false ;
+    document.getElementById('payoptbtn2').disabled = true ;
+    document.getElementById('formdiv3').style.display = 'block';
+    document.getElementById('formdiv2').style.display = 'none';
   }
   else{
     return;
@@ -70,14 +73,14 @@ function paymenttrigger(){
 function trasferformFunction(){
 
     ///From here for getting account with RESTAPI request
-    document.getElementById('formdiv1').innerHTML = " ";
-    document.getElementById('loading').style.display = "block";
-    document.getElementById('loading').innerHTML = "Wait...";
+    document.getElementById('formdiv2').innerHTML = " ";
     var url = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid";
     var jsonData='';
     var xhttp = new XMLHttpRequest();
     xhttp.open('GET', url, true);
 
+    document.getElementById('loading').inner="Loading...";
+    document.getElementById('loading').style.display="block";
 xhttp.onreadystatechange=function()
 {
   if(xhttp.readyState==4 && xhttp.status==200)
@@ -87,11 +90,11 @@ xhttp.onreadystatechange=function()
     var label_send = document.createElement("label");
     var send_from = document.createTextNode("From  ");
     label_send.appendChild(send_from);
-    document.getElementById('formdiv1').appendChild(label_send);
+    document.getElementById('formdiv2').appendChild(label_send);
 
     var sender = document.createElement("select");
     sender.setAttribute('id', 'sender');
-    document.getElementById('formdiv1').appendChild(sender);
+    document.getElementById('formdiv2').appendChild(sender);
     for(x in jsonData)
     {
       if(jsonData[x].user_id == 1)
@@ -104,15 +107,15 @@ xhttp.onreadystatechange=function()
       }
     }
 
-    createListFunction(1);
+    createListFunction(2);
     var label_recieve = document.createElement("label");
     var recieve_to = document.createTextNode("To  ");
     label_recieve.appendChild(recieve_to);
-    document.getElementById('formdiv1').appendChild(label_recieve);
+    document.getElementById('formdiv2').appendChild(label_recieve);
 
     var reciever = document.createElement("select");
     reciever.setAttribute('id', 'reciever');
-    document.getElementById('formdiv1').appendChild(reciever);
+    document.getElementById('formdiv2').appendChild(reciever);
 
     for(x in jsonData)
     {
@@ -126,33 +129,36 @@ xhttp.onreadystatechange=function()
       }
     }
 
-    createListFunction(1);
+    createListFunction(2);
 
     var amount = document.createElement("input");
     amount.setAttribute('type', 'number');
     amount.setAttribute('id', 'amount');
     amount.setAttribute('placeholder', 'amount to transfer');
-    document.getElementById('formdiv1').appendChild(amount);
+    document.getElementById('formdiv2').appendChild(amount);
 
-    createListFunction(1);
+    createListFunction(2);
     var  sendbtn = document.createElement('input');
     sendbtn.setAttribute('id', 'sendbtn');
     sendbtn.setAttribute('type', 'button');
     sendbtn.setAttribute('value', 'send');
     sendbtn.setAttribute('onclick', 'send_money_own()');
-    document.getElementById('formdiv1').appendChild(sendbtn);
-    document.getElementById('loading').innerHTML = " ";
-    document.getElementById('loading').style.display = "none";
+    document.getElementById('formdiv2').appendChild(sendbtn);
+
+    document.getElementById('loading').inner=" ";
+    document.getElementById('loading').style.display="none";
+
   }
 };
 xhttp.send();
 }//here is end of function
 
 function paymentformFunction(){
-  document.getElementById('loading').style.display = "block";
-  document.getElementById('loading').innerHTML = "Wait...";
-  document.getElementById('formdiv2').innerHTML = " ";
+  document.getElementById('formdiv3').innerHTML = " ";
 //from here for sender account with drop down
+
+document.getElementById('loading').inner="Loading...";
+document.getElementById('loading').style.display="block";
 
 var url = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid";
 var jsonData='';
@@ -168,11 +174,11 @@ jsonData = JSON.parse(xhttp.responseText);
 var label_send = document.createElement("label");
 var send_from = document.createTextNode("From  ");
 label_send.appendChild(send_from);
-document.getElementById('formdiv2').appendChild(label_send);
+document.getElementById('formdiv3').appendChild(label_send);
 
 var sender = document.createElement("select");
 sender.setAttribute('id', 'sender');
-document.getElementById('formdiv2').appendChild(sender);
+document.getElementById('formdiv3').appendChild(sender);
 for(x in jsonData)
 {
   if(jsonData[x].user_id == 1)
@@ -185,39 +191,42 @@ for(x in jsonData)
   }
 }
 
-createListFunction(2);
+createListFunction(3);
 var reciever = document.createElement("input");
 reciever.setAttribute('type', 'text');
 reciever.setAttribute('id', 'reciever');
 reciever.setAttribute('placeholder', 'IBAN where money will go');
-document.getElementById('formdiv2').appendChild(reciever);
+document.getElementById('formdiv3').appendChild(reciever);
 
 
-createListFunction(2);
+createListFunction(3);
 var amount = document.createElement("input");
 amount.setAttribute('type', 'number');
 amount.setAttribute('id', 'amount');
 amount.setAttribute('placeholder', 'amount to transfer');
-document.getElementById('formdiv2').appendChild(amount);
+document.getElementById('formdiv3').appendChild(amount);
 
 
-createListFunction(2);
+createListFunction(3);
 var refnum = document.createElement('input');
 refnum.setAttribute('type','number');
 refnum.setAttribute('id','refnum');
 refnum.setAttribute('placeholder', 'reference number')
-document.getElementById('formdiv2').appendChild(refnum);
+document.getElementById('formdiv3').appendChild(refnum);
 
 
-createListFunction(2);
+createListFunction(3);
 var sendbtn = document.createElement('input');
 sendbtn.setAttribute('type', 'button');
 sendbtn.setAttribute('id', 'sendbtn');
 sendbtn.setAttribute('value', 'send');
 sendbtn.setAttribute('onclick', 'send_money_own()');
 sendbtn.innerHTML = 'Proceed';
-document.getElementById('formdiv2').appendChild(sendbtn);
-document.getElementById('loading').innerHTML = " ";
+document.getElementById('formdiv3').appendChild(sendbtn);
+
+document.getElementById('loading').inner=" ";
+document.getElementById('loading').style.display="none";
+
 }
 };
 xhttp.send();
