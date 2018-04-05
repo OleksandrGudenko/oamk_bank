@@ -5,35 +5,6 @@ function dropdownFunction() {
     document.getElementById("navDropdown").classList.toggle("show");
 }
 
-function account_own()
-{
-  var url = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/";
-  var xhttp = new XMLHttpRequest();
-  var jsonData ='';
-     xhttp.open('GET', url, true);
-     xhttp.onreadystatechange=function()
-     {
-       if(xhttp.readyState==4 && xhttp.status==200)
-       {
-        jsonData = JSON.parse(xhttp.responseText);
-         for(x in jsonData)
-         {
-           if(jsonData[x].user_id == 1)
-             {
-               var li_account = document.createElement("LI");
-               var li_button = document.createElement("input");
-               li_button.setAttribute('type', 'button');
-               li_button.setAttribute('id', 'li_button');
-               li_button.setAttribute('value', jsonData[x].account_id);
-               li_account.appendChild(li_button);
-               document.getElementById('account_ul').insertBefore(li_account, document.getElementById('account_ul').childNodes[0]);
-             }
-         }
-       }
-     };
-     xhttp.send();
-}
-
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(e) {
   if (!e.target.matches('.dropbtn')) {

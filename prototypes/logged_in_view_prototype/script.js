@@ -88,6 +88,8 @@ function trasferformFunction(){
 function paymentformFunction(){
   document.getElementById('formdiv').innerHTML = " ";
 
+  var display = null;
+  if(!display){
   if(btncheck == 0 || btncheck == 1){
   createListFunction();
   var sender = document.createElement("input");
@@ -129,11 +131,16 @@ function paymentformFunction(){
   document.getElementById('formdiv').appendChild(sendbtn);
 
   btncheck = 2
-  } else{
-    return;
   }
+  else{
+    return;
+  
+ }}else{
+  document.getElementById('formdiv').innerHTML = " ";
+ }
+}
 
-} 
+
 
 function createListFunction(){
   var list = document.createElement('ul');
