@@ -17,13 +17,6 @@ body{
     text-decoration: none;
 }
 
-input#textcounter
-{
-    border: 1px solid #F2882F;
-    color:#F2882F;
-    background-color: white;
-    text-align: center;
-}
 textarea#body
 {
     background-color: #F2882F;
@@ -186,6 +179,19 @@ ul {
 }
 
 #formdiv {
+    text-align: center;
+}
+
+input {
+    outline: none;
+   
+}
+
+input#textcounter
+{
+    border: 1px solid #F2882F;
+    color:#F2882F;
+    background-color: white;
     text-align: center;
 }
 
