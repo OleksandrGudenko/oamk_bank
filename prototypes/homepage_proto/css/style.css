@@ -293,7 +293,6 @@ body {
 }
 
 .mid-banner h1 {
-  /* position: relative; */
   margin-left: 19%;
   letter-spacing: 1px;
   color: grey;
@@ -319,7 +318,131 @@ body {
   
 }
 
-/* Styles for everyBankshrunken-20e */
+/* Styles for About */
+
+.aboutslide {
+  display:none;
+}
+
+.abthistory h2 {
+  position: relative;
+  font-size: 50px;
+  font-weight: 100;
+  margin-left: 20%;
+  letter-spacing: 1.2px;  
+}
+
+.abthistory p {
+  position: inherit;
+  font-size: 24px;
+  font-weight: 100;
+  letter-spacing: 1.2px;
+  box-sizing: border-box;
+  margin-left: 30%;
+  margin-right: 20%;
+  max-width: 1080px;
+  text-align: justify;
+ }
+
+ .btnonabtcontainer {
+   margin-bottom: 30px;
+   margin-top: 50px;
+ }
+
+  .btnonabtcontainer .btn {
+  background-color: #F2882F;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  margin-left: 30%;
+  bottom: 20%;
+  letter-spacing: 1.2px;
+  transition: all 0.8s ease 0s;
+  text-decoration: none;
+ }
+
+ .btnonabtcontainer .btn:hover {
+    background: grey;
+ }
+
+ .btnonabtoa {
+  margin-bottom: 200px;
+  margin-top: 20px;
+}
+
+ .btnonabtoa .btnoa {
+  background-color: #F2882F;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  margin-left: 30%;
+  bottom: 20%;
+  letter-spacing: 1.2px;
+  transition: all 0.8s ease 0s;
+  text-decoration: none;
+ }
+
+ .btnonabtoa .btnoa:hover {
+    background: grey;
+ }
+
+
+/* Styles for Contact */
+
+.contact-top img {
+  position: relative;
+  width: 100%;
+}
+
+.contact-top h2 {
+  position: absolute;
+  top: 35%;
+  left: 25%;
+  width: 100%;
+  font-size: 35px;
+  font-weight: 300;
+}
+
+.contact-top h2 span {
+  color: black; 
+  letter-spacing: -1px;  
+  background: rgb(0, 0, 0); /* fallback color */
+  background: rgba(0, 0, 0, 0);
+  padding: 10px; 
+}
+
+.mapsect h2 {
+  position: relative;
+  margin-top: 5%;
+  margin-bottom: 2%;
+  font-size: 30px;
+  font-weight: 200;
+  margin-left: 20%;
+  letter-spacing: 1.2px;  
+}
+
+.map {
+  height: 400px;
+  width: 100%;
+  margin-left: 100px;
+}
+
+
+.mapsect p {
+  position: inherit;
+  font-size: 1em;
+  font-weight: 100;
+  letter-spacing: 1.2px;
+  box-sizing: border-box;
+  margin-left: 30%;
+  margin-right: 20%;
+  max-width: 1080px;
+  text-align: justify;
+ }
+
+
+
+ /* Styles for everyBankshrunken-20e */
 
 .eb-top img {
   position: relative;
@@ -338,22 +461,30 @@ body {
   margin-top: 5%;
 }
 
+
+
+
+
+
+
 /* Styles for openacct */
 
-/* .oacctform h1, h2 {
+.oacctform h1, h2 {
   margin-left: 25%;
-  font-size: 2em;
   margin-top: 5%;
+  font-weight: 100;
+  font-size: 30px;
+  letter-spacing: 1.2px;
 }
 
-.oacctform p {
-  top: 180px;
-  font-size: 1em;
-  font-weight: 100;
-  margin-left: 25%;
-  margin-right: 20%;
-  letter-spacing: 1.2px;
-} */
+  .oacctform p {
+    top: 180px;
+    font-size: 1em;
+    font-weight: 100;
+    margin-left: 25%;
+    margin-right: 20%;
+    letter-spacing: 1.2px;
+  }
 
 .oacctform hr {
   border: 0;
@@ -362,3 +493,13 @@ body {
   height: 1px;
   background-image: linear-gradient(to right, rgba(255, 148, 0, 0), rgba(255, 148, 0, 0.75), rgba(255, 148, 0, 0));
 }
+
+.formcontainer {
+  margin-left: 25%;
+  margin-top: 2%;
+  font-weight: 100;
+  font-size:1em;
+  letter-spacing: 1.2px;
+}
+
+
