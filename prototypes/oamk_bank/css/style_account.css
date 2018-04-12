@@ -1,5 +1,6 @@
 body{
     font-family: 'Roboto', sans-serif;
+    min-width: 60vw;
 }
 
 .navbar {
@@ -15,6 +16,20 @@ body{
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+}
+
+textarea#body
+{
+    border: 1px solid #F2882F;
+    border-radius: 1vw;
+    color: #F2882F;
+    outline: none; 
+}
+
+textarea#body:focus
+{
+    color: black;
+    border: 0.1vw solid #F2882F;
 }
 
 .account_label
@@ -49,6 +64,7 @@ body{
     
 }
 
+
 .navbar a:hover, .dropdown:hover, .dropbtn, .dropbtn:focus, .dropbtn:hover {
     background-color: white;
     color: #F2882F;
@@ -68,11 +84,8 @@ body{
     background-color: #F2882F;
     border: none;
     padding: 12px 16px;
-
-    /* float: none;
-    text-decoration: none;
- 
-    width: 100%; */
+    width: 100%;
+    margin-left: -2%;
 }
 
 
@@ -97,6 +110,18 @@ body{
     text-decoration: none;
     display: block;
     font-size: 16px;
+    cursor: pointer;
+}
+
+.signout-btn:hover{
+    background-color: white;
+    color: #F2882F;
+}
+
+.signout-btn:disabled 
+{
+    background-color: white;
+    color: #F2882F;
 }
 
 
@@ -114,18 +139,13 @@ body{
     display: block;
     font-size: 16px; 
 }
-.signout-btn:hover{
-    background-color: white;
-    color: #F2882F;
-}
 
 ul {
-    /* text-align: left; */
     list-style-type: none;
     margin-left: -15%;
   }
 
-#payoptbtn {
+#payoptbtn1, #payoptbtn2, #loanoptbtn1, #loanoptbtn2 {
     background-color: white;
     float: right;
     border: 1px solid #F2882F;
@@ -137,12 +157,17 @@ ul {
     width: 35%;
     height: 100%;
 }
+#payoptbtn1:disabled, #payoptbtn2:disabled {
+    background-color: #F2882F;
+    color: white;
 
-#payoptbtn:first-child(even){
+}
+
+#payoptbtn1:first-child(even), #payoptbtn2:first-child(even){
     margin-right: 5%;
 }
 
-#payoptbtn:hover{
+#payoptbtn1:hover, #payoptbtn2:hover, #loanoptbtn1:hover, #loanoptbtn2:hover {
     background-color: #F2882F;
     color: white;
 }
@@ -156,37 +181,34 @@ ul {
     display: flex;
 }
 
-#formdiv{
+#formdiv {
     text-align: center;
 }
 
-input[type=text]{
+input#textcounter
+{
     border: 1px solid #F2882F;
-    border-radius: 2px;
-    width: 25vw;
-    background-color: #F2882F;
-    color: white;
+    color:#F2882F;
+    background-color: white;
+    text-align: center;
+    width: 5vw;
+}
+
+input {
+    outline: none;
+    border: 1px solid #F2882F;
+    border-radius: 1vw;
+    width: 50vw;
+    color: #F2882F;
     text-align: center;
 
     font-size: 1vw;
 }
-input[type=text]:focus {
-    color: #F2882F;
-    background-color: white;
+input:focus {
+    color: black;
+    border: 0.1vw solid #F2882F;
 }
-input[type=number]{
-    border: 1px solid #F2882F;
-    border-radius: 2px;
-    width: 25vw;
-    background-color: #F2882F;
-    color: white;
-    text-align: center;
-    font-size: 1vw;
-}
-input[type=number]:focus {
-    color: #F2882F;
-    background-color: white;
-}
+
 
 ::placeholder{
     color: #FFD6CD;
@@ -197,7 +219,8 @@ input[type=number]:focus {
     background-color: white;
     border: 1px solid #F2882F;
     font-size: 2vw;
-    border-radius: 25px;
+    width: 10vw;
+    border-radius: 1vw;
     padding: 1vw 1vw 1vw 1vw;
     margin-top: 3vw;
 }

@@ -1,43 +1,32 @@
-function createListFunction(){
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function dropdownFunction() {
+    document.getElementById("navDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+    var navDropdown = document.getElementById("navDropdown");
+      if (navDropdown.classList.contains('show')) {
+        navDropdown.classList.remove('show');
+      }
+  }
+}
+
+function createListFunction(number){
+
+  var div_name = 'formdiv' ;
+
   var list = document.createElement('ul');
   list.setAttribute( 'id', 'formlist');
-  document.getElementById('formdiv1').appendChild(list);
+  document.getElementById(div_name + number).appendChild(list);
 
   var ul = document.createElement('li');
   ul.setAttribute('id', 'ul');
   list.appendChild(ul);
 }
 
-function createListFunction2(){
-  var list = document.createElement('ul');
-  list.setAttribute( 'id', 'formlist');
-  document.getElementById('formdiv2').appendChild(list);
-
-  var ul = document.createElement('li');
-  ul.setAttribute('id', 'ul');
-  list.appendChild(ul);
-}
-
-function createListFunction3(){
-  var list = document.createElement('ul');
-  list.setAttribute( 'id', 'formlist');
-  document.getElementById('formdiv3').appendChild(list);
-
-  var ul = document.createElement('li');
-  ul.setAttribute('id', 'ul');
-  list.appendChild(ul);
-}
-
-function createListFunction4()
-{
-  var list = document.createElement('ul');
-  list.setAttribute( 'id', 'formlist');
-  document.getElementById('formdiv4').appendChild(list);
-
-  var ul = document.createElement('li');
-  ul.setAttribute('id', 'ul');
-  list.appendChild(ul);
-}
 function time_greet()
 {
   var time = new Date();
@@ -87,6 +76,17 @@ function for_onload()
   real_time();
   get_user(1);
   account_own();
+  paymentFunction();
+  editCredFunction();
+  contactBankFunction();
+  loanFunction();
+  document.getElementById('pagetitle').innerHTML = " ";
+  for (var i = 0; i < 8; i++)
+  {
+    var name_div = "formdiv" ;
+    document.getElementById(name_div + i).style.display="none";
+  }
+  document.getElementById('container').style.display="none";
 }
 
 function get_user(id)

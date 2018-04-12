@@ -36,6 +36,7 @@ xhttp.onreadystatechange = function()
 };
 xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 xhttp.send(jsonData);
+location.reload();
 }
 
 

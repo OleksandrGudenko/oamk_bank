@@ -45,3 +45,27 @@ function getReciever(reciever)
   xhttp.send();
 
 }
+
+
+
+var nav_div = document.getElementById("div_active");
+var btns = nav_div.getElementsByClassName("signout-btn");
+for (var i = 0; i < btns.length; i++)
+{
+  btns[i].addEventListener("click", function()
+  {
+    var current = document.getElementsByClassName("signout-btn");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+
+  });
+
+}
+
+
+//   // document.getElementById('hide_form').style.display="block";
+//   setTimeout(function(){
+//   // document.getElementById('result').innerHTML = " ";
+//   // document.getElementById('result').style.display = "none";
+//   // window.location.reload(false);
+// }, 3000);

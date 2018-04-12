@@ -158,12 +158,12 @@ public function accounts_get()
             // Set the response and exit
             $this->response([
                 'status' => FALSE,
-                'message' => 'No users were found'
+                'message' => 'No accounts were found'
             ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
         }
     }
 
-    // Find and return a single record for a particular user.
+    // Find and return a single record for a particular account.
 
     $id = (string)$id;
 
@@ -185,7 +185,7 @@ public function accounts_get()
     {
         $this->set_response([
             'status' => FALSE,
-            'message' => 'User could not be found'
+            'message' => 'Account could not be found'
         ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
     }
 }
@@ -218,7 +218,7 @@ public function accounts_get()
 
 
 
-// from here account test
+// from here account balance put
     public function accounts_put()
     {
         $id=$this->put('account_id');
@@ -239,7 +239,7 @@ public function accounts_get()
 
 public function requests_get()
 {
-    // Users from a data store e.g. database
+    // Requests from a data store e.g. database
     $requests=$this->Bank_model->get_requests();
 
     $id = $this->get('id');
@@ -251,7 +251,7 @@ public function requests_get()
         // Check if the requests data store contains requests (in case the database result returns NULL)
         if ($requests)
         {
-            // Set th0e response and exit
+            // Set the response and exit
             $this->response($requests, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
         }
         else
@@ -264,7 +264,7 @@ public function requests_get()
         }
     }
 
-    // Find and return a single record for a particular user.
+    // Find and return a single record for a particular request.
 
     $id = (int) $id;
 
@@ -324,5 +324,110 @@ public function requests_post()
     ];
     $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
 }
+
+//from here loans
+
+public function loans_get()
+{
+    // loans from a data store e.g. database
+    $loans=$this->Bank_model->get_loans();
+
+    $id = $this->get('loan');
+
+    // If the loans parameter doesn't exist return all the loans
+
+    if ($id === NULL)
+    {
+        // Check if the loans data store contains loans (in case the database result returns NULL)
+        if ($loans)
+        {
+            // Set the response and exit
+            $this->response($loans, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+        }
+        else
+        {
+            // Set the response and exit
+            $this->response([
+                'status' => FALSE,
+                'message' => 'No loans were found'
+            ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
+        }
+    }
+
+    // Find and return a single record for a particular user.
+
+
+    $loan = NULL;
+
+    if (!empty($loans))
+    {
+      //GET the loan from database
+      $loan=$this->Bank_model->get_loan($id);
+    }
+
+    if (!empty($loan))
+    {
+        $this->set_response($loan, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+    }
+    else
+    {
+        $this->set_response([
+            'status' => FALSE,
+            'message' => 'loan could not be found'
+        ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
+    }
+}
+// till here loan get
+
+public function loans_post()
+    {
+        // add a new loan
+
+        $add_data = array(
+        //   'account_id'=>$this->post('account_id'),
+          'user_id'=>$this->post('user_id'),
+          'amount'=>$this->post('amount')
+        );
+
+        $this->Bank_model->add_loan($add_data);
+
+        $message = [
+        //   'account_id'=>$this->post('account_id'),
+          'user_id'=>$this->post('user_id'),
+          'amount'=>$this->post('amount'),
+          'message' => 'Added a resource'
+        ];
+
+        $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
+    }
+
+
+
+// from here loan put test
+
+public function loans_put()
+{
+    $id=$this->put('account_id');
+
+    $update_data = array(
+      'user_id'=>$this->put('user_id'),
+      'amount'=>$this->put('amount'),
+      'timestamp'=>$this->put('timestamp')
+      );
+
+    $this->Bank_model->update_loan($id, $update_data);
+
+    $message = [
+      'account_id'=>$this->put('account_id'),
+      'user_id'=>$this->put('user_id'),
+      'amount'=>$this->put('amount'),
+      'timestamp'=>$this->put('timestamp'),
+      'message' => 'Updates a resource'
+    ];
+
+    $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
+}
+
+//untill here loans
 
 }//this is end of BANK RESTAPI
