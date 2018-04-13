@@ -43,6 +43,11 @@
 
 		// Log in user
 		public function login(){
+			
+			if($this->session->userdata('logged_in')){
+				redirect('users/logout');
+			}
+			
 			$data['title'] = 'Sign In';
 
 			$this->form_validation->set_rules('username', 'Username', 'required');
