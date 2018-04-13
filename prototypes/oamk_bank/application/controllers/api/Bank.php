@@ -198,8 +198,7 @@ public function accounts_get()
           'user_id'=>$this->post('user_id'),
           'account_id'=>$this->post('account_id'),
           'Balance'=>$this->post('Balance'),
-          'credit'=>$this->post('credit'),
-          'loan_id'=>$this->post('loan_id')
+          'credit'=>$this->post('credit')
         );
 
         $this->Bank_model->add_account($add_data);
@@ -209,7 +208,6 @@ public function accounts_get()
           'account_id'=>$this->post('account_id'),
           'Balance'=>$this->post('Balance'),
           'credit'=>$this->post('credit'),
-          'loan_id'=>$this->post('loan_id'),
           'message' => 'Added a resource'
         ];
 
@@ -386,7 +384,8 @@ public function loans_post()
         $add_data = array(
         //   'account_id'=>$this->post('account_id'),
           'user_id'=>$this->post('user_id'),
-          'amount'=>$this->post('amount')
+          'amount'=>$this->post('amount'),
+          'account_id'=>$this->post('account_id')
         );
 
         $this->Bank_model->add_loan($add_data);
@@ -395,6 +394,7 @@ public function loans_post()
         //   'account_id'=>$this->post('account_id'),
           'user_id'=>$this->post('user_id'),
           'amount'=>$this->post('amount'),
+          'account_id'=>$this->post('account_id'),
           'message' => 'Added a resource'
         ];
 
@@ -412,7 +412,7 @@ public function loans_put()
     $update_data = array(
       'user_id'=>$this->put('user_id'),
       'amount'=>$this->put('amount'),
-      'timestamp'=>$this->put('timestamp')
+      'account_id'=>$this->post('account_id')
       );
 
     $this->Bank_model->update_loan($id, $update_data);
@@ -421,7 +421,7 @@ public function loans_put()
       'account_id'=>$this->put('account_id'),
       'user_id'=>$this->put('user_id'),
       'amount'=>$this->put('amount'),
-      'timestamp'=>$this->put('timestamp'),
+      'account_id'=>$this->post('account_id'),
       'message' => 'Updates a resource'
     ];
 
