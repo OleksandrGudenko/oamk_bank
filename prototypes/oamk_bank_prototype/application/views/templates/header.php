@@ -1,6 +1,6 @@
 <html>
 	<head>
-    <title>OAMK BANK</title>
+    <title>OAMK Bank OYJ</title>
     <link rel="icon" href="<?php echo base_url(); ?>assets/images/logo.png">
 		<link rel="stylesheet" href="https://bootswatch.com/3/united/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
