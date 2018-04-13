@@ -121,7 +121,7 @@
 			// Set message
 			$this->session->set_flashdata('user_loggedout', 'You are now logged out');
 
-			redirect('users/login');
+			redirect();
 		}
 
 		// Check if username exists
