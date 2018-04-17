@@ -407,12 +407,11 @@ public function loans_post()
 
 public function loans_put()
 {
-    $id=$this->put('account_id');
+    $id=$this->put('loan_id');
 
     $update_data = array(
-      'user_id'=>$this->put('user_id'),
-      'amount'=>$this->put('amount'),
-      'account_id'=>$this->post('account_id')
+        'loan_id'=>$this->put('loan_id'),
+      'amount'=>$this->put('amount')
       );
 
     $this->Bank_model->update_loan($id, $update_data);
@@ -421,7 +420,8 @@ public function loans_put()
       'account_id'=>$this->put('account_id'),
       'user_id'=>$this->put('user_id'),
       'amount'=>$this->put('amount'),
-      'account_id'=>$this->post('account_id'),
+      'account_id'=>$this->put('account_id'),
+      'loan_id'=>$this->put('loan_id'),
       'message' => 'Updates a resource'
     ];
 

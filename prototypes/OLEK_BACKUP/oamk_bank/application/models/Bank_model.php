@@ -106,18 +106,21 @@ function add_request($add_data)
 //from here for loan
 function get_loans()
 {
-  $this->db->select('accounts_table.account_id, accounts_table.Balance, loans.user_id, amount, loan_id');
+  $this->db->select('loans.account_id,accounts_table.Balance,loans.user_id,amount,loan_id');
   $this->db->from('loans');
   $this->db->join('accounts_table','accounts_table.account_id=loans.account_id', 'left');
   // $this->db->group_by('accounts_table.account_id');
   return  $this->db->get()->result_array();
 }
+
+// changes made to select loans table user ID to find all loans linked to user! istead of linking by account_id
+// as account_id will display loans connect with respected ID
 function get_loan($id)
 {
-  $this->db->select('accounts_id.account_id,accounts_table.Balance,loans.user_id,amount,loan_id');
+  $this->db->select('loans.account_id,accounts_table.Balance,loans.user_id,amount,loan_id');
   $this->db->from('loans');
   $this->db->join('accounts_table','accounts_table.account_id=loans.account_id', 'left');
-  $this->db->where('account_id', $id);
+  $this->db->where('loans.loan_id', $id);
   return  $this->db->get()->result_array();
 }
 
@@ -128,7 +131,7 @@ function add_loan($add_data)
 
 function update_loan($id, $update_data)
 {
-  $this->db->where('account_id', $id);
+  $this->db->where('loan_id', $id);
   $this->db->update('loans', $update_data);
 }
 
