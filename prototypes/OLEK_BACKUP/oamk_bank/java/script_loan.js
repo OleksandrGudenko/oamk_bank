@@ -299,7 +299,8 @@ console.log(jsonData);
       document.getElementById('formdiv5').appendChild(label_send);
   
       var sender = document.createElement("select");
-      sender.setAttribute('id', 'loan_form');
+      sender.setAttribute('id', 'loan_from');
+      sender.setAttribute('onchange', 'right_loan_amount()')
       document.getElementById('formdiv5').appendChild(sender);
 
       var option_sender = document.createElement("option");
@@ -335,8 +336,8 @@ console.log(jsonData);
       document.getElementById('formdiv5').appendChild(label_send);
 
       var reciever = document.createElement('select');
-      reciever.setAttribute('id', 'reciever');
-      reciever.setAttribute('value', 'right_loan_amount()')
+      reciever.setAttribute('id', 'loan_reciever');
+      reciever.setAttribute('onchange', 'right_loan_amount()')
       document.getElementById('formdiv5').appendChild(reciever);
       
       var option_reciever = document.createElement("option");
@@ -350,7 +351,7 @@ console.log(jsonData);
         if(jsonData[x].user_id == 1)
         {
         var option_reciever = document.createElement("option");
-        option_reciever.value = jsonData[x].Balance;
+        option_reciever.value = jsonData[x].amount;
         option_reciever.setAttribute('id', jsonData[x].loan_id);
         option_reciever.text = jsonData[x].loan_id;
         reciever.appendChild(option_reciever);
@@ -378,8 +379,8 @@ function right_loan_amount(){
   var amount = document.getElementById('loan_money');
   var account = document.getElementById('account_payback');
 
-  var loan_amount = document.getElementById('reciever');
-  var selectedNode = loan_amount[account_balance.selectedIndex].value;
+  var loan_amount = document.getElementById('loan_reciever');
+  var selectedNode = loan_amount[loan_amount.selectedIndex].value;
 
   var account_id = document.getElementById('loan_from');
   var selectedNode2 = account_id[account_id.selectedIndex].value;
