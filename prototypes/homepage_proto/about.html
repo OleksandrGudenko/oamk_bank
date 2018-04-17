@@ -6,6 +6,9 @@
 <!-- Fonts used -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:100' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<!-- Scripts  -->
+    <script src="script/top.js"></script>    
+
 
 <!-- CSS Stylesheet  -->
     <link rel="stylesheet" href="css/style.css">
@@ -54,7 +57,7 @@
           myIndex++;
           if (myIndex > x.length) {myIndex = 1}    
           x[myIndex-1].style.display = "block";  
-          setTimeout(carousel, 5000); // Change image every 4 seconds
+          setTimeout(carousel, 5000); // Change image every 5 seconds
       }
       </script>
 <!-- First Content Section -->
@@ -85,13 +88,15 @@
       <a href="/openAcct.html" class="btnoa">OPEN ACCOUNT</a>
     </div>
     
+    
     <!-- <hr> -->
    
 
     
-
+<!-- Back to top Section -->
+<button onclick="topFunction()" id="Bttop" title="Go to top">Top</button>
 <!-- Footer Section -->
-      <div class="footer" style="background-color :#FF9400">
+  <div class="footer" style="background-color :#FF9400">
           <div class="footcontain">
             <div>
               <div class="copy"><small> Copyright &copy; 2018 Oamk Bank Oyj</small></div>
