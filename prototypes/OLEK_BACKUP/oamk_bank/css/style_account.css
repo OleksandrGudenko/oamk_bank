@@ -1,0 +1,234 @@
+body{
+    font-family: 'Roboto', sans-serif;
+    min-width: 60vw;
+}
+
+.navbar {
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #F2882F;
+    border: 1px solid #F2882F;
+}
+
+.navmenudiv {
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+textarea#body
+{
+    border: 1px solid #F2882F;
+    border-radius: 1vw;
+    color: #F2882F;
+    outline: none; 
+}
+
+textarea#body:focus
+{
+    color: black;
+    border: 0.1vw solid #F2882F;
+}
+
+.account_label
+{
+    margin-top: 0px;
+    float: left;
+    overflow: hidden;
+    background-color: #F2882F;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    /* display: block; */
+    font-size: 16px;
+}
+
+.dropdown {
+    float: right;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    cursor: pointer;
+    font-size: 16px;    
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+    
+}
+
+
+.navbar a:hover, .dropdown:hover, .dropbtn, .dropbtn:focus, .dropbtn:hover {
+    background-color: white;
+    color: #F2882F;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #F2882F;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+#li_button {
+    color: white;
+    background-color: #F2882F;
+    border: none;
+    padding: 12px 16px;
+    width: 100%;
+    margin-left: -2%;
+}
+
+
+
+#li_button:hover {
+    background-color: white;
+    color: #F2882F;
+}
+
+.show {
+    display: block;
+}
+
+.signout-btn{
+    float: right;
+    border:none;
+    background-color: #F2882F;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.signout-btn:hover{
+    background-color: white;
+    color: #F2882F;
+}
+
+.signout-btn:disabled 
+{
+    background-color: white;
+    color: #F2882F;
+}
+
+
+.clock_test
+{
+    color: white;
+    float: left;
+    
+    background-color: #F2882F;
+    
+
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 16px; 
+}
+
+ul {
+    list-style-type: none;
+    margin-left: -15%;
+  }
+
+#payoptbtn1, #payoptbtn2, #loanoptbtn1, #loanoptbtn2 {
+    background-color: white;
+    float: right;
+    border: 1px solid #F2882F;
+    color:  #F2882F;
+
+    text-align: center;
+    font-size: 4vw;
+    position: relative;
+    width: 35%;
+    height: 100%;
+}
+#payoptbtn1:disabled, #payoptbtn2:disabled {
+    background-color: #F2882F;
+    color: white;
+
+}
+
+#payoptbtn1:first-child(even), #payoptbtn2:first-child(even){
+    margin-right: 5%;
+}
+
+#payoptbtn1:hover, #payoptbtn2:hover, #loanoptbtn1:hover, #loanoptbtn2:hover {
+    background-color: #F2882F;
+    color: white;
+}
+
+#container{
+    margin-top: 10px;
+    margin-bottom: 5%;
+
+    text-align: center;
+    justify-content: center;
+    display: flex;
+}
+
+#formdiv {
+    text-align: center;
+}
+
+input#textcounter
+{
+    border: 1px solid #F2882F;
+    color:#F2882F;
+    background-color: white;
+    text-align: center;
+    width: 5vw;
+}
+
+input {
+    outline: none;
+    border: 1px solid #F2882F;
+    border-radius: 1vw;
+    width: 50vw;
+    color: #F2882F;
+    text-align: center;
+
+    font-size: 1vw;
+}
+input:focus {
+    color: black;
+    border: 0.1vw solid #F2882F;
+}
+
+
+::placeholder{
+    color: #FFD6CD;
+    opacity: 1; /* Firefox */
+}
+
+#sendbtn{
+    background-color: white;
+    border: 1px solid #F2882F;
+    font-size: 2vw;
+    width: 10vw;
+    border-radius: 1vw;
+    padding: 1vw 1vw 1vw 1vw;
+    margin-top: 3vw;
+}
+
+
+#sendbtn:hover{
+    background-color: #F2882F;
+    color: white;
+}
+
+
