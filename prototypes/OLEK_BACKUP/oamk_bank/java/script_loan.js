@@ -27,6 +27,7 @@ function loanFunction(){
     loanbtn2();
     requestformFunction();
     paybackformFunction();
+    paybackformFunction2()
   }
   
   function loanbtn1(){
@@ -338,34 +339,6 @@ console.log(jsonData);
       
       createListFunction(5);
 
-      var label_send = document.createElement("label");
-      var send_from = document.createTextNode("Select account:  ");
-      label_send.appendChild(send_from);
-      document.getElementById('formdiv5').appendChild(label_send);
-  
-      var sender = document.createElement("select");
-      sender.setAttribute('id', 'loan_from');
-      sender.setAttribute('onchange', 'right_loan_amount()')
-      document.getElementById('formdiv5').appendChild(sender);
-
-      var option_sender = document.createElement("option");
-      option_sender.text = "select from here";
-      option_sender.disabled = true;
-      option_sender.selected = true;
-      sender.appendChild(option_sender);
-      for(x in jsonData)
-      {
-        if(jsonData[x].user_id == 1)
-        {
-        var option_sender = document.createElement("option");
-        option_sender.value = jsonData[x].account_id;
-        option_sender.setAttribute('id',jsonData[x].Balance);
-        option_sender.text = jsonData[x].account_id;
-        sender.appendChild(option_sender);
-        }
-      }
-
-      createListFunction(5);
     
       var label_send = document.createElement("label");
       var acc_balance = document.createTextNode("Selected Account Balance:  ");
@@ -415,6 +388,53 @@ console.log(jsonData);
   };
   xhttp.send();
 }//here is end of function
+
+function paybackformFunction2(){
+
+  // document.getElementById('requestForm').innerHTML = " ";
+  var url = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid";
+  var jsonData='';
+  var xhttp = new XMLHttpRequest();
+  xhttp.open('GET', url, true);
+
+xhttp.onreadystatechange=function()
+{
+if(xhttp.readyState==4 && xhttp.status==200)
+{
+  
+  jsonData = JSON.parse(xhttp.responseText);
+  
+  var label_send = document.createElement("label");
+  var send_from = document.createTextNode("Select account:  ");
+  label_send.appendChild(send_from);
+  document.getElementById('formdiv5').appendChild(label_send);
+
+  var sender = document.createElement("select");
+  sender.setAttribute('id', 'loan_from');
+  sender.setAttribute('onchange', 'right_loan_amount()')
+  document.getElementById('formdiv5').appendChild(sender);
+
+  var option_sender = document.createElement("option");
+  option_sender.text = "select from here";
+  option_sender.disabled = true;
+  option_sender.selected = true;
+  sender.appendChild(option_sender);
+  for(x in jsonData)
+  {
+    if(jsonData[x].user_id == 1)
+    {
+    var option_sender = document.createElement("option");
+    option_sender.value = jsonData[x].account_id;
+    option_sender.setAttribute('id',jsonData[x].Balance);
+    option_sender.text = jsonData[x].account_id;
+    sender.appendChild(option_sender);
+    }
+  }
+
+}
+};
+xhttp.send();
+}
 
 function right_loan_amount(){
   var amount = document.getElementById('loan_money');
