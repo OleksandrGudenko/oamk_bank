@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OAMK Bank</title>
+    <link rel="stylesheet" href="C:\OAMK\DatabasesCourse3\UniformServerXIII\UniServerZ\www\oamk_bank_prototype\assets\css\loggedInStyle.css">
+    <script src="C:\OAMK\DatabasesCourse3\UniformServerXIII\UniServerZ\www\oamk_bank_prototype\assets\script\script.js"></script>
+</head>
+<body>
+
+
+    <div class="navbar">
+        <div class="dropdown">
+                <button class="dropbtn" onclick="dropdownFunction()">Accounts
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content" id="navDropdown">
+                    <ul>
+                        <li><button>Create New Account</button></li>
+                        <li><button>Account1</button></li>
+                        <li><button>Account2</button></li>
+                    </ul>
+                   
+
+                    
+                </div>
+                
+            </div> 
+        <div class="dropdown">
+            <button class="dropbtn" onclick="paymentFunction()" id="Payments">Payments</button>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="loanFunction()">Loan</button>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="editCredFunction()">Edit Credentials</button>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="contactBankFunction()">Contact Bank</button>
+        </div>
+
+        <button class="signout-btn">Sign Out</button>
+
+    </div>
+    <div id="pagetitle"></div>
+        <div id="container"></div>
+
+        <div id="formdiv"></div>
+</body>
+</html>
