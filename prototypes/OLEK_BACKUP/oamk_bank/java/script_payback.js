@@ -175,7 +175,6 @@ if(xhttp.readyState==4 && xhttp.status==200)
 }
 };
 xhttp.send();
-
 }
 
 function right_loan_amount(){
@@ -211,18 +210,18 @@ function payback_money(){
   var xhttp = new XMLHttpRequest();
   xhttp.open('PUT', url_account, true)
 
-  var balance_remain = parseInt(document.getElementById('account_payback_balance').value);
-  var how_much_payed = parseInt(document.getElementById('payback_amount').value);
+  var balance_remain = parseFloat(document.getElementById('account_payback_balance').value);
+  var how_much_payed = parseFloat(document.getElementById('payback_amount').value);
 
   var new_balance = balance_remain - how_much_payed;  
-
+  new_balance = new_balance.toFixed(2);
   var data = {};
   data.account_id = account;
   data.Balance = new_balance;
   var jsonData = JSON.stringify(data);
 
-  var loan_old = parseInt(document.getElementById('loan_money').value);
-  var amount_payed = parseInt(document.getElementById('payback_amount').value);
+  var loan_old = parseFloat(document.getElementById('loan_money').value);
+  var amount_payed = parseFloat(document.getElementById('payback_amount').value);
 
   var loan_new = loan_old - amount_payed;
 
@@ -281,11 +280,11 @@ var url_account = "http://localhost/oamk_bank/index.php/api/bank/loans/loan/" +l
 var xhttp = new XMLHttpRequest();
 xhttp.open('PUT', url_account, true)
 
-var loan_old = parseInt(document.getElementById('loan_money').value);
-var amount_payed = parseInt(document.getElementById('payback_amount').value);
+var loan_old = parseFloat(document.getElementById('loan_money').value);
+var amount_payed = parseFloat(document.getElementById('payback_amount').value);
 
 var loan_new = loan_old - amount_payed;  
-
+loan_new = loan_new.toFixed(2);
 var data = {};
 data.loan_id = loanid;
 data.amount = loan_new;

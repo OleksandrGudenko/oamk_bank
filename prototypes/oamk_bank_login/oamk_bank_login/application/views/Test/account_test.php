@@ -3,11 +3,11 @@
     <div class="account_label">
         <span style="color:white;" id="time_expression"></span>
         <span style="color:white;" id="user">Tervetuloa</span>
-        <input id="user_id" value="<?php echo $user;?>" type="hidden">
+        <input id="user_id" value="<?php echo $this->session->userdata('firstname');?>" type="hidden">
     </div>
           <div class="clock_test" id="current_time"></div>
 <div id="div_active">
-        <a href="<?php echo base_url(); ?>users/logout"><button class="signout-btn">Sign Out</button></a>
+        <a href="<?php echo base_url(); ?>"><button class="signout-btn">Sign Out</button></a>
         <button class="signout-btn" id="contact_btn" onclick="contact_show()">Contact Bank</button>
         <button class="signout-btn" id="edit_btn" onclick="edit_show()">Edit Credentials</button>
         <button class="signout-btn" id="loan_btn" onclick="loan_show()">Loan</button>
