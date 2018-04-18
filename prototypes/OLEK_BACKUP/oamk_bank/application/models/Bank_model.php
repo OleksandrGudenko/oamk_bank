@@ -106,7 +106,7 @@ function add_request($add_data)
 //from here for loan
 function get_loans()
 {
-  $this->db->select('loans.account_id,accounts_table.Balance,loans.user_id,amount,loan_id');
+  $this->db->select('accounts_table.account_id,accounts_table.Balance,loans.user_id,amount,loan_id');
   $this->db->from('loans');
   $this->db->join('accounts_table','accounts_table.account_id=loans.account_id', 'left');
   // $this->db->group_by('accounts_table.account_id');
@@ -117,7 +117,7 @@ function get_loans()
 // as account_id will display loans connect with respected ID
 function get_loan($id)
 {
-  $this->db->select('loans.account_id,accounts_table.Balance,loans.user_id,amount,loan_id');
+  $this->db->select('accounts_table.account_id,accounts_table.Balance,loans.user_id,amount,loan_id');
   $this->db->from('loans');
   $this->db->join('accounts_table','accounts_table.account_id=loans.account_id', 'left');
   $this->db->where('loans.loan_id', $id);
@@ -135,6 +135,18 @@ function update_loan($id, $update_data)
   $this->db->update('loans', $update_data);
 }
 
+function get_paid_loan($id){
+    $this->db->select('*');
+    $this->db->from('loans');
+    $this->db->where('loan_id',$id);
+    return $this->db->get()->result_array();
+}
+
+function delete_loan($id)
+{
+  $this->db->where('loan_id',$id);
+  $this->db->delete('loans');
+}
 
 }//this is end of bank model
 

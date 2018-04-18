@@ -428,6 +428,32 @@ public function loans_put()
     $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
 }
 
+
+//loan delete from here
+
+public function loans_delete()
+{
+    $id = (int) $this->get('loan_id');
+
+    // $this->some_model->delete_something($id);
+    $paid_loan=$this->Bank_model->get_paid_loan($id);
+    if(!empty($paid_loan[0]['loan_id'])){
+      $this->Bank_model->delete_loan($id);
+      $message = [
+          'loan_id' => $id,
+          'message' => 'Deleted the resource'
+      ];
+        $this->set_response($message, REST_Controller::HTTP_OK); // NO_CONTENT (204) being the HTTP response code
+    }
+    else{
+      $message="Error";
+      $this->set_response($message, REST_Controller::HTTP_NO_CONTENT);
+    }
+
+
+}
+
 //untill here loans
+
 
 }//this is end of BANK RESTAPI

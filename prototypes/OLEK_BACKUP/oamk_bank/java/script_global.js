@@ -105,3 +105,5 @@ function get_user(id)
  };
  xhttp.send();
 }
+
+var reload_yes = 0;
