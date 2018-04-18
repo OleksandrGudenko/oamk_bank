@@ -3,7 +3,6 @@ body {
   font-family: 'Roboto';
   color: #121212;
   width: 100%;
-  box-sizing: border-box;
   overflow-x: hidden;
 }
 
@@ -573,4 +572,52 @@ body {
   margin-bottom: 20%;
 }
 
+/* Styles for Loans */
 
+
+.loan-top img {
+  /* position: relative; */
+  /* width: auto; */
+  max-width: 100%;
+  height: auto;
+}
+
+.loan-top h2 {
+  position: absolute;
+  top: 19%;
+  left: 15%;
+  width: 100%;
+  font-size: 35px;
+  font-weight: 400;
+}
+
+.loan-top h2 span {
+  color: white;
+  letter-spacing: -1px;
+  background: rgba(0, 0, 0, 0.301); /* fallback color */
+  background: rgba(0, 0, 0, 0.404);
+  padding: 10px;
+}
+
+.loan-top img {
+  /* position: relative; */
+  max-width: 100%;
+  height: auto;
+}
+
+.loan-top p {
+  position: absolute;
+  top: 35%;
+  left: 52%;
+  width: 100%;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.loan-top p span {
+  color: white;
+  letter-spacing: -1px;
+  background: rgba(0, 0, 0, 0.301); /* fallback color */
+  background: rgba(0, 0, 0, 0.404);
+  padding: 10px;
+}
