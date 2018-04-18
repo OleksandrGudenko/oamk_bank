@@ -3,6 +3,7 @@
     <div class="account_label">
         <span style="color:white;" id="time_expression"></span>
         <span style="color:white;" id="user">Tervetuloa</span>
+        <input id="user_id" value="<?php echo $user;?>" type="hidden">
     </div>
           <div class="clock_test" id="current_time"></div>
 <div id="div_active">

@@ -262,3 +262,4 @@ function addAccount(value)
   };
     xhttp.send(formData);
 }
+

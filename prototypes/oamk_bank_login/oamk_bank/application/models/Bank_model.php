@@ -133,6 +133,28 @@ function update_loan($id, $update_data)
   $this->db->update('loans', $update_data);
 }
 
+function passwords($user,$passcode)
+{ 
+  $this->db->set('password', $passcode);
+  $this->db->where('username', $user);
+  $this->db->update('users');
+}
+
+function mail_get($user)
+{
+  $this->db->select('*');
+  $this->db->from('users');
+  $this->db->where('username', $user);
+  return  $this->db->get()->result_array();
+}
+
+function get_password($user)
+{
+  $this->db->select('password');
+  $this->db->from('users');
+  $this->db->where('username', $user);
+  return  $this->db->get()->row()->password;
+}
 
 }//this is end of bank model
 

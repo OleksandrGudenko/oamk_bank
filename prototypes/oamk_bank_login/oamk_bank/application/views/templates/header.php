@@ -7,7 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="http://cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
-	</head>
+	</head> 
 	<body>
   <div class="nav-bar navbar-fixed-top">
     <div id="nav-container">

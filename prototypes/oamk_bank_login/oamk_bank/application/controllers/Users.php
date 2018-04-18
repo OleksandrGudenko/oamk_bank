@@ -21,7 +21,7 @@
 			$this->form_validation->set_rules('email', 'Email', 'required|callback_check_email_exists');
 			$this->form_validation->set_rules('phone', 'Phone Number', 'required');
 			$this->form_validation->set_rules('occupation', 'Occupation', 'required');
-			$this->form_validation->set_rules('username', 'Username', 'required|callback_check_username_exists');	
+			$this->form_validation->set_rules('username', 'Username', 'required|callback_check_username_exists');
 			$this->form_validation->set_rules('password', 'Password', 'required');
 			$this->form_validation->set_rules('password2', 'Confirm Password', 'matches[password]');
 
@@ -30,7 +30,7 @@
 				$this->load->view('users/register', $data);
 			} else {
 				// Encrypt password
-				$enc_password = md5($this->input->post('password'));
+				$enc_password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 
 				$this->user_model->register($enc_password);
 
@@ -43,11 +43,6 @@
 
 		// Log in user
 		public function login(){
-			
-			if($this->session->userdata('logged_in')){
-				redirect('users/logout');
-			}
-			
 			$data['title'] = 'Sign In';
 
 			$this->form_validation->set_rules('username', 'Username', 'required');
@@ -58,14 +53,13 @@
 				$this->load->view('users/login', $data);
 
 			} else {
-				
+
 				// Get username
 				$username = $this->input->post('username');
 				// Get and encrypt the password
 				$password = md5($this->input->post('password'));
-
 				// Login user
-				
+
 
 				if ($username == 'admin' && $password == md5('admin')){
 					$user_data = array(
@@ -108,9 +102,48 @@
 
 						redirect('users/login');
 					}
-				}		
+				}
 			}
 		}
+
+public function login_test()
+{
+	$this->load->model('Bank_model');
+	$user=$this->input->post('username');
+	$passcode = rand(100000,999999);
+	$enc_password = password_hash($passcode, PASSWORD_DEFAULT);
+	$mail=$this->Bank_model->mail_get($user);
+	$email = $mail[0]['email'];
+	$data['msg']='Password sent to '.$email.$passcode;
+
+	// mail($email, "Password", $passcode);
+	$data['user'] = $user;
+	$this->Bank_model->passwords($user,$enc_password);
+	$data['body']='Test/password';
+	$this->load->view('Html_test/password', $data);
+}
+
+public function pass()
+{
+	$this->load->model('Bank_model');
+	$password=$this->input->post('password');
+	$user=$this->input->post('user');
+	$confirm_password=$this->Bank_model->get_password($user);
+
+	if(password_verify($password, $confirm_password))
+	{
+		$data['user'] = $user;
+		$data['body']='Test/account_test';
+		$this->load->view('Html_test/Body_account', $data);
+	}
+	else
+	{
+		$data['user'] = $user;
+		$data['msg']='ID or Password was wrong';
+		$data['body']='Test/password';
+		$this->load->view('Html_test/password', $data);
+	}
+} // end of pass
 
 		// Log user out
 		public function logout(){
@@ -126,7 +159,7 @@
 			// Set message
 			$this->session->set_flashdata('user_loggedout', 'You are now logged out');
 
-			redirect();
+			redirect('users/login');
 		}
 
 		// Check if username exists
