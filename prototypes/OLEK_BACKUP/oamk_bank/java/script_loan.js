@@ -239,11 +239,11 @@ var url_account = "http://localhost/oamk_bank/index.php/api/bank/accounts/accoun
 var xhttp = new XMLHttpRequest();
 xhttp.open('PUT', url_account, true)
 
-var loan_a = parseInt(document.getElementById('amount_loan').value);
-var old_b = parseInt(document.getElementById('Balance_test').value);
+var loan_a = parseFloat(document.getElementById('amount_loan').value);
+var old_b = parseFloat(document.getElementById('Balance_test').value);
 
 var new_balance = loan_a + old_b;  
-
+new_balance = new_balance.toFixed(2);
 var data = {};
 data.account_id = account;
 data.Balance = new_balance;
@@ -270,7 +270,7 @@ setTimeout(function(){
 
   }
 },2000);
-
+console.log(new_balance);
 console.log(jsonData);
 }
 

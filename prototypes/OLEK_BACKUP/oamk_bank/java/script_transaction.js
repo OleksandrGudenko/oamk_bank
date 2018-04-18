@@ -104,6 +104,7 @@ function transaction_sender(variable)
 
     xhttp.open('PUT', url_sender, true);
     var sender_account_after = Number(sender_balance_before) - Number(money) ;
+    sender_account_after.toFixed(2);
     var data_sender = {} ;
     data_sender.account_id=document.getElementById('sender').value;
     data_sender.Balance= Number(sender_account_after);
