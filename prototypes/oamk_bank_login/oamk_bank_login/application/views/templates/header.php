@@ -47,4 +47,8 @@
         <?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedout').'</p>'; ?>
       <?php endif; ?>
 
+       <?php if($this->session->flashdata('id_invalid')): ?>
+        <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('id_invalid').'</p>'; ?>
+      <?php endif; ?>
+
     </div>

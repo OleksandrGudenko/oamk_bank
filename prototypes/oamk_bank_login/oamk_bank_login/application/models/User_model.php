@@ -17,12 +17,9 @@
 			// Insert user
 			return $this->db->insert('users', $data);
 		}
-
-		// Log user in
-		public function login($username, $password){
+		public function username($username){
 			// Validate
 			$this->db->where('username', $username);
-			$this->db->where('password', $password);
 
 			$result = $this->db->get('users');
 
@@ -32,24 +29,33 @@
 				return false;
 			}
 		}
-
-		// Check username exists
-		public function check_username_exists($username){
-			$query = $this->db->get_where('users', array('username' => $username));
-			if(empty($query->row_array())){
-				return true;
-			} else {
-				return false;
-			}
+		public function passwords($user,$passcode)
+		{ 
+		$this->db->set('password', $passcode);
+		$this->db->where('username', $user);
+		$this->db->update('users');
 		}
 
-		// Check email exists
-		public function check_email_exists($email){
-			$query = $this->db->get_where('users', array('email' => $email));
-			if(empty($query->row_array())){
-				return true;
-			} else {
-				return false;
-			}
+		public function mail_get($user)
+		{
+		$this->db->select('*');
+		$this->db->from('users');
+		$this->db->where('username', $user);
+		return  $this->db->get()->result_array();
+		}
+
+		public function get_password($user)
+		{
+		$this->db->select('password');
+		$this->db->from('users');
+		$this->db->where('username', $user);
+		return $this->db->get()->row()->password;
+		}
+
+		public function getinfo($username){
+			$this->db->select('*');
+			$this->db->from('users');
+			$this->db->where('username',$username);
+			return $this->db->get()->result_array();
 		}
 	}
