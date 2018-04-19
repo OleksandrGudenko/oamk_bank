@@ -73,7 +73,7 @@ function checkTime(i)
 function for_onload()
 {
   time_greet();
-  real_time();
+  // real_time();
   get_user(1);
   account_own();
   paymentFunction();
@@ -100,7 +100,7 @@ function get_user(id)
    if(xhttp.readyState==4 && xhttp.status==200)
    {
      json=JSON.parse(xhttp.responseText);;
-     document.getElementById('user').innerHTML = json[0].firstname + " " + json[0].lastname ;
+     var userID = document.getElementById('user').innerHTML = json[0].firstname + " " + json[0].lastname ;
    }
  };
  xhttp.send();

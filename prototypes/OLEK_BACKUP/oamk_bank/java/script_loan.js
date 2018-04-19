@@ -76,6 +76,7 @@ function loanFunction(){
   function requestformFunction(){
 
       var br = document.createElement('br');
+      var br1 = document.createElement('br');
       var br2 = document.createElement('br');
       var br3 = document.createElement('br');
       var br4 = document.createElement('br');
@@ -110,14 +111,7 @@ function loanFunction(){
       user_account.style.display = 'none';
       document.getElementById('requestForm').appendChild(user_account);
 
-      var user_balance = document.createElement('input');
-      user_balance.type = 'text';
-      user_balance.id = 'Balance_test';
-      user_balance.name = 'Balance_test';
-      user_balance.readOnly = true;
-      user_balance.style.display = 'none';
-      document.getElementById('requestForm').appendChild(user_balance);
-
+     
       var label_send = document.createElement("label");
       var send_from = document.createTextNode("Select account:  ");
       label_send.appendChild(send_from);
@@ -147,9 +141,23 @@ function loanFunction(){
       }
       
     document.getElementById('requestForm').appendChild(br);
+    document.getElementById('requestForm').appendChild(br1);
+    
+    var balance_lable = document.createElement('label')
+    var balance_text = document.createTextNode("Chosen Account Balance:")
+    balance_lable.appendChild(balance_text);
+    document.getElementById('requestForm').appendChild(balance_lable);
+    
+    var user_balance = document.createElement('input');
+    user_balance.type = 'text';
+    user_balance.id = 'Balance_test';
+    user_balance.name = 'Balance_test';
+    user_balance.readOnly = true;
+    document.getElementById('requestForm').appendChild(user_balance);
+
     document.getElementById('requestForm').appendChild(br2);
     document.getElementById('requestForm').appendChild(br3);
-
+    
     var amount_loan = document.createElement("input");
     amount_loan.setAttribute('type', 'number');
     amount_loan.setAttribute('name', 'amount');
@@ -251,12 +259,12 @@ var jsonData = JSON.stringify(data);
 xhttp.onreadystatechange = function(){
 
   if(xhttp.readyState == 4 && xhttp.status == 201){
-    document.getElementById('formdiv').innerHTML = 'Success';
+    document.getElementById('formdiv').innerHTML = 'Request processed successfully.';
     document.getElementById('formdiv').style.display = 'block';
     reload_yes = 1;
   }
   else{
-    document.getElementById('formdiv').innerHTML = 'FAIL';
+    document.getElementById('formdiv').innerHTML = 'Internal error, loan request denied.';
     document.getElementById('formdiv').style.display = 'block';
   }
 };

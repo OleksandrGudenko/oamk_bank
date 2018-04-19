@@ -25,7 +25,6 @@
       your_iban.name = 'account_id';
       your_iban.style.display = 'none';
       document.getElementById('formdiv5').appendChild(your_iban);
-
       
       createListFunction(5);
       
@@ -82,7 +81,7 @@
       createListFunction(5);
 
       var label_send = document.createElement("label");
-      var acc_balance = document.createTextNode("Selected Account Balance:  ");
+      var acc_balance = document.createTextNode("Selected Account Balance:"+" ");
       label_send.appendChild(acc_balance);
       document.getElementById('formdiv5').appendChild(label_send);
 
@@ -95,7 +94,7 @@
       createListFunction(5);
       
       var label_loan = document.createElement('label');
-      var label_loan_text = document.createTextNode("Loan Amount Left:  ");
+      var label_loan_text = document.createTextNode("Loan Amount Left:"+" ");
       label_loan.appendChild(label_loan_text);
       document.getElementById('formdiv5').appendChild(label_loan);
 
@@ -146,7 +145,7 @@ if(xhttp.readyState==4 && xhttp.status==200)
   jsonData = JSON.parse(xhttp.responseText);
   
   var label_send = document.createElement("label");
-  var send_from = document.createTextNode("Select account:  ");
+  var send_from = document.createTextNode("Select account:"+" ");
   label_send.appendChild(send_from);
   document.getElementById('formdiv5').insertBefore(label_send, document.getElementById('formdiv5').children[10]);
 
@@ -211,9 +210,9 @@ function payback_money(){
   xhttp.open('PUT', url_account, true)
 
   var balance_remain = parseFloat(document.getElementById('account_payback_balance').value);
-  var how_much_payed = parseFloat(document.getElementById('payback_amount').value);
+  var how_much_paid = parseFloat(document.getElementById('payback_amount').value);
 
-  var new_balance = balance_remain - how_much_payed;  
+  var new_balance = balance_remain - how_much_paid;  
   new_balance = new_balance.toFixed(2);
   var data = {};
   data.account_id = account;
@@ -221,9 +220,9 @@ function payback_money(){
   var jsonData = JSON.stringify(data);
 
   var loan_old = parseFloat(document.getElementById('loan_money').value);
-  var amount_payed = parseFloat(document.getElementById('payback_amount').value);
+  var amount_paid = parseFloat(document.getElementById('payback_amount').value);
 
-  var loan_new = loan_old - amount_payed;
+  var loan_new = loan_old - amount_paid;
 
   if(loan_new > 0){
   xhttp.onreadystatechange = function(){
@@ -234,7 +233,7 @@ function payback_money(){
       reload_yes = 1;
     }
     else{
-      document.getElementById('formdiv').innerHTML = 'FAIL';
+      document.getElementById('formdiv').innerHTML = 'Internal error please try later.';
       document.getElementById('formdiv').style.display = 'block';
     }
   };
@@ -246,10 +245,11 @@ else if(loan_new = 0){
       if(xhttp.readyState == 4 && xhttp.status == 201){
         document.getElementById('formdiv').innerHTML = 'Loan was successfully paid off.'
         document.getElementById('formdiv').style.display = 'block';
+        delete_loan();
         reload_yes = 1;
       }
       else{
-          document.getElementById('formdiv').innerHTML = "Something went wrong.";
+          document.getElementById('formdiv').innerHTML = "Internal error please try later.";
           document.getElementById('formdiv').style.display = 'block';
       }
   }
@@ -262,7 +262,7 @@ setTimeout(function(){
       location.reload();
 
   }
-},2000);
+},3000);
 
   console.log(jsonData);
   console.log(loan_new);
@@ -274,7 +274,7 @@ function payback_money2(){
 var account = document.getElementById('account_payback').value;
 var user = document.getElementById('user_id_payback').value;
 var loanid = document.getElementById('loan_id_payback').value;
-// debugger
+
 var url_account = "http://localhost/oamk_bank/index.php/api/bank/loans/loan/" +loanid;
 
 var xhttp = new XMLHttpRequest();
@@ -300,12 +300,13 @@ if(loan_new > 0){
       reload_yes = 1;
     }
     else{
-       document.getElementById('formdiv').innerHTML = 'Internal error, could not update loan.';
+       document.getElementById('formdiv').innerHTML = 'Internal error, could not update loan information.';
        document.getElementById('formdiv').style.display = 'block';
     }
   };
   xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
   xhttp.send(jsonData);
+
   setTimeout(function(){
     if(reload_yes == 1){
     
@@ -314,15 +315,20 @@ if(loan_new > 0){
     }
   },2000);
 }
-else if(loan_new = 0){
+else if(loan_new == 0){
   
   delete_loan();
   
 }
-else {
+  else{
   document.getElementById('formdiv').innerHTML = 'Type in valid amount';
   document.getElementById('formdiv').style.display = 'block';
 }
+
+// else if(amount_payed > document.getElementById('loan_from')[document.getElementById('loan_from').selectedIndex].id){
+  //   document.getElementById('formdiv').innerHTML = 'Type in valid amount';
+  //   document.getElementById('formdiv').style.display = 'block';
+  // }
 
 console.log(jsonData);
 
@@ -342,11 +348,12 @@ function delete_loan(){
         reload_yes = 1;
       }
       else{
-          document.getElementById('formdiv').innerHTML = "Something went wrong.";
+          document.getElementById('formdiv').innerHTML = "Internal error, please try again later.";
           document.getElementById('formdiv').style.display = 'block';
       }
   }
   xhttp.send();
+
   setTimeout(function(){
     if(reload_yes == 1){
     
