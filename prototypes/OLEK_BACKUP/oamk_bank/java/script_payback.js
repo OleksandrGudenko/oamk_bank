@@ -314,7 +314,7 @@ if(loan_new > 0){
     }
   },2000);
 }
-else if(loan_new == 0){
+else if(loan_new = 0){
   
   delete_loan();
   

@@ -98,7 +98,7 @@ xhttp.onreadystatechange=function()
     document.getElementById('formdiv2').appendChild(label_send);
 
     var sender = document.createElement("select");
-    sender.setAttribute('id', 'sender');
+    sender.setAttribute('id', 'sender_transfer');
     document.getElementById('formdiv2').appendChild(sender);
     for(x in jsonData)
     {
@@ -106,7 +106,7 @@ xhttp.onreadystatechange=function()
       {
       var option_sender = document.createElement("option");
       option_sender.value = jsonData[x].account_id;
-      option_sender.setAttribute('id', "send" + jsonData[x].account_id);
+      option_sender.setAttribute('id', jsonData[x].account_id);
       option_sender.text = jsonData[x].account_id;
       sender.appendChild(option_sender);
       }
@@ -119,7 +119,7 @@ xhttp.onreadystatechange=function()
     document.getElementById('formdiv2').appendChild(label_recieve);
 
     var reciever = document.createElement("select");
-    reciever.setAttribute('id', 'reciever');
+    reciever.setAttribute('id', 'reciever_transfer');
     document.getElementById('formdiv2').appendChild(reciever);
 
     for(x in jsonData)
@@ -128,7 +128,7 @@ xhttp.onreadystatechange=function()
       {
       var option_reciever = document.createElement("option");
       option_reciever.value = jsonData[x].account_id;
-      option_reciever.setAttribute('id', "recieve" + jsonData[x].account_id);
+      option_reciever.setAttribute('id', jsonData[x].account_id);
       option_reciever.text = jsonData[x].account_id;
       reciever.appendChild(option_reciever);
       }
@@ -138,7 +138,7 @@ xhttp.onreadystatechange=function()
 
     var amount = document.createElement("input");
     amount.setAttribute('type', 'number');
-    amount.setAttribute('id', 'amount');
+    amount.setAttribute('id', 'amount_transfer');
     amount.setAttribute('placeholder', 'amount to transfer');
     document.getElementById('formdiv2').appendChild(amount);
 
@@ -182,15 +182,15 @@ label_send.appendChild(send_from);
 document.getElementById('formdiv3').appendChild(label_send);
 
 var sender = document.createElement("select");
-sender.setAttribute('id', 'sender');
+sender.setAttribute('id', 'sender_payment');
 document.getElementById('formdiv3').appendChild(sender);
 for(x in jsonData)
 {
   if(jsonData[x].user_id == 1)
   {
   var option_sender = document.createElement("option");
-  option_sender.value = jsonData[x].account_id;
-  option_sender.setAttribute('id', "send" + jsonData[x].account_id);
+  option_sender.value = jsonData[x].Balance;
+  option_sender.setAttribute('id', jsonData[x].account_id);
   option_sender.text = jsonData[x].account_id;
   sender.appendChild(option_sender);
   }
@@ -199,7 +199,7 @@ for(x in jsonData)
 createListFunction(3);
 var reciever = document.createElement("input");
 reciever.setAttribute('type', 'text');
-reciever.setAttribute('id', 'reciever');
+reciever.setAttribute('id', 'reciever_payment');
 reciever.setAttribute('placeholder', 'IBAN where money will go');
 document.getElementById('formdiv3').appendChild(reciever);
 
@@ -207,8 +207,8 @@ document.getElementById('formdiv3').appendChild(reciever);
 createListFunction(3);
 var amount = document.createElement("input");
 amount.setAttribute('type', 'number');
-amount.setAttribute('id', 'amount');
-amount.setAttribute('placeholder', 'amount to transfer');
+amount.setAttribute('id', 'amount_payment');
+amount.setAttribute('placeholder', 'amount to pay');
 document.getElementById('formdiv3').appendChild(amount);
 
 
