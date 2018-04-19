@@ -56,9 +56,9 @@ function send_money_own()
   document.getElementById('loading').innerHTML = "loading...";
   document.getElementById('formdiv').style.display = "none";
   document.getElementById('formdiv2').style.display = "none";
-  var sender_account = document.getElementById('sender').value;
-  var reciever_account = document.getElementById('reciever').value;
-  var amount = document.getElementById('amount').value;
+  var sender_account = document.getElementById('sender_transfer').value;
+  var reciever_account = document.getElementById('reciever_transfer').value;
+  var amount = document.getElementById('amount_transfer').value;
 
   var xhttp = new XMLHttpRequest();
 
@@ -97,26 +97,44 @@ function send_money_own()
 function transaction_sender(variable)
 {
   //from here put sender's account
-    var sender_balance_before = variable;
+    var sender_balance_before = document.getElementById('sender_payment')[document.getElementById('sender_payment').selectedIndex].value;
     var xhttp = new XMLHttpRequest();
     var url_sender = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/";
-    var money = document.getElementById('amount').value;
-
-    xhttp.open('PUT', url_sender, true);
-    var sender_account_after = Number(sender_balance_before) - Number(money) ;
+    var money = document.getElementById('amount_payment').value;
+    
+    var sender_account_after = parseFloat(sender_balance_before) - parseFloat(money) ;
     sender_account_after.toFixed(2);
     var data_sender = {} ;
-    data_sender.account_id=document.getElementById('sender').value;
+    data_sender.account_id = document.getElementById('sender_payment')[document.getElementById('sender_payment').selectedIndex].id;
     data_sender.Balance= Number(sender_account_after);
-    var jsonData = JSON.stringify(data_sender);
+    var jsonData1 = JSON.stringify(data_sender);
+
+    xhttp.open('PUT', url_sender, true);
+    xhttp.onreadystatechange = function()
+    {
+      if(xhttp.readyState==4 && xhttp.status==201)
+      {
+        document.getElementById('formdiv').style.display = "block";
+        
+        document.getElementById('formdiv').innerHTML = "Transaction went succesfully";
+      }
+      else
+      {
+        document.getElementById('formdiv').style.display = "block";
+  
+        document.getElementById('formdiv').innerHTML = "Something went wrong";
+      }
+    };
     xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-    xhttp.send(jsonData);
+    xhttp.send(jsonData1);
+    console.log(jsonData1);
 }
 
 
-function other_transaction(account)
+function other_transaction()
 {
   //from here get reciever's balance
+  var account = document.getElementById('reciever_payment').value;
   var url_recieve = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/" + account;
   var xhttp = new XMLHttpRequest();
   var json_recieve='';
@@ -139,31 +157,35 @@ function recieve_transaction(variable)
   //from here put reciever's balance
   var recieve_balance_before = variable;
 
-  var money = document.getElementById('amount').value;
+  var money = document.getElementById('amount_payment').value;
   var xhttp = new XMLHttpRequest();
   var url = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/";
-  var reciever_account_after = Number(recieve_balance_before) + Number(money) ;
-  xhttp.open('PUT', url, true);
+
+  var reciever_account_after = parseFloat(recieve_balance_before) + parseFloat(money) ;
+  
   var data = {} ;
-  data.account_id=document.getElementById('reciever').value;
-  data.Balance= Number(reciever_account_after) ;
+  data.account_id = document.getElementById('reciever_payment').value;
+  data.Balance = reciever_account_after.toFixed(2);
   var jsonData = JSON.stringify(data);
 
+  xhttp.open('PUT', url, true);
   xhttp.onreadystatechange = function()
   {
     if(xhttp.readyState==4 && xhttp.status==201)
     {
       document.getElementById('formdiv').style.display = "block";
-      document.getElementById('formdiv2').style.display = "block";
-      document.getElementById('loading').innerHTML = "Transaction went succesfully";
+      
+      document.getElementById('formdiv').innerHTML = "Transaction went succesfully";
     }
     else
     {
       document.getElementById('formdiv').style.display = "block";
-      document.getElementById('formdiv2').style.display = "block";
-      document.getElementById('loading').innerHTML = "Something went wrong";
+
+      document.getElementById('formdiv').innerHTML = "Something went wrong";
     }
   };
+  
 xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 xhttp.send(jsonData);
+console.log(jsonData);
 }
