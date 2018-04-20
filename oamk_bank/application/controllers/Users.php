@@ -12,18 +12,18 @@ public function login_verify()
 	$this->load->model('User_model');
 	$user=$this->input->post('username');
 	$username=$this->User_model->username($user);
-	if ($username != FALSE){
-	$passcode = rand(100000,999999);
-	$enc_password = password_hash($passcode, PASSWORD_DEFAULT);
-	$mail=$this->User_model->mail_get($user);
-	$email = $mail[0]['email'];
-	$data['msg']='Password sent to '.$email.$passcode;
-	$data['user'] = $user;
-	$this->User_model->passwords($user,$enc_password);
-	$data['body']='Users/password';
-	$this->load->view('Structure/Home', $data);
-	} else {
 
+	if ($username != FALSE){
+		$passcode = rand(100000,999999);
+		$enc_password = password_hash($passcode, PASSWORD_DEFAULT);
+		$mail=$this->User_model->mail_get($user);
+		$email = $mail[0]['email'];
+		$data['msg']='Password sent to '.$email.$passcode;
+		$data['user'] = $user;
+		$this->User_model->passwords($user,$enc_password);
+		$data['body']='Users/password';
+		$this->load->view('Structure/Home', $data);
+	} else {
 		$this->session->set_flashdata('id_invalid', 'Username invalid.');
 		redirect('users/login');
 	}

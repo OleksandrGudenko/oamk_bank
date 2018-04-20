@@ -29,9 +29,9 @@
 				return false;
 			}
 		}
-		public function passwords($user,$passcode)
+		public function passwords($user,$enc_password)
 		{ 
-		$this->db->set('password', $passcode);
+		$this->db->set('password', $enc_password);
 		$this->db->where('username', $user);
 		$this->db->update('users');
 		}
