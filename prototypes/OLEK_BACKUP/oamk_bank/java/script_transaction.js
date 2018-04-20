@@ -219,26 +219,37 @@ function transaction_sender(variable)
       if(xhttp.readyState==4 && xhttp.status==201)
       {
         document.getElementById('formdiv').style.display = "block";
+        document.getElementById('formdiv').innerHTML = 'Transaction went succesfully';
+        document.getElementById('formdiv').style.color = 'green';
+        document.getElementById('formdiv').style.fontSize = '3vw';
+        reload_yes = 1;
         
-        document.getElementById('formdiv').innerHTML = "Transaction went succesfully";
       }
       else
       {
         document.getElementById('formdiv').style.display = "block";
-  
         document.getElementById('formdiv').innerHTML = "Something went wrong";
+        document.getElementById('formdiv').style.color = 'red';
+        document.getElementById('formdiv').style.fontSize = '3vw';
       }
     };
     xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
     xhttp.send(jsonData1);
-    console.log(jsonData1);
+
+    setTimeout(function(){
+      if(reload_yes == 1){
+      
+        location.reload();
+      
+      }
+    },2000);
 }
 
 
 function other_transaction()
 {
   //from here get reciever's balance
-  var account = document.getElementById('reciever_transfer').id;
+  var account = document.getElementById('reciever_transfer')[document.getElementById('reciever_transfer').selectedIndex].id;
   var url_recieve = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/" + account;
   var xhttp = new XMLHttpRequest();
   var json_recieve='';
@@ -268,7 +279,7 @@ function recieve_transaction(variable)
   var reciever_account_after = parseFloat(recieve_balance_before) + parseFloat(money) ;
   
   var data = {} ;
-  data.account_id = document.getElementById('reciever_transfer').value;
+  data.account_id = document.getElementById('reciever_transfer')[document.getElementById('reciever_transfer').selectedIndex].id;
   data.Balance = reciever_account_after.toFixed(2);
   var jsonData = JSON.stringify(data);
 
@@ -278,18 +289,29 @@ function recieve_transaction(variable)
     if(xhttp.readyState==4 && xhttp.status==201)
     {
       document.getElementById('formdiv').style.display = "block";
-      
-      document.getElementById('formdiv').innerHTML = "Transaction went succesfully";
-    }
+      document.getElementById('formdiv').innerHTML = 'Transaction went succesfully';
+      document.getElementById('formdiv').style.color = 'green';
+      document.getElementById('formdiv').style.fontSize = '3vw';
+      reload_yes = 1;
+   }
     else
     {
       document.getElementById('formdiv').style.display = "block";
-
       document.getElementById('formdiv').innerHTML = "Something went wrong";
+      document.getElementById('formdiv').style.color = 'red';
+      document.getElementById('formdiv').style.fontSize = '3vw';
     }
   };
-  
+
 xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 xhttp.send(jsonData);
-console.log(jsonData);
+
+setTimeout(function(){
+  if(reload_yes == 1){
+
+    location.reload();
+  
+  }
+},2000);
+
 }

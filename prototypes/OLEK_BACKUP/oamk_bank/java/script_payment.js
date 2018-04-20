@@ -107,15 +107,7 @@ xhttp.onreadystatechange=function()
     amount.setAttribute('placeholder', 'amount to pay');
     document.getElementById('formdiv3').appendChild(amount);
 
-
-    createListFunction(3);
-    var refnum = document.createElement('input');
-    refnum.setAttribute('type','number');
-    refnum.setAttribute('id','refnum');
-    refnum.setAttribute('placeholder', 'reference number')
-    document.getElementById('formdiv3').appendChild(refnum);
-
-
+    
     createListFunction(3);
     var sendbtn = document.createElement('input');
     sendbtn.setAttribute('type', 'button');
@@ -164,7 +156,9 @@ function payment_money()
       }
       else
       {
-        document.getElementById('formdiv').innerHTML = "Money is not enough from the account that you are trying to send.";
+        document.getElementById('formdiv').innerHTML = "Not enough money on the account that you selected.";  
+        document.getElementById('formdiv').style.color = 'red';
+        document.getElementById('formdiv').style.fontSize = '3vw';;
       }
     }
   };
@@ -193,19 +187,29 @@ function payment_sender(variable)
       if(xhttp.readyState==4 && xhttp.status==201)
       {
         document.getElementById('formdiv').style.display = "block";
-        
-        document.getElementById('formdiv').innerHTML = "Transaction went succesfully";
+        document.getElementById('formdiv').innerHTML = "Transaction went succesfully";  
+        document.getElementById('formdiv').style.color = 'green';
+        document.getElementById('formdiv').style.fontSize = '3vw';;
+        reload_yes = 1;
       }
       else
       {
         document.getElementById('formdiv').style.display = "block";
-  
         document.getElementById('formdiv').innerHTML = "Something went wrong";
+        document.getElementById('formdiv').style.color = 'red';
+        document.getElementById('formdiv').style.fontSize = '3vw';;
       }
     };
     xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
     xhttp.send(jsonData1);
-    console.log(jsonData1);
+
+    setTimeout(function(){
+      if(reload_yes == 1){
+      
+        location.reload();
+      
+      }
+    },2000);
 }
 
 
@@ -228,6 +232,7 @@ function other_payment()
 };
 xhttp.open('GET', url_recieve, true);
 xhttp.send();
+
 }
 
 function recieve_payment(variable)
@@ -252,20 +257,30 @@ function recieve_payment(variable)
     if(xhttp.readyState==4 && xhttp.status==201)
     {
       document.getElementById('formdiv').style.display = "block";
-      
-      document.getElementById('formdiv').innerHTML = "Transaction went succesfully";
+      document.getElementById('formdiv').innerHTML = "Transaction went succesfully"
+      document.getElementById('formdiv').style.color = 'green';
+      document.getElementById('formdiv').style.fontSize = '3vw';
+      reload_yes = 1;
     }
     else
     {
       document.getElementById('formdiv').style.display = "block";
-
       document.getElementById('formdiv').innerHTML = "Something went wrong";
+      document.getElementById('formdiv').style.color = 'red';
+      document.getElementById('formdiv').style.fontSize = '3vw';
     }
   };
   
 xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 xhttp.send(jsonData);
-console.log(jsonData);
+
+setTimeout(function(){
+  if(reload_yes == 1){
+  
+    location.reload();
+  
+  }
+},2000);
 }
 
 //here is end of function

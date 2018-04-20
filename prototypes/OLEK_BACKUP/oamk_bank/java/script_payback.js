@@ -230,11 +230,15 @@ function payback_money(){
     if(xhttp.readyState == 4 && xhttp.status == 201){
       document.getElementById('formdiv').innerHTML = 'Part of a loan paid off successfully';
       document.getElementById('formdiv').style.display = 'block';
+      document.getElementById('formdiv').style.color = 'green';
+      document.getElementById('formdiv').style.fontSize = '3vw';
       reload_yes = 1;
     }
     else{
       document.getElementById('formdiv').innerHTML = 'Internal error please try later.';
       document.getElementById('formdiv').style.display = 'block';
+      document.getElementById('formdiv').style.color = 'red';
+      document.getElementById('formdiv').style.fontSize = '3vw';
     }
   };
  
@@ -245,12 +249,16 @@ else if(loan_new = 0){
       if(xhttp.readyState == 4 && xhttp.status == 201){
         document.getElementById('formdiv').innerHTML = 'Loan was successfully paid off.'
         document.getElementById('formdiv').style.display = 'block';
+        document.getElementById('formdiv').style.color = 'green';
+        document.getElementById('formdiv').style.fontSize = '3vw';
         delete_loan();
         reload_yes = 1;
       }
       else{
-          document.getElementById('formdiv').innerHTML = "Internal error please try later.";
-          document.getElementById('formdiv').style.display = 'block';
+        document.getElementById('formdiv').innerHTML = "Internal error please try later.";
+        document.getElementById('formdiv').style.display = 'block';
+        document.getElementById('formdiv').style.color = 'red';
+        document.getElementById('formdiv').style.fontSize = '3vw';
       }
   }
 xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
@@ -297,11 +305,15 @@ if(loan_new > 0){
     if(xhttp.readyState == 4 && xhttp.status == 201){
       document.getElementById('formdiv').innerHTML = 'Part of a loan paid off successfully.';
       document.getElementById('formdiv').style.display = 'block';
+      document.getElementById('formdiv').style.color = 'green';
+      document.getElementById('formdiv').style.fontSize = '3vw';
       reload_yes = 1;
     }
     else{
-       document.getElementById('formdiv').innerHTML = 'Internal error, could not update loan information.';
-       document.getElementById('formdiv').style.display = 'block';
+      document.getElementById('formdiv').innerHTML = 'Internal error, could not update loan information.';
+      document.getElementById('formdiv').style.display = 'block';
+      document.getElementById('formdiv').style.color = 'red';
+      document.getElementById('formdiv').style.fontSize = '3vw';
     }
   };
   xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
@@ -321,14 +333,11 @@ else if(loan_new == 0){
   
 }
   else{
-  document.getElementById('formdiv').innerHTML = 'Type in valid amount';
-  document.getElementById('formdiv').style.display = 'block';
+    document.getElementById('formdiv').innerHTML = 'Type in valid amount';
+    document.getElementById('formdiv').style.display = 'block';
+    document.getElementById('formdiv').style.color = 'red';
+    document.getElementById('formdiv').style.fontSize = '3vw';
 }
-
-// else if(amount_payed > document.getElementById('loan_from')[document.getElementById('loan_from').selectedIndex].id){
-  //   document.getElementById('formdiv').innerHTML = 'Type in valid amount';
-  //   document.getElementById('formdiv').style.display = 'block';
-  // }
 
 console.log(jsonData);
 
@@ -345,11 +354,15 @@ function delete_loan(){
       if(xhttp.readyState == 4 && xhttp.status == 200){
         document.getElementById('formdiv').innerHTML = 'Loan was successfully paid off.'
         document.getElementById('formdiv').style.display = 'block';
+        document.getElementById('formdiv').style.color = 'green';
+        document.getElementById('formdiv').style.fontSize = '3vw';
         reload_yes = 1;
       }
       else{
-          document.getElementById('formdiv').innerHTML = "Internal error, please try again later.";
-          document.getElementById('formdiv').style.display = 'block';
+        document.getElementById('formdiv').innerHTML = "Internal error, please try again later.";
+        document.getElementById('formdiv').style.display = 'block';    
+        document.getElementById('formdiv').style.color = 'red';
+        document.getElementById('formdiv').style.fontSize = '3vw';
       }
   }
   xhttp.send();

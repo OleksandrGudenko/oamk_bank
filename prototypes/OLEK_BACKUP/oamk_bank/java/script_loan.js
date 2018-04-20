@@ -220,11 +220,15 @@ function request_money()
 
     if(xhttp.readyState == 4 && xhttp.status == 201)
     {
-      document.getElementById('loading').innerHTML = "Request processed successfully.";
+      document.getElementById('formdiv').innerHTML = "Request processed successfully.";
+      document.getElementById('formdiv').style.color = 'green';
+      document.getElementById('formdiv').style.fontSize = '3vw';
       reload_yes = 1;
     }
     else{
-      document.getElementById('loading').innerHTML = "Internal error, loan request denied.";
+      document.getElementById('formdiv').innerHTML = "Internal error, loan request denied.";
+      document.getElementById('formdiv').style.color = 'red';
+      document.getElementById('formdiv').style.fontSize = '3vw';
     }
   
   };
@@ -261,11 +265,15 @@ xhttp.onreadystatechange = function(){
   if(xhttp.readyState == 4 && xhttp.status == 201){
     document.getElementById('formdiv').innerHTML = 'Request processed successfully.';
     document.getElementById('formdiv').style.display = 'block';
+    document.getElementById('formdiv').style.color = 'green';
+      document.getElementById('formdiv').style.fontSize = '3vw';
     reload_yes = 1;
   }
   else{
     document.getElementById('formdiv').innerHTML = 'Internal error, loan request denied.';
     document.getElementById('formdiv').style.display = 'block';
+    document.getElementById('formdiv').style.color = 'red';
+      document.getElementById('formdiv').style.fontSize = '3vw';
   }
 };
 xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
