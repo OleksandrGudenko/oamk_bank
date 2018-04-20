@@ -155,6 +155,7 @@ ul {
     font-size: 4vw;
     position: relative;
     width: 35%;
+    height: 100%;
 }
 #payoptbtn1:disabled, #payoptbtn2:disabled {
     background-color: #F2882F;

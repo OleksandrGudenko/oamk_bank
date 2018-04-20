@@ -178,21 +178,14 @@ xhttp.onreadystatechange = function()
 {
   if(xhttp.readyState==4 && xhttp.status==201)
   {
-    document.getElementById('formdiv').style.display = "block";
-    document.getElementById('formdiv').style.color = "green";
-    document.getElementById('formdiv').style.fontSize = "3vw";
-    document.getElementById('formdiv').innerHTML = "User updated succesfully";
+    document.getElementById('result').innerHTML = "User updated succesfully";
     document.getElementById('loading').innerHTML = " ";
     document.getElementById('loading').style.display = "none";
-    // document.getElementById('formdiv7').style.display = "block";
-    setTimeout(function(){ location.reload(); }, 2000);
+    document.getElementById('formdiv7').style.display = "block";
   }
   else
   {
-    document.getElementById('formdiv').style.display = "block";
-    document.getElementById('formdiv').style.color = "red";
-    document.getElementById('formdiv').style.fontSize = "3vw";
-    document.getElementById('formdiv').innerHTML = "Unexpected error, Please send message to us";
+    document.getElementById('result').innerHTML = "Something went wrong";
     document.getElementById('loading').innerHTML = " ";
     document.getElementById('loading').style.display = "none";
     document.getElementById('formdiv7').style.display = "block";

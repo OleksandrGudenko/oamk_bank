@@ -34,17 +34,17 @@ function time_greet()
 
   if( time_hour >=0 && time_hour <12 )
   {
-      document.getElementById("time_expression").innerHTML = "Good Morning " ;
+      document.getElementById("time_expression").innerHTML = "Good Morning, " ;
   }
 
   else if( time_hour >=12 && time_hour <18 )
   {
-      document.getElementById("time_expression").innerHTML = "Good Afternoon " ;
+      document.getElementById("time_expression").innerHTML = "Good Afternoon, " ;
   }
 
   else if( time_hour >=18 && time_hour <24 )
   {
-      document.getElementById("time_expression").innerHTML = "Good Evening ";
+      document.getElementById("time_expression").innerHTML = "Good Evening, ";
   }
 
 }
