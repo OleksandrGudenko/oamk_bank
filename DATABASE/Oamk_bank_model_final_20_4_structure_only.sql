@@ -35,6 +35,15 @@ CREATE TABLE `accounts_table` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `accounts_table`
+--
+
+LOCK TABLES `accounts_table` WRITE;
+/*!40000 ALTER TABLE `accounts_table` DISABLE KEYS */;
+/*!40000 ALTER TABLE `accounts_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `customer_requests`
 --
 
@@ -54,6 +63,15 @@ CREATE TABLE `customer_requests` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `customer_requests`
+--
+
+LOCK TABLES `customer_requests` WRITE;
+/*!40000 ALTER TABLE `customer_requests` DISABLE KEYS */;
+/*!40000 ALTER TABLE `customer_requests` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `loans`
 --
 
@@ -71,8 +89,17 @@ CREATE TABLE `loans` (
   KEY `account_id_fk` (`account_id`),
   CONSTRAINT `loans_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `loans_ibfk_2` FOREIGN KEY (`account_id`) REFERENCES `accounts_table` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='Shows users loans.';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Shows users loans.';
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `loans`
+--
+
+LOCK TABLES `loans` WRITE;
+/*!40000 ALTER TABLE `loans` DISABLE KEYS */;
+/*!40000 ALTER TABLE `loans` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `users`
@@ -92,12 +119,22 @@ CREATE TABLE `users` (
   `phone` varchar(20) COLLATE utf8_unicode_520_ci NOT NULL,
   `occupation` varchar(50) COLLATE utf8_unicode_520_ci NOT NULL,
   `username` varchar(50) COLLATE utf8_unicode_520_ci NOT NULL,
-  `password` int(11) NOT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_520_ci NOT NULL,
   `register_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'John','Doe','Oulu','Kotkantie 1','90123','test1@test.com','046-932-0953','Tester','test1','0','2018-04-20 10:37:37');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -108,4 +145,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-20 13:19:55
+-- Dump completed on 2018-04-20 14:04:05
