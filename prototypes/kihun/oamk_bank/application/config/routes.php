@@ -49,30 +49,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples: my-controller/index -> my_controller/index
 |   my-controller/my-method -> my_controller/my_method
 */
-
-
-$route['default_controller'] = 'pages/view';
-// $route['(:any)'] = 'pages/view/$1';
+$route['default_controller'] = 'Page_Controller';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;
-
-
-// $route['users/register'] = 'users/register';
-// $route['users/login'] = 'users/login';
-
-
-
-
 
 /*
 | -------------------------------------------------------------------------
 | Sample REST API Routes
 | -------------------------------------------------------------------------
 */
-$route['api/account/accounts/(:num)'] = 'api/account/accounts/id/$1'; // Example 4
-$route['api/account/accounts/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/account/accounts/id/$1/format/$3$4';
-
-$route['api/user/users/(:num)'] = 'api/user/users/id/$1'; // Example 4
-$route['api/user/users/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/user/users/id/$1/format/$3$4';
-
-
+$route['api/example/users/(:num)'] = 'api/example/users/id/$1'; // Example 4
+$route['api/example/users/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/example/users/id/$1/format/$3$4'; // Example 8

@@ -17,11 +17,6 @@ class Bank_model extends CI_model
       return  $this->db->get()->result_array();
     }
 
-    function add_user($add_data)
-    {
-      $this->db->insert('users', $add_data);
-    }
-
     function update_user($id, $update_data)
     {
       $data = array(
@@ -47,9 +42,9 @@ class Bank_model extends CI_model
 // from here, about account
   function get_accounts()
   {
-    $this->db->select('accounts_table.user_id, account_id, Balance, credit, loans.amount as loan amount, loans.loan_id');
+    $this->db->select('*');
     $this->db->from('accounts_table');
-    $this->db->join('loans', 'accounts_table.loan_id=loans.loan_id', 'left');
+
     $this->db->order_by('user_id');
     return $this->db->get()->result_array();
   }
@@ -107,24 +102,27 @@ function add_request($add_data)
 //from here for loan
 function get_loans()
 {
-  $this->db->select('loans.loan_id,amount,accounts_table.account_id, Balance, loans.user_id');
+  $this->db->select('accounts_table.account_id,accounts_table.Balance,loans.user_id,amount,loan_id');
   $this->db->from('loans');
-  $this->db->join('accounts_table', 'accounts_table.loan_id=loans.loan_id', 'left');
+  $this->db->join('accounts_table','accounts_table.account_id=loans.account_id', 'left');
+  // $this->db->group_by('accounts_table.account_id');
   return  $this->db->get()->result_array();
 }
+
+// changes made to select loans table user ID to find all loans linked to user! istead of linking by account_id
+// as account_id will display loans connect with respected ID
 function get_loan($id)
 {
-  $this->db->select('loans.loan_id,amount,accounts_table.account_id,Balance,loans.user_id');
+  $this->db->select('accounts_table.account_id,accounts_table.Balance,loans.user_id,amount,loan_id');
   $this->db->from('loans');
-  $this->db->join('accounts_table', 'accounts_table.loan_id=loans.loan_id', 'left');
-  $this->db->where('loans.user_id', $id);
+  $this->db->join('accounts_table','accounts_table.account_id=loans.account_id', 'left');
+  $this->db->where('loans.loan_id', $id);
   return  $this->db->get()->result_array();
 }
 
 function add_loan($add_data)
 {
   $this->db->insert('loans', $add_data);
-  $this->db->insert('account_tables', $add_data);
 }
 
 function update_loan($id, $update_data)
@@ -133,28 +131,51 @@ function update_loan($id, $update_data)
   $this->db->update('loans', $update_data);
 }
 
-function passwords($user,$passcode)
-{ 
-  $this->db->set('password', $passcode);
-  $this->db->where('username', $user);
-  $this->db->update('users');
+function get_paid_loan($id){
+    $this->db->select('*');
+    $this->db->from('loans');
+    $this->db->where('loan_id',$id);
+    return $this->db->get()->result_array();
 }
 
-function mail_get($user)
+function delete_loan($id)
+{
+  $this->db->where('loan_id',$id);
+  $this->db->delete('loans');
+}
+
+//from here about login
+function get_logins()
 {
   $this->db->select('*');
-  $this->db->from('users');
-  $this->db->where('username', $user);
+  $this->db->from('login_credentials');
+  return  $this->db->get()->result_array();
+}
+function get_login($id)
+{
+  $this->db->select('*');
+  $this->db->from('login_credentials');
+  $this->db->where('username', $id);
   return  $this->db->get()->result_array();
 }
 
-function get_password($user)
+function add_login($add_login)
 {
-  $this->db->select('password');
-  $this->db->from('users');
-  $this->db->where('username', $user);
-  return  $this->db->get()->row()->password;
+  $this->db->insert('login_credentials', $add_login);
 }
+
+function add_user($add_user)
+{
+  $this->db->insert('users', $add_user);
+}
+
+function id_check()
+{
+  $this->db->select('id');
+  $this->db->from('login_credentials');
+  return  $this->db->get()->result_array();
+}
+
 
 }//this is end of bank model
 

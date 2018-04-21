@@ -1,20 +1,33 @@
-<?php echo form_open('users/login_test'); ?>
-	<div class="row">
-		<div id="test123" class="col-md-4 col-md-offset-4">
-			<h1 class="text-center"><?php echo $title; ?></h1>
-			<div class="form-group">
-				<input autocomplete="off" type="text" id="username" name="username" class="form-control" placeholder="Enter Username" onchange="id_check()" required autofocus>
-			</div>
-			<div id="check_msg"></div>
-      <div id="test1"></div>
-		</div>
-	</div>
-  <?php echo base_url('Java/script_loan.js'); ?>
+<link rel="stylesheet" href="https://bootswatch.com/3/united/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
+<?php echo form_open('users/login_verify'); ?>
+<form id="signin_form">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <h1 class="text-center">SIGN IN</h1>
+      <div class="form-group">
+        <input autocomplete="off" type="text" id="username" name="username" class="form-control" placeholder="Enter Username" required>
+      </div>
+      <div id="check_msg"></div>
+      <div id="signin_btn"></div>
+    </div>
+  </div>
+</form>
 <?php echo form_close(); ?>
-<script>
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+    <a href="#" id="username_btn" class="btn btn-primary btn-block" onclick="id_check()">Proceed</a>
+    </div>
+</div>
 
+<br><br><br><br>
+
+<script>
 function id_check()
 {
+  document.getElementById('check_msg').innerHTML = "Checking username...";
   var url = "http://localhost/oamk_bank/index.php/api/bank/users/user";
   var jsonData='';
   var user_name = document.getElementById('username').value;
@@ -32,13 +45,13 @@ function id_check()
       }
       if(check_array.indexOf(user_name)==-1)
       {
-        document.getElementById('test1').innerHTML = " ";
+        document.getElementById('signin_btn').innerHTML = " ";
 				document.getElementById('username').style.borderColor ="red";
 				document.getElementById('check_msg').innerHTML = "ID is not found";
       }
       else
       {
-        document.getElementById('test1').innerHTML = " ";
+        $("#username_btn").remove();
 				document.getElementById('username').style.borderColor ="Green";
 				document.getElementById('check_msg').innerHTML = "ID valid";
 				var submit_btn =	document.createElement("button");
@@ -46,7 +59,7 @@ function id_check()
 				submit_btn.appendChild(btn_text);
 				submit_btn.setAttribute('type', 'submit');
 				submit_btn.setAttribute('class', 'btn btn-success btn-block');
-				document.getElementById('test1').appendChild(submit_btn);
+				document.getElementById('signin_btn').appendChild(submit_btn);
       }
     }
   };

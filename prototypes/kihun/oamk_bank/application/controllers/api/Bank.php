@@ -32,6 +32,15 @@ class Bank extends REST_Controller {
         $this->methods['accounts_get']['limit'] = 500; // 50 requests per hour per user/key
         $this->methods['accounts_post']['limit'] = 100; // 50 requests per hour per user/key
         $this->methods['accounts_delete']['limit'] = 50; // 50 requests per hour per user/key
+        ///
+        $this->methods['requests_get']['limit'] = 500; // 500 requests per hour per user/key
+        $this->methods['requests_post']['limit'] = 100; // 100 requests per hour per user/key
+
+        $this->methods['loans_put']['limit'] = 500; // 50 requests per hour per user/key
+        $this->methods['loans_get']['limit'] = 500; // 50 requests per hour per user/key
+        $this->methods['loans_post']['limit'] = 100; // 50 requests per hour per user/key
+        $this->methods['loans_delete']['limit'] = 50; // 50 requests per hour per user/key
+
         $this->load->model('Bank_model');
     }
 
@@ -198,8 +207,7 @@ public function accounts_get()
           'user_id'=>$this->post('user_id'),
           'account_id'=>$this->post('account_id'),
           'Balance'=>$this->post('Balance'),
-          'credit'=>$this->post('credit'),
-          'loan_id'=>$this->post('loan_id')
+          'credit'=>$this->post('credit')
         );
 
         $this->Bank_model->add_account($add_data);
@@ -209,7 +217,6 @@ public function accounts_get()
           'account_id'=>$this->post('account_id'),
           'Balance'=>$this->post('Balance'),
           'credit'=>$this->post('credit'),
-          'loan_id'=>$this->post('loan_id'),
           'message' => 'Added a resource'
         ];
 
@@ -305,7 +312,7 @@ public function requests_post()
 {
     // add a new request
     $add_data = array(
-      'id'=>$this->post('id'),
+
       'user_id'=>$this->post('user_id'),
       'title'=>$this->post('title'),
       'body'=>$this->post('body'),
@@ -315,7 +322,7 @@ public function requests_post()
     $this->Bank_model->add_request($add_data);
 
     $message = [
-      'id'=>$this->post('id'),
+
       'user_id'=>$this->post('user_id'),
       'title'=>$this->post('title'),
       'body'=>$this->post('body'),
@@ -381,19 +388,21 @@ public function loans_get()
 
 public function loans_post()
     {
-        // Add a new user
-        $add_data=array(
-          'loan_id'=>$this->post('loan_id'),
+        // add a new loan
+
+        $add_data = array(
+          'user_id'=>$this->post('user_id'),
           'amount'=>$this->post('amount'),
-          'user_id'=>$this->post('user_id')
+          'account_id'=>$this->post('account_id')
         );
-        $this->Bank_model->add_user($add_data);
+
+        $this->Bank_model->add_loan($add_data);
 
         $message = [
-            'loan_id'=>$this->post('loan_id'),
-            'amount'=>$this->post('amount'),
-            'user_id'=>$this->post('user_id'),
-            'message' => 'Added a resource'
+          'user_id'=>$this->post('user_id'),
+          'amount'=>$this->post('amount'),
+          'account_id'=>$this->post('account_id'),
+          'message' => 'Added a resource'
         ];
 
         $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
@@ -405,28 +414,160 @@ public function loans_post()
 
 public function loans_put()
 {
-    $id=$this->put('account_id');
+    $id=$this->put('loan_id');
 
     $update_data = array(
-      'account_id'=>$this->put('account_id'),
-      'user_id'=>$this->put('user_id'),
-      'amount'=>$this->put('amount'),
-      'timestamp'=>$this->put('timestamp')
+      'loan_id'=>$this->put('loan_id'),
+      'amount'=>$this->put('amount')
       );
 
     $this->Bank_model->update_loan($id, $update_data);
 
     $message = [
-      'account_id'=>$this->put('account_id'),
-      'user_id'=>$this->put('user_id'),
-      'amount'=>$this->put('amount'),
-      'timestamp'=>$this->put('timestamp'),
-      'message' => 'Updates a resource'
+    'loan_id'=>$this->put('loan_id'),
+    'amount'=>$this->put('amount'),
+    'message' => 'Updates a resource'
     ];
 
     $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
 }
 
+public function loans_delete()
+{
+    $id = (int) $this->get('loan_id');
+
+    // $this->some_model->delete_something($id);
+    $paid_loan=$this->Bank_model->get_paid_loan($id);
+    if(!empty($paid_loan[0]['loan_id'])){
+      $this->Bank_model->delete_loan($id);
+      $message = [
+          'loan_id' => $id,
+          'message' => 'Deleted the resource'
+      ];
+        $this->set_response($message, REST_Controller::HTTP_OK); // NO_CONTENT (204) being the HTTP response code
+    }
+    else{
+      $message="Error";
+      $this->set_response($message, REST_Controller::HTTP_NO_CONTENT);
+    }
+}
+
+
 //untill here loans
+
+//from here about login
+
+public function logins_get()
+{
+    // logins from a data store e.g. database
+    $logins=$this->Bank_model->get_logins();
+
+    $id = $this->get('login');
+
+    // If the id parameter doesn't exist return all the logins
+
+    if ($id === NULL)
+    {
+        // Check if the logins data store contains logins (in case the database result returns NULL)
+        if ($logins)
+        {
+            // Set the response and exit
+            $this->response($logins, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+        }
+        else
+        {
+            // Set the response and exit
+            $this->response([
+                'status' => FALSE,
+                'message' => 'No logins were found'
+            ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
+        }
+    }
+
+    // Find and return a single record for a particular login.
+
+    // Get the login from the array, using the id as key for retrieval.
+    // Usually a model is to be used for this.
+
+    $login = NULL;
+
+    if (!empty($logins))
+    {
+      //GET the user from database
+      $login=$this->Bank_model->get_login($id);
+    }
+
+    if (!empty($login))
+    {
+        $this->set_response($login, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+    }
+    else
+    {
+        $this->set_response([
+            'status' => FALSE,
+            'message' => 'login could not be found'
+        ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
+    }
+}
+
+public function logins_post()
+{
+    // add a new login
+
+    $id_num = rand(0, 10);
+
+    $id_num_array = $this->Bank_model->id_check();
+
+if(!in_array($id_num, $id_num_array, true))
+{
+//   $add_user = array(
+//     'id'=>$id_num,
+//     'firstname'=>$this->post('firstname'),
+//     'lastname'=>$this->post('lastname'),
+//     'city'=>$this->post('city'),
+//     'address'=>$this->post('address'),
+//     'postalcode'=>$this->post('postalcode'),
+//     'email'=>$this->post('email'),
+//     'phone'=>$this->post('phone'),
+//     'occupation'=>$this->post('occupation')
+//   );
+//     $add_login = array(
+//       'id'=>$id_num,
+//       'username'=>$this->post('username')
+//     );
+
+
+// $this->Bank_model->add_user($add_user);
+// $this->Bank_model->add_login($add_login);
+
+//     $message = [
+//       'username'=>$this->post('username'),
+//       'firstname'=>$this->post('firstname'),
+//       'lastname'=>$this->post('lastname'),
+//       'city'=>$this->post('city'),
+//       'address'=>$this->post('address'),
+//       'postalcode'=>$this->post('postalcode'),
+//       'email'=>$this->post('email'),
+//       'phone'=>$this->post('phone'),
+//       'occupation'=>$this->post('timestamp'),
+//       'message' => 'Added a resource'
+//     ];
+$message = [
+    in_array($id_num, $id_num_array, true),
+    $id_num,
+    $id_num_array
+        ];
+    $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
+}
+else
+{
+  $message = [
+    'message' => 'id already exists'
+  ];
+      $this->set_response($message, REST_Controller::HTTP_NOT_FOUND); // CREATED (201) being the HTTP response code
+}
+}
+
+//till here login
 
 }//this is end of BANK RESTAPI

@@ -74,12 +74,13 @@ function for_onload()
 {
   time_greet();
   real_time();
-  get_user(1);
+  get_user();
   account_own();
   paymentFunction();
   editCredFunction();
   contactBankFunction();
   loanFunction();
+
   document.getElementById('pagetitle').innerHTML = " ";
   for (var i = 0; i < 8; i++)
   {
@@ -89,9 +90,10 @@ function for_onload()
   document.getElementById('container').style.display="none";
 }
 
-function get_user(id)
+function get_user()
 {
- var url = "http://localhost/oamk_bank/index.php/api/bank/users/id/" + id;
+ var id_for_greet = document.getElementById('user_id_from_login').value;
+ var url = "http://localhost/oamk_bank/index.php/api/bank/users/id/" + id_for_greet;
  var xhttp = new XMLHttpRequest();
  var json='';
  xhttp.open('GET', url, true);
@@ -105,3 +107,5 @@ function get_user(id)
  };
  xhttp.send();
 }
+
+var reload_yes = 0;
