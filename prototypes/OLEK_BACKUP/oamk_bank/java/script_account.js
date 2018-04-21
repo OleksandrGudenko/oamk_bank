@@ -8,12 +8,14 @@ function show_accounts()
     document.getElementById(name_div + i).style.display="none";
   }
   document.getElementById('formdiv0').style.display = 'block';
+  document.getElementById('pagetitle').innerHTML = '<h2>' + 'List of your available accounts:' + '</h2>';
 
 }
 
 
 function account_own()
 {
+  document.getElementById('formdiv0').style.display = 'none';
   var id_for_own_acc = document.getElementById('user_id_from_login').value;
   var url = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/";
   var xhttp = new XMLHttpRequest();
@@ -24,18 +26,19 @@ function account_own()
        if(xhttp.readyState==4 && xhttp.status==200)
        {
         jsonData = JSON.parse(xhttp.responseText);
+        
          for(x in jsonData)
          {
            if(jsonData[x].user_id == id_for_own_acc)
              {
-               var li_account = document.createElement("LI");
-               var li_button = document.createElement("input");
-               li_button.setAttribute('type', 'button');
-               li_button.setAttribute('id', 'li_button');
-               li_button.setAttribute('onclick','getaccountinfo("'+jsonData[x].account_id+'","'+jsonData[x].Balance+'","'+jsonData[x].credit+'")');
-               li_button.setAttribute('value', jsonData[x].account_id);
-               li_account.appendChild(li_button);
-               document.getElementById('account_ul').insertBefore(li_account, document.getElementById('account_ul').childNodes[0]);
+              createListFunction(0);
+              var li_button = document.createElement("input");
+              li_button.setAttribute('type', 'button');
+              li_button.setAttribute('id', 'li_button');
+              li_button.setAttribute('onclick','getaccountinfo("'+jsonData[x].account_id+'","'+jsonData[x].Balance+'","'+jsonData[x].credit+'")');
+              li_button.setAttribute('value', jsonData[x].account_id);
+              
+              document.getElementById('formdiv0').appendChild(li_button);
              }
          }
          for (var i = 0; i < 8; i++)
@@ -44,7 +47,7 @@ function account_own()
            document.getElementById(name_div + i).style.display="none";
          }
          document.getElementById('formdiv').style.display = 'none';
-         document.getElementById('formdiv0').style.display = 'block';
+        //  document.getElementById('formdiv0').style.display = 'block';
          document.getElementById('formdiv1').style.display = 'none';
          document.getElementById('container').style.display = 'none';
        }
@@ -58,16 +61,57 @@ function getaccountinfo(account_id,Balance,credit){
     var formdiv1 = document.getElementById('formdiv1');
     formdiv1.innerHTML = "";
 
-    var balance = document.createTextNode('Balance: ' + Balance + '€');
-    createListFunction(1);
-    var credit = document.createTextNode('Credit Limit: ' + credit + '€');
+    var balance = document.createTextNode('Balance: ' + "\u00A0" +  "\u00A0" + Balance + "\u00A0" + '€');
+    var credit = document.createTextNode('Credit Limit: ' + "\u00A0" + "\u00A0" + credit + "\u00A0" + '€');
 
     formdiv1.appendChild(balance);
+    createListFunction(1);
     formdiv1.appendChild(credit);
+    get_loan();
 
+    document.getElementById('formdiv0').style.display = 'none';
     document.getElementById('formdiv1').style.display = 'block';
 
     
+}
+
+function get_loan(){
+  debugger
+  var url = "http://localhost/oamk_bank/index.php/api/bank/loans/loan";
+  var jsonData='';
+  var xhttp = new XMLHttpRequest();
+  xhttp.open('GET', url, true);
+  
+  xhttp.onreadystatechange=function()
+  {
+    if(xhttp.readyState==4 && xhttp.status==200)
+    {
+      jsonData = JSON.parse(xhttp.responseText);
+
+      for(x in jsonData)
+      {
+        if(jsonData[x].user_id == 1)
+        {
+        createListFunction(1);
+
+        var loan_label = document.createElement('label');
+        var text_for_label = document.createTextNode('Loan ID' + "\u00A0" + jsonData[x].loan_id + ":" + "\u00A0\u00A0\u00A0\u00A0\u00A0" + jsonData[x].amount + "\u00A0" + "€");
+        loan_label.appendChild(text_for_label);
+        document.getElementById('formdiv1').appendChild(loan_label);
+
+        // var loan_info = document.createElement('input');
+        // loan_info.type = 'text';
+        // loan_info.readOnly = true; 
+        // loan_info.value = jsonData[x].amount;
+        // loan_info.setAttribute('id', jsonData[x].user_id);
+        // loan_info.text = jsonData[x].loan_id;
+        // document.getElementById('formdiv1').appendChild(loan_info);
+        
+        }
+      }
+    }
+  };
+  xhttp.send();
 }
 
 function createaccount(){

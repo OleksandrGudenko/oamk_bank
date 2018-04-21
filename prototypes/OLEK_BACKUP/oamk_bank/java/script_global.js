@@ -72,8 +72,8 @@ function checkTime(i)
 
 function for_onload()
 {
-  time_greet();
-  real_time();
+  // time_greet();
+  // real_time();
   get_user();
   account_own();
   paymentFunction();

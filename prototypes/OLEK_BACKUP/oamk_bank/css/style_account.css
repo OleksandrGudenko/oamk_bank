@@ -84,8 +84,8 @@ textarea#body:focus
     background-color: #F2882F;
     border: none;
     padding: 12px 16px;
-    width: 100%;
-    margin-left: -0.5%;
+    width: 80%;
+    border-radius: 1vw;
 }
 
 
@@ -93,6 +93,7 @@ textarea#body:focus
 #li_button:hover {
     background-color: white;
     color: #F2882F;
+    border: 1px solid #F2882F;
 }
 
 .show {

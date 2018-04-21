@@ -11,31 +11,26 @@
         <button class="signout-btn" id="edit_btn" onclick="edit_show()">Edit Credentials</button>
         <button class="signout-btn" id="loan_btn" onclick="loan_show()">Loan</button>
         <button class="signout-btn" id="pay_btn" onclick="payment_show()" id="Payments">Payments</button>
-        <button class="formlist" id="accounts_btn" onclick="show_accounts()">Accounts</button>
+        <button class="signout-btn" id="accounts_btn" onclick="show_accounts()">Accounts</button>
 </div>
 
     </div>
-    <div id="pagetitle"></div>
     <div id="container"></div>
     <div style="text-align:center" id="loading"></div>
+    <div id="pagetitle"></div>
     <div style="display:block; text-align:center" id="formdiv"></div>
     <div style="display:block; text-align:center" id="formdiv0">
-        <ul id="account_ul">
-            <li><button id="li_button">Create account</button></li>
-        </ul>
+        <ul><li></li></ul>
+        <button id="li_button">Create New Account</button>
     </div>
     <div style="display:none; text-align:center" id="formdiv1"></div>
     <div style="display:none; text-align:center" id="formdiv2"></div>
     <div style="display:block; text-align:center" id="formdiv3"></div>
     <div style="display:block; text-align:center" id="formdiv4">
-        <form id="requestForm">
-
-        </form>
+        <form id="requestForm"></form>
     </div>
     <div style="display:block; text-align:center" id="formdiv5">
-        <form id="Payment">
-
-        </form>
+        <form id="Payment"></form>
     </div>
     <div id="hide_form"><form id="requestform">
     <div style="display:block; text-align:center" id="formdiv6"></div>
