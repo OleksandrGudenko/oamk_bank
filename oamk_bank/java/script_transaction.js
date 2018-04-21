@@ -1,3 +1,54 @@
+function test_get_user()
+{
+  var url = "http://localhost/oamk_bank/index.php/api/bank/users/id.html";
+  var xhttp = new XMLHttpRequest();
+     xhttp.open('GET', url, true);
+     xhttp.onreadystatechange=function()
+     {
+       if(xhttp.readyState==4 && xhttp.status==200)
+       {
+         document.getElementById('test_user').innerHTML=
+         xhttp.responseText;
+       }
+     };
+     xhttp.send();
+}
+
+function test_get_account()
+{
+  var url = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid.html";
+  var xhttp = new XMLHttpRequest();
+     xhttp.open('GET', url, true);
+     xhttp.onreadystatechange=function()
+     {
+       if(xhttp.readyState==4 && xhttp.status==200)
+       {
+         document.getElementById('test_account').innerHTML=
+         xhttp.responseText;
+       }
+     };
+     xhttp.send();
+}
+
+function test_account_hide()
+{
+  document.getElementById('test_user').style.display = "none";
+  test_get_account();
+  if(document.getElementById('test_account').style.display == 'none')
+  document.getElementById('test_account').style.display = 'block';
+  else
+  document.getElementById('test_account').style.display = 'none';
+}
+
+function test_user_hide()
+{
+  document.getElementById('test_account').style.display = "none";
+  test_get_user();
+  if(document.getElementById('test_user').style.display == 'none')
+  document.getElementById('test_user').style.display = 'block';
+  else
+  document.getElementById('test_user').style.display = 'none';
+}
 
 
 function paymentbtn1(){
@@ -24,7 +75,6 @@ return;  }
 
 function trasferformFunction(){
 
-  var id_for_own_trans = document.getElementById('user_id_from_login').value;
   ///From here for getting account with RESTAPI request
   document.getElementById('formdiv2').innerHTML = " ";
   var url = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid";
@@ -50,7 +100,7 @@ if(xhttp.readyState==4 && xhttp.status==200)
   document.getElementById('formdiv2').appendChild(sender);
   for(x in jsonData)
   {
-    if(jsonData[x].user_id == id_for_own_trans)
+    if(jsonData[x].user_id == 1)
     {
     var option_sender = document.createElement("option");
     option_sender.value = jsonData[x].Balance;
@@ -72,7 +122,7 @@ if(xhttp.readyState==4 && xhttp.status==200)
 
   for(x in jsonData)
   {
-    if(jsonData[x].user_id == id_for_own_trans)
+    if(jsonData[x].user_id == 1)
     {
     var option_reciever = document.createElement("option");
     option_reciever.value = jsonData[x].Balance;
@@ -119,13 +169,13 @@ function send_money_own()
   var xhttp = new XMLHttpRequest();
 
   var url_sender = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/";
-
+  
 
   xhttp.onreadystatechange=function()
   {
     if(xhttp.readyState==4 && xhttp.status==200)
     {
-
+      
       json_sender = JSON.parse(xhttp.responseText);
 
       var sender_balance_before = json_sender[0].Balance;
@@ -155,7 +205,7 @@ function transaction_sender(variable)
     var xhttp = new XMLHttpRequest();
     var url_sender = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/";
     var money = document.getElementById('amount_transfer').value;
-
+    
     var sender_account_after = parseFloat(sender_balance_before) - parseFloat(money) ;
     sender_account_after.toFixed(2);
     var data_sender = {} ;
@@ -173,7 +223,7 @@ function transaction_sender(variable)
         document.getElementById('formdiv').style.color = 'green';
         document.getElementById('formdiv').style.fontSize = '3vw';
         reload_yes = 1;
-
+        
       }
       else
       {
@@ -188,9 +238,9 @@ function transaction_sender(variable)
 
     setTimeout(function(){
       if(reload_yes == 1){
-
+      
         location.reload();
-
+      
       }
     },2000);
 }
@@ -227,7 +277,7 @@ function recieve_transaction(variable)
   var url = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/";
 
   var reciever_account_after = parseFloat(recieve_balance_before) + parseFloat(money) ;
-
+  
   var data = {} ;
   data.account_id = document.getElementById('reciever_transfer')[document.getElementById('reciever_transfer').selectedIndex].id;
   data.Balance = reciever_account_after.toFixed(2);
@@ -260,7 +310,7 @@ setTimeout(function(){
   if(reload_yes == 1){
 
     location.reload();
-
+  
   }
 },2000);
 

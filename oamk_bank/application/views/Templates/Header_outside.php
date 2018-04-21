@@ -27,7 +27,7 @@
         <ul>
           <li><a href="<?php echo site_url('Page_Controller/openAcct');?>">OPEN ACCOUNT</a></li>
           <li><a href="<?php echo site_url('Page_Controller/everyBank');?>">EVERYDAY BANKING</a></li>
-          <li><a href="#">LOANS</a></li>
+          <li><a href="loan.html">LOANS</a></li>
           <li><a href="<?php echo site_url('Page_Controller/About');?>">ABOUT</a></li>
           <li><a href="<?php echo site_url('Page_Controller/Contact');?>">CONTACT</a></li>
         </ul>

@@ -28,8 +28,8 @@ function editCredFunction(){
   document.getElementById('loading').style.display="block";
 
   //from here about information
-  var id_for_edit = document.getElementById('user_id_from_login').value;
-  var url = "http://localhost/oamk_bank/index.php/api/bank/users/id/" + id_for_edit;
+
+  var url = "http://localhost/oamk_bank/index.php/api/bank/users/id/1";
   var xhttp = new XMLHttpRequest();
   var json='';
   xhttp.open('GET', url, true);
@@ -154,16 +154,15 @@ function editCredFunction(){
 
 function save_own_info()
 {
-  var id_for_edit =  document.getElementById('user_id_from_login').value;
   document.getElementById('loading').style.display = "block";
   document.getElementById('loading').innerHTML = "Loading...";
   document.getElementById('formdiv7').style.display = "none";
 
-var url = "http://localhost/oamk_bank/index.php/api/bank/users/id/" + id_for_edit;
+var url = "http://localhost/oamk_bank/index.php/api/bank/users/id/" + 1;
 var xhttp = new XMLHttpRequest();
 xhttp.open('PUT', url, true);
 var data = {} ;
-data.id=id_for_edit;
+data.id=1;
 data.firstname=document.getElementById('fname').value;
 data.lastname=document.getElementById('lname').value;
 data.city=document.getElementById('city').value;
@@ -179,21 +178,14 @@ xhttp.onreadystatechange = function()
 {
   if(xhttp.readyState==4 && xhttp.status==201)
   {
-    document.getElementById('formdiv').style.display = "block";
-    document.getElementById('formdiv').style.color = "green";
-    document.getElementById('formdiv').style.fontSize = "3vw";
-    document.getElementById('formdiv').innerHTML = "User updated succesfully";
+    document.getElementById('result').innerHTML = "User updated succesfully";
     document.getElementById('loading').innerHTML = " ";
     document.getElementById('loading').style.display = "none";
-    // document.getElementById('formdiv7').style.display = "block";
-    setTimeout(function(){ location.reload(); }, 2000);
+    document.getElementById('formdiv7').style.display = "block";
   }
   else
   {
-    document.getElementById('formdiv').style.display = "block";
-    document.getElementById('formdiv').style.color = "red";
-    document.getElementById('formdiv').style.fontSize = "3vw";
-    document.getElementById('formdiv').innerHTML = "Unexpected error, Please send message to us";
+    document.getElementById('result').innerHTML = "Something went wrong";
     document.getElementById('loading').innerHTML = " ";
     document.getElementById('loading').style.display = "none";
     document.getElementById('formdiv7').style.display = "block";

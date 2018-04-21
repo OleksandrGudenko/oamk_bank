@@ -1,7 +1,6 @@
 
 function account_own()
 {
-  var id_for_own_acc = document.getElementById('user_id_from_login').value;
   var url = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/";
   var xhttp = new XMLHttpRequest();
   var jsonData ='';
@@ -13,7 +12,7 @@ function account_own()
         jsonData = JSON.parse(xhttp.responseText);
          for(x in jsonData)
          {
-           if(jsonData[x].user_id == id_for_own_acc)
+           if(jsonData[x].user_id == 1)
              {
                var li_account = document.createElement("LI");
                var li_button = document.createElement("input");

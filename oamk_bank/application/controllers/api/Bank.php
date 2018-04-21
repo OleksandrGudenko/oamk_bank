@@ -36,7 +36,7 @@ class Bank extends REST_Controller {
         $this->methods['requests_get']['limit'] = 500; // 500 requests per hour per user/key
         $this->methods['requests_post']['limit'] = 100; // 100 requests per hour per user/key
 
-        $this->methods['loans_put']['limit'] = 500; // 50 requests per hour per user/key
+        $this->methods['loans_put']['limit'] = 500; // 50 requests per hour per user/key        
         $this->methods['loans_get']['limit'] = 500; // 50 requests per hour per user/key
         $this->methods['loans_post']['limit'] = 100; // 50 requests per hour per user/key
         $this->methods['loans_delete']['limit'] = 50; // 50 requests per hour per user/key
@@ -312,7 +312,7 @@ public function requests_post()
 {
     // add a new request
     $add_data = array(
-
+      'id'=>$this->post('id'),
       'user_id'=>$this->post('user_id'),
       'title'=>$this->post('title'),
       'body'=>$this->post('body'),
@@ -322,7 +322,7 @@ public function requests_post()
     $this->Bank_model->add_request($add_data);
 
     $message = [
-
+      'id'=>$this->post('id'),
       'user_id'=>$this->post('user_id'),
       'title'=>$this->post('title'),
       'body'=>$this->post('body'),

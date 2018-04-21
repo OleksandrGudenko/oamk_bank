@@ -53,7 +53,7 @@
   <p class="get5p">Open a new OAMK bank account from your phone or computer <br> in an easy, paperless signup process</p>
 </div>
 <div class="evrybk-open">
-  <a href="/openAcct.html" class="evrybtnoa">OPEN ACCOUNT</a>
+  <a href="<?php echo site_url('Page_Controller/openAcct');?>" class="evrybtnoa">OPEN ACCOUNT</a>
 </div>
 <div class="stepshead">
   <img src="<?php echo base_url('img/megaphone_oamkob.png');?>" alt="">
@@ -78,26 +78,6 @@
     <p style="text-align:center;">Instantly have access to your account</p>
   </div>
 </div>
-
-
-
-
-<!-- <div class="stepevrybk">
-  <div class="first">
-    <img src="img/1.png" class="1st" alt="">
-    <img src="img/2.png" class="2nd" alt="">
-    <img src="img/3.png" class="3rd" alt="">
-    <h1><b><u>Open Account</u></b> br <b><u>Verify</u></b></h1>
-    <p>Complete open account formVerify account using verification email</p>
-</div>
-  <div class="second">
-<h1>&nbsp;</h1>
-      <p>&nbsp;</p>
-    </div>
-</div> -->
-
-
-
 
 <!-- Back to top Section -->
 <button onclick="topFunction()" id="Bttop" title="Go to top">Top</button>
