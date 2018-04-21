@@ -1,6 +1,20 @@
 
+function show_accounts()
+{
+
+  for (var i = 0; i < 8; i++)
+  {
+    var name_div = "formdiv" ;
+    document.getElementById(name_div + i).style.display="none";
+  }
+  document.getElementById('formdiv0').style.display = 'block';
+
+}
+
+
 function account_own()
 {
+  var id_for_own_acc = document.getElementById('user_id_from_login').value;
   var url = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/";
   var xhttp = new XMLHttpRequest();
   var jsonData ='';
@@ -12,7 +26,7 @@ function account_own()
         jsonData = JSON.parse(xhttp.responseText);
          for(x in jsonData)
          {
-           if(jsonData[x].user_id == 1)
+           if(jsonData[x].user_id == id_for_own_acc)
              {
                var li_account = document.createElement("LI");
                var li_button = document.createElement("input");
@@ -24,26 +38,36 @@ function account_own()
                document.getElementById('account_ul').insertBefore(li_account, document.getElementById('account_ul').childNodes[0]);
              }
          }
+         for (var i = 0; i < 8; i++)
+         {
+           var name_div = "formdiv" ;
+           document.getElementById(name_div + i).style.display="none";
+         }
+         document.getElementById('formdiv').style.display = 'none';
+         document.getElementById('formdiv0').style.display = 'block';
+         document.getElementById('formdiv1').style.display = 'none';
+         document.getElementById('container').style.display = 'none';
        }
      };
      xhttp.send();
 }
 
 function getaccountinfo(account_id,Balance,credit){
+
     document.getElementById('pagetitle').innerHTML = '<h2>' + account_id + '</h2>';
-    document.getElementById('formdiv0').innerHTML = 'Balance: ' + Balance + '€';
-    document.getElementById('formdiv0').style.display = 'block';
+    var formdiv1 = document.getElementById('formdiv1');
+    formdiv1.innerHTML = "";
 
-    document.getElementById('formdiv1').innerHTML = 'Credit Limit: ' + credit + '€';
+    var balance = document.createTextNode('Balance: ' + Balance + '€');
+    createListFunction(1);
+    var credit = document.createTextNode('Credit Limit: ' + credit + '€');
+
+    formdiv1.appendChild(balance);
+    formdiv1.appendChild(credit);
+
     document.getElementById('formdiv1').style.display = 'block';
 
-    for (var i = 0; i < 8; i++)
-    {
-      var name_div = "formdiv" ;
-      document.getElementById(name_div + i).style.display="none";
-    }
-    document.getElementById('formdiv0').style.display = 'block';
-    document.getElementById('formdiv1').style.display = 'block';
+    
 }
 
 function createaccount(){

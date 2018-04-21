@@ -4,15 +4,15 @@ function dropdownFunction() {
     document.getElementById("navDropdown").classList.toggle("show");
 }
 
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(e) {
-  if (!e.target.matches('.dropbtn')) {
-    var navDropdown = document.getElementById("navDropdown");
-      if (navDropdown.classList.contains('show')) {
-        navDropdown.classList.remove('show');
-      }
-  }
-}
+// // Close the dropdown if the user clicks outside of it
+// window.onclick = function(e) {
+//   if (!e.target.matches('.dropbtn')) {
+//     var navDropdown = document.getElementById("navDropdown");
+//       if (navDropdown.classList.contains('show')) {
+//         navDropdown.classList.remove('show');
+//       }
+//   }
+// }
 
 function createListFunction(number){
 
@@ -73,13 +73,14 @@ function checkTime(i)
 function for_onload()
 {
   time_greet();
-  // real_time();
-  get_user(1);
+  real_time();
+  get_user();
   account_own();
   paymentFunction();
   editCredFunction();
   contactBankFunction();
   loanFunction();
+
   document.getElementById('pagetitle').innerHTML = " ";
   for (var i = 0; i < 8; i++)
   {
@@ -89,9 +90,10 @@ function for_onload()
   document.getElementById('container').style.display="none";
 }
 
-function get_user(id)
+function get_user()
 {
- var url = "http://localhost/oamk_bank/index.php/api/bank/users/id/" + id;
+ var id_for_greet = document.getElementById('user_id_from_login').value;
+ var url = "http://localhost/oamk_bank/index.php/api/bank/users/id/" + id_for_greet;
  var xhttp = new XMLHttpRequest();
  var json='';
  xhttp.open('GET', url, true);
@@ -100,7 +102,7 @@ function get_user(id)
    if(xhttp.readyState==4 && xhttp.status==200)
    {
      json=JSON.parse(xhttp.responseText);;
-     var userID = document.getElementById('user').innerHTML = json[0].firstname + " " + json[0].lastname ;
+     document.getElementById('user').innerHTML = json[0].firstname + " " + json[0].lastname ;
    }
  };
  xhttp.send();

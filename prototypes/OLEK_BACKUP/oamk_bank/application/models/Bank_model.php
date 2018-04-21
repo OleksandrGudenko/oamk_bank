@@ -17,11 +17,6 @@ class Bank_model extends CI_model
       return  $this->db->get()->result_array();
     }
 
-    function add_user($add_data)
-    {
-      $this->db->insert('users', $add_data);
-    }
-
     function update_user($id, $update_data)
     {
       $data = array(
@@ -49,6 +44,7 @@ class Bank_model extends CI_model
   {
     $this->db->select('*');
     $this->db->from('accounts_table');
+
     $this->db->order_by('user_id');
     return $this->db->get()->result_array();
   }
@@ -62,7 +58,7 @@ class Bank_model extends CI_model
     return  $this->db->get()->result_array();
   }
 
-  function update_account($id, $update_data)
+    function update_account($id, $update_data)
   {
     $this->db->set('Balance', $update_data, false);
     $this->db->where('account_id', $id);
@@ -147,6 +143,39 @@ function delete_loan($id)
   $this->db->where('loan_id',$id);
   $this->db->delete('loans');
 }
+
+//from here about login
+function get_logins()
+{
+  $this->db->select('*');
+  $this->db->from('login_credentials');
+  return  $this->db->get()->result_array();
+}
+function get_login($id)
+{
+  $this->db->select('*');
+  $this->db->from('login_credentials');
+  $this->db->where('username', $id);
+  return  $this->db->get()->result_array();
+}
+
+function add_login($add_login)
+{
+  $this->db->insert('login_credentials', $add_login);
+}
+
+function add_user($add_user)
+{
+  $this->db->insert('users', $add_user);
+}
+
+function id_check()
+{
+  $this->db->select('id');
+  $this->db->from('login_credentials');
+  return  $this->db->get()->result_array();
+}
+
 
 }//this is end of bank model
 

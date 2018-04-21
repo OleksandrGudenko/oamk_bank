@@ -1,10 +1,10 @@
 
 function payment_show()
 {
-  document.getElementById('pay_btn').disabled = true;
-  document.getElementById('contact_btn').disabled = false;
-  document.getElementById('edit_btn').disabled = false;
-  document.getElementById('loan_btn').disabled = false;
+  // document.getElementById('pay_btn').disabled = true;
+  // document.getElementById('contact_btn').disabled = false;
+  // document.getElementById('edit_btn').disabled = false;
+  // document.getElementById('loan_btn').disabled = false;
   document.getElementById('result').innerHTML = " ";
   document.getElementById('result').style.display = "none";
   for (var i = 0; i < 8; i++)
@@ -44,8 +44,8 @@ function paymentbtn2(){
 function paymenttrigger(){
   var payment = document.getElementById('formdiv3').style.display = 'none';
   if(payment){
-    document.getElementById('payoptbtn1').disabled = false ;
-    document.getElementById('payoptbtn2').disabled = true ;
+    // document.getElementById('payoptbtn1').disabled = false ;
+    // document.getElementById('payoptbtn2').disabled = true ;
     document.getElementById('formdiv3').style.display = 'block';
     document.getElementById('formdiv2').style.display = 'none';
   }
@@ -60,7 +60,7 @@ document.getElementById('formdiv3').innerHTML = " ";
 
 document.getElementById('loading').inner="Loading...";
 document.getElementById('loading').style.display="block";
-
+var id_for_payment = document.getElementById('user_id_from_login').value;
 var url = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid";
 var jsonData='';
 var xhttp = new XMLHttpRequest();
@@ -82,7 +82,7 @@ xhttp.onreadystatechange=function()
     document.getElementById('formdiv3').appendChild(sender);
     for(x in jsonData)
     {
-      if(jsonData[x].user_id == 1)
+      if(jsonData[x].user_id == id_for_payment)
       {
       var option_sender = document.createElement("option");
       option_sender.value = jsonData[x].Balance;
@@ -107,7 +107,7 @@ xhttp.onreadystatechange=function()
     amount.setAttribute('placeholder', 'amount to pay');
     document.getElementById('formdiv3').appendChild(amount);
 
-    
+
     createListFunction(3);
     var sendbtn = document.createElement('input');
     sendbtn.setAttribute('type', 'button');
@@ -135,13 +135,13 @@ function payment_money()
   var xhttp = new XMLHttpRequest();
 
   var url_sender = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/";
-  
+
 
   xhttp.onreadystatechange=function()
   {
     if(xhttp.readyState==4 && xhttp.status==200)
     {
-      
+
       json_sender = JSON.parse(xhttp.responseText);
 
       var sender_balance_before = json_sender[0].Balance;
@@ -156,7 +156,7 @@ function payment_money()
       }
       else
       {
-        document.getElementById('formdiv').innerHTML = "Not enough money on the account that you selected.";  
+        document.getElementById('formdiv').innerHTML = "Not enough money on the account that you selected.";
         document.getElementById('formdiv').style.color = 'red';
         document.getElementById('formdiv').style.fontSize = '3vw';;
       }
@@ -173,7 +173,7 @@ function payment_sender(variable)
     var xhttp = new XMLHttpRequest();
     var url_sender = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/";
     var money = document.getElementById('amount_payment').value;
-    
+
     var sender_account_after = parseFloat(sender_balance_before) - parseFloat(money) ;
     sender_account_after.toFixed(2);
     var data_sender = {} ;
@@ -187,7 +187,7 @@ function payment_sender(variable)
       if(xhttp.readyState==4 && xhttp.status==201)
       {
         document.getElementById('formdiv').style.display = "block";
-        document.getElementById('formdiv').innerHTML = "Transaction went succesfully";  
+        document.getElementById('formdiv').innerHTML = "Transaction went succesfully";
         document.getElementById('formdiv').style.color = 'green';
         document.getElementById('formdiv').style.fontSize = '3vw';;
         reload_yes = 1;
@@ -205,9 +205,9 @@ function payment_sender(variable)
 
     setTimeout(function(){
       if(reload_yes == 1){
-      
+
         location.reload();
-      
+
       }
     },2000);
 }
@@ -245,7 +245,7 @@ function recieve_payment(variable)
   var url = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/";
 
   var reciever_account_after = parseFloat(recieve_balance_before) + parseFloat(money) ;
-  
+
   var data = {} ;
   data.account_id = document.getElementById('reciever_payment').value;
   data.Balance = reciever_account_after.toFixed(2);
@@ -270,15 +270,15 @@ function recieve_payment(variable)
       document.getElementById('formdiv').style.fontSize = '3vw';
     }
   };
-  
+
 xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 xhttp.send(jsonData);
 
 setTimeout(function(){
   if(reload_yes == 1){
-  
+
     location.reload();
-  
+
   }
 },2000);
 }

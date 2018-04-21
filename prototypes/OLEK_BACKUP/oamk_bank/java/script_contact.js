@@ -2,10 +2,10 @@ function contact_show()
 {
   document.getElementById('hide_form').style.display="block";
 
-  document.getElementById('contact_btn').disabled = true;
-  document.getElementById('edit_btn').disabled = false;
-  document.getElementById('pay_btn').disabled = false;
-  document.getElementById('loan_btn').disabled = false;
+  // document.getElementById('contact_btn').disabled = true;
+  // document.getElementById('edit_btn').disabled = false;
+  // document.getElementById('pay_btn').disabled = false;
+  // document.getElementById('loan_btn').disabled = false;
 
 
   document.getElementById('container').style.display="none";
@@ -71,19 +71,12 @@ document.getElementById('formdiv6').appendChild(test_label);
 
 
 // for here hidden value as test
-var id = document.createElement("input");
-id.setAttribute('type', 'number');
-id.setAttribute('id', 'id');
-id.setAttribute('name', 'id');
-id.setAttribute('value', '0');
-id.setAttribute('type', 'hidden');
-document.getElementById('formdiv6').appendChild(id);
 
 var userid = document.createElement("input");
 userid.setAttribute('type', 'number');
-userid.setAttribute('id', 'user_id');
+userid.setAttribute('id', 'user_id_contact');
 userid.setAttribute('name', 'user_id');
-userid.setAttribute('value', '1');
+userid.setAttribute('value', "");
 userid.setAttribute('type' ,'hidden');
 document.getElementById('formdiv6').appendChild(userid);
 
@@ -111,6 +104,8 @@ document.getElementById('loading').style.display = "none";
 
 function request_add()
 {
+      var id_for_msg = document.getElementById('user_id_from_login').value;
+      document.getElementById('user_id_contact').value = id_for_msg ;
       var date_request = new Date();
       date_request.getFullYear(); // 2018
       var month = date_request.getMonth() + 1 ;// 04
