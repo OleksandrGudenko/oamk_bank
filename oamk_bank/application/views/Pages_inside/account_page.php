@@ -2,8 +2,8 @@
     <div id="navbar" class="navbar">
     <div class="account_label">
         <span style="color:white;" id="time_expression"></span>
-        <span style="color:white;" id="user_id">Tervetuloa</span>
-        <input id="user_id" value="TEST ONE" type="hidden">
+        <span style="color:white;" id="user"></span>
+        <input id="user_id" value="<?php echo $this->session->userdata('user_id');?>" type="hidden">
     </div>
 <div id="div_active">
         <a href="<?php echo base_url(); ?>"><button class="signout-btn">Sign Out</button></a>

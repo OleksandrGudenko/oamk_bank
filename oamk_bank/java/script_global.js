@@ -92,6 +92,7 @@ function for_onload()
 
 function get_user(id)
 {
+ var id = document.getElementById('user_id').value;
  var url = "http://localhost/oamk_bank/index.php/api/bank/users/id/" + id;
  var xhttp = new XMLHttpRequest();
  var json='';
