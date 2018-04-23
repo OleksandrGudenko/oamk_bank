@@ -625,9 +625,9 @@ body {
 /* here is for registration terms and condition scroll style */
 .scroll_for_terms_conditions
 {
-  /* width: 800px; */
-  margin-left: 200px;
-  margin-right: 200px;
+  background: white;
+  margin-left: 5%;
+  margin-right: 5%;
   height: 300px;
   overflow: scroll;
   overflow-x: hidden;
@@ -637,4 +637,12 @@ body {
 .centering
 {
   text-align: center;
+}
+
+#registration_form {
+  border-radius: 25px;
+  margin-left: 30%;
+  margin-right: 30%;
+  /* background: linear-gradient(to right, #f2882f, #ee9149, #e99960, #e2a276, #daaa8b); */
+  background: #f2882f;
 }

@@ -56,10 +56,6 @@ public function banking()
 			);
 
 			$this->session->set_userdata($userinfo_data);
-
-				// Set message
-			$this->session->set_flashdata('user_loggedin', 'You are now logged in');
-
 			$this->load->view('Structure/Account', $data);
 		}	else {
 			// Set message
@@ -98,8 +94,6 @@ public function banking()
 			$data['user'] = $user;
 			$data['body']='Users/password';
 			$data['msg']='ID or Password was wrong';
-			$this->session->set_flashdata('login_failed', 'Login is invalid');
-
 			$this->load->view('Structure/Account', $data);
 		}
 	}	
