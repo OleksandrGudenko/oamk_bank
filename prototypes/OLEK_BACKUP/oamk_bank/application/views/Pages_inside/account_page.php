@@ -16,8 +16,9 @@
 
     </div>
     <div id="container"></div>
-    <div style="text-align:center" id="loading"></div>
+    <div id="container1"></div>
     <div id="pagetitle"></div>
+    <div style="text-align:center" id="loading"></div>
     <div style="display:block; text-align:center" id="formdiv"></div>
     <div style="display:block; text-align:center" id="formdiv0">
         <ul><li></li></ul>
