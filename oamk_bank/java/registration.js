@@ -127,4 +127,5 @@ function agree_the_terms()
   {
     agree_terms = false;
   }
+
 }

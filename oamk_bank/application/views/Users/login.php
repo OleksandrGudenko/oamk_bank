@@ -8,7 +8,7 @@
     <div class="col-md-4 col-md-offset-4">
       <h1 class="text-center">SIGN IN</h1>
       <div class="form-group">
-        <input autocomplete="off" type="text" id="username" name="username" class="form-control" placeholder="Enter Username" required autofocus>
+        <input autocomplete="off" type="text" id="username" name="username" class="form-control" placeholder="Enter Username" required>
       </div>
       <div id="check_msg"></div>
       <div id="signin_btn"></div>
@@ -34,6 +34,7 @@ function id_check()
   var xhttp = new XMLHttpRequest();
   xhttp.open('GET', url, true);
   if (user_name == 'admin') {
+    document.getElementById('flash_message').style.display = "none";
     $("#username_btn").remove();
     document.getElementById('username').style.borderColor ="Green";
     document.getElementById('check_msg').innerHTML = "ID valid";
@@ -62,6 +63,7 @@ function id_check()
       }
       else
       {
+        document.getElementById('flash_message').style.display = "none";
         $("#username_btn").remove();
 				document.getElementById('username').style.borderColor ="Green";
 				document.getElementById('check_msg').innerHTML = "ID valid";
@@ -76,7 +78,6 @@ function id_check()
   };
   xhttp.send();
   }
-
 }
 
 </script>

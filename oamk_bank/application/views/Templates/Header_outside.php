@@ -38,3 +38,9 @@
         </div>
       </div>
     </div>
+    <div class="container">
+      <!-- Flash messages -->
+      <?php if($this->session->flashdata('id_invalid')): ?>
+        <?php echo '<p id = "flash_message" class="alert alert-danger">'.$this->session->flashdata('id_invalid').'</p>'; ?>
+      <?php endif; ?>
+    </div>
