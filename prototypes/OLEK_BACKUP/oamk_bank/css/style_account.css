@@ -111,7 +111,7 @@ textarea#body:focus
     text-decoration: none;
     display: block;
     font-size: 16px;
-    cursor: pointer;
+
 }
 
 .signout-btn:hover{
@@ -119,10 +119,9 @@ textarea#body:focus
     color: #F2882F;
 }
 
-.signout-btn:disabled 
+.signout-btn:focus 
 {
-    background-color: white;
-    color: #F2882F;
+    outline: none;
 }
 
 
@@ -172,8 +171,8 @@ ul {
     color: white;
 }
 
-#container{
-    margin-top: 10px;
+#container, #container1{
+    margin-top: 50px;
     margin-bottom: 5%;
 
     text-align: center;

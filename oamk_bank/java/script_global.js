@@ -94,6 +94,7 @@ function get_user()
 {
  var id_for_greet = document.getElementById('user_id_from_login').value;
  var url = "http://localhost/oamk_bank/index.php/api/bank/users/id/" + id_for_greet;
+
  var xhttp = new XMLHttpRequest();
  var json='';
  xhttp.open('GET', url, true);

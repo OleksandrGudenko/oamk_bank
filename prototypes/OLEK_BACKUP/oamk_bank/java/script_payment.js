@@ -11,12 +11,35 @@ function payment_show()
   {
     var name_div = "formdiv" ;
     document.getElementById(name_div + i).style.display="none";
-    document.getElementById(name_div).style.display="none";
+
+    document.getElementById('contact_btn').style.color = 'white';
+    document.getElementById('contact_btn').style.backgroundColor = '#F2882F';
+    
+    
+    document.getElementById('edit_btn').style.color = 'white';
+    document.getElementById('edit_btn').style.backgroundColor = '#F2882F';
+    
+    document.getElementById('loan_btn').style.color = 'white';
+    document.getElementById('loan_btn').style.backgroundColor = '#F2882F';
+    
+    document.getElementById('pay_btn').style.color = '#F2882F';
+    document.getElementById('pay_btn').style.backgroundColor = 'white';
+    
+    document.getElementById('accounts_btn').style.color = 'white';
+    document.getElementById('accounts_btn').style.backgroundColor = '#F2882F';
   }
 
-  document.getElementById('container').style.display="flex";
+
+  document.getElementById('container').style.display = 'flex';
+  document.getElementById('container1').style.display = 'none';
+  
   var paymentsection = "<h2>Payments</h2>";
   document.getElementById("pagetitle").innerHTML = paymentsection;
+
+  document.getElementById('payoptbtn1').style.color = '#F2882F' ;
+  document.getElementById('payoptbtn1').style.backgroundColor = 'white'
+  document.getElementById('payoptbtn2').style.color = '#F2882F' ;
+  document.getElementById('payoptbtn2').style.backgroundColor = 'white';
 
   document.getElementById("container").innerHTML = " ";
   paymentbtn1();
@@ -44,8 +67,10 @@ function paymentbtn2(){
 function paymenttrigger(){
   var payment = document.getElementById('formdiv3').style.display = 'none';
   if(payment){
-    // document.getElementById('payoptbtn1').disabled = false ;
-    // document.getElementById('payoptbtn2').disabled = true ;
+    document.getElementById('payoptbtn1').style.color = '#F2882F' ;
+    document.getElementById('payoptbtn1').style.backgroundColor = 'white';
+    document.getElementById('payoptbtn2').style.color = 'white' ;
+    document.getElementById('payoptbtn2').style.backgroundColor = '#F2882F'
     document.getElementById('formdiv3').style.display = 'block';
     document.getElementById('formdiv2').style.display = 'none';
   }

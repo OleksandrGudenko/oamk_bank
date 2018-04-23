@@ -1,18 +1,3 @@
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function dropdownFunction() {
-    document.getElementById("navDropdown").classList.toggle("show");
-}
-
-// // Close the dropdown if the user clicks outside of it
-// window.onclick = function(e) {
-//   if (!e.target.matches('.dropbtn')) {
-//     var navDropdown = document.getElementById("navDropdown");
-//       if (navDropdown.classList.contains('show')) {
-//         navDropdown.classList.remove('show');
-//       }
-//   }
-// }
 
 function createListFunction(number){
 
@@ -87,8 +72,9 @@ function for_onload()
     var name_div = "formdiv" ;
     document.getElementById(name_div + i).style.display="none";
   }
-  document.getElementById('container').style.display="none";
-}
+
+  document.getElementById('container').style.display = 'none';
+  document.getElementById('container1').style.display = 'none';}
 
 function get_user()
 {

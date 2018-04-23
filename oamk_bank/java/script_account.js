@@ -1,4 +1,4 @@
-
+var user_id = document.getElementById('user_id').value;
 function account_own()
 {
   var id_for_own_acc = document.getElementById('user_id_from_login').value;
@@ -14,6 +14,7 @@ function account_own()
          for(x in jsonData)
          {
            if(jsonData[x].user_id == id_for_own_acc)
+
              {
                var li_account = document.createElement("LI");
                var li_button = document.createElement("input");

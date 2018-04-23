@@ -266,14 +266,14 @@ xhttp.onreadystatechange = function(){
     document.getElementById('formdiv').innerHTML = 'Request processed successfully.';
     document.getElementById('formdiv').style.display = 'block';
     document.getElementById('formdiv').style.color = 'green';
-      document.getElementById('formdiv').style.fontSize = '3vw';
+    document.getElementById('formdiv').style.fontSize = '3vw';
     reload_yes = 1;
   }
   else{
     document.getElementById('formdiv').innerHTML = 'Internal error, loan request denied.';
     document.getElementById('formdiv').style.display = 'block';
     document.getElementById('formdiv').style.color = 'red';
-      document.getElementById('formdiv').style.fontSize = '3vw';
+    document.getElementById('formdiv').style.fontSize = '3vw';
   }
 };
 xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');

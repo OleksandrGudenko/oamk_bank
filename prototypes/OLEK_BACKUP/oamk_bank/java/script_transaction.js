@@ -12,8 +12,10 @@ function paymentbtn1(){
 function transferTrigger(){
   var transf = document.getElementById('formdiv2').style.display = 'none';
   if(transf){
-    // document.getElementById('payoptbtn1').disabled = true ;
-    // document.getElementById('payoptbtn2').disabled = false ;
+    document.getElementById('payoptbtn1').style.color = 'white' ;
+    document.getElementById('payoptbtn1').style.backgroundColor = '#F2882F'
+    document.getElementById('payoptbtn2').style.color = '#F2882F' ;
+    document.getElementById('payoptbtn2').style.backgroundColor = 'white';
     document.getElementById('formdiv2').style.display = 'block';
     document.getElementById('formdiv3').style.display = 'none';
   }
