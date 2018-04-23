@@ -326,15 +326,16 @@ body {
   font-size: 18px;
   border: none;
   outline: none;
-  background-color: #FF9400;
-  color: white;
+  background-color: #ffffff;
+  color: #FF9400;
   cursor: pointer;
+  border: 1px solid  #FF9400;
   padding: 15px;
   border-radius: 4px;
 }
 
 #Bttop:hover {
-  background-color: #555;
+  border-color: #555;
 }
 
 /* Styles for About */
