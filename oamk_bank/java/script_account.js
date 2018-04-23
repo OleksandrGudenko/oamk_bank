@@ -1,4 +1,3 @@
-var user_id = document.getElementById('user_id').value;
 function account_own()
 {
   var id_for_own_acc = document.getElementById('user_id_from_login').value;

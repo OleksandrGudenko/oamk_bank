@@ -2,17 +2,18 @@
 toggle between hiding and showing the dropdown content */
 function dropdownFunction() {
     document.getElementById("navDropdown").classList.toggle("show");
+    window.onclick = function(e) {
+      if (!e.target.matches('.dropbtn')) {
+        var navDropdown = document.getElementById("navDropdown");
+          if (navDropdown.classList.contains('show')) {
+            navDropdown.classList.remove('show');
+          }
+      }
+    }
 }
 
 // Close the dropdown if the user clicks outside of it
-window.onclick = function(e) {
-  if (!e.target.matches('.dropbtn')) {
-    var navDropdown = document.getElementById("navDropdown");
-      if (navDropdown.classList.contains('show')) {
-        navDropdown.classList.remove('show');
-      }
-  }
-}
+
 
 function createListFunction(number){
 

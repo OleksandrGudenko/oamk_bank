@@ -3,6 +3,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="http://cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
 <?php echo form_open('users/login_verify'); ?>
+<br><br><br><br>
 <form id="signin_form">
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
@@ -32,10 +33,10 @@ function id_check()
   var jsonData='';
   var user_name = document.getElementById('username').value;
   var xhttp = new XMLHttpRequest();
-  xhttp.open('GET', url, true);
+  
   if (user_name == 'admin') {
-    document.getElementById('flash_message').style.display = "none";
-    $("#username_btn").remove();
+    document.getElementById('flash_message').remove();
+    document.getElementById('username_btn').remove();
     document.getElementById('username').style.borderColor ="Green";
     document.getElementById('check_msg').innerHTML = "ID valid";
     var submit_btn =	document.createElement("button");
@@ -45,6 +46,7 @@ function id_check()
     submit_btn.setAttribute('class', 'btn btn-success btn-block');
     document.getElementById('signin_btn').appendChild(submit_btn);
   } else{
+  xhttp.open('GET', url, true);
   xhttp.onreadystatechange=function()
   {
     if(xhttp.readyState==4 && xhttp.status==200)
@@ -63,8 +65,8 @@ function id_check()
       }
       else
       {
-        document.getElementById('flash_message').style.display = "none";
-        $("#username_btn").remove();
+        document.getElementById('flash_message').remove();
+        document.getElementById('username_btn').remove();
 				document.getElementById('username').style.borderColor ="Green";
 				document.getElementById('check_msg').innerHTML = "ID valid";
 				var submit_btn =	document.createElement("button");
@@ -81,6 +83,7 @@ function id_check()
 }
 
 </script>
-
-</body>
-</html>
+<br>
+<br>
+<br>
+<br>
