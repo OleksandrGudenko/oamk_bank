@@ -1,7 +1,7 @@
     <div id="navbar" class="navbar">
     <div class="account_label">
         <span style="color:white;" id="time_expression"></span>
-        <span style="color:white;"><?php if($this->session->userdata('admin')) : ?>Admin<?php endif;?></span>
+        <span style="color:white;" id="user"><?php if($this->session->userdata('admin')) : ?>Admin<?php endif;?></span>
         <input id="user_id_from_login" value="<?php echo $this->session->userdata('user_id');?>" type="hidden">
     </div>
 <div id="div_active">

@@ -72,9 +72,11 @@ function for_onload()
     var name_div = "formdiv" ;
     document.getElementById(name_div + i).style.display="none";
   }
-
   document.getElementById('container').style.display = 'none';
-  document.getElementById('container1').style.display = 'none';}
+  document.getElementById('container1').style.display = 'none';
+
+  setTimeout(function(){ show_accounts(); }, 2000);
+}
 
 function get_user()
 {
@@ -95,3 +97,4 @@ function get_user()
 }
 
 var reload_yes = 0;
+var create_new_div = null;

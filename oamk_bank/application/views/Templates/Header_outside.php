@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OAMK Bank OYJ</title>
     <!-- Fonts used -->
-    <link href='https://fonts.googleapis.com/css?family=Roboto:100' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <!-- Scripts  -->
   <script type="text/javascript" src="<?php echo base_url('java/top.js')?>"></script>
@@ -22,7 +21,7 @@
 <div class="content">
     <div class="nav-bar">
       <div id="nav-container">
-        <a href="http://www.oamkbank.gq/">
+        <a href="<?php echo base_url()?>">
         <img class="logo" src="<?php echo base_url('img/oamkb-logo-transp.png')?>"/></a>
         <ul>
           <li><a href="<?php echo site_url('Page_Controller/openAcct');?>">OPEN ACCOUNT</a></li>
@@ -38,9 +37,9 @@
         </div>
       </div>
     </div>
-    <div class="container">
+    <div id = "flash_message" class="container">
       <!-- Flash messages -->
       <?php if($this->session->flashdata('id_invalid')): ?>
-        <?php echo '<p id = "flash_message" class="alert alert-danger">'.$this->session->flashdata('id_invalid').'</p>'; ?>
+        <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('id_invalid').'</p>'; ?>
       <?php endif; ?>
     </div>

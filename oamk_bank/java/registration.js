@@ -9,6 +9,11 @@ function id_check()
   var jsonData='';
   var username = document.getElementById('username').value;
   var xhttp = new XMLHttpRequest();
+  if (username == 'admin'){
+    document.getElementById('id_check').innerHTML = "Username can't be 'admin'.";
+    document.getElementById('username').style.borderColor ="red";
+    document.getElementById('id_check').style.color = "red";
+  } else {
   xhttp.open('GET', url, true);
   xhttp.onreadystatechange=function()
   {
@@ -36,6 +41,7 @@ function id_check()
     }
   };
   xhttp.send();
+  }
 }
 
 function signup()
@@ -76,7 +82,7 @@ function signup()
 }
 else
 {
-    alert("Email should be checked and please check the terms and conditions, first");
+    alert("Username & Email should be checked and please read the terms and condition.");
 }
 }
 

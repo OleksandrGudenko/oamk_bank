@@ -79,7 +79,7 @@ textarea#body:focus
     z-index: 1;
 }
 
-#li_button {
+#li_button, #li_button1 {
     color: white;
     background-color: #F2882F;
     border: none;
@@ -90,7 +90,7 @@ textarea#body:focus
 
 
 
-#li_button:hover {
+#li_button:hover, #li_button1:hover {
     background-color: white;
     color: #F2882F;
     border: 1px solid #F2882F;

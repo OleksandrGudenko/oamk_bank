@@ -7,7 +7,9 @@
           <img src="<?php echo base_url('img/home-temp-trans.png');?>" alt="" class="guy-bg" >
           <h1 class="tophead">Together, <br /> financial freedom</h1>
           <p class="midhead">simple, fair and fast</p>
+          <a href="<?php echo site_url('Page_Controller/openAcct');?>">
           <input type="button" class="openact" name="" value="OPEN ACCOUNT">
+          </a>
       </div>
     <!-- Middle Section -->
       <div class="mid-banner">
