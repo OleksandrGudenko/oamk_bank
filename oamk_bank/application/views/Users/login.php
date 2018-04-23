@@ -33,6 +33,17 @@ function id_check()
   var user_name = document.getElementById('username').value;
   var xhttp = new XMLHttpRequest();
   xhttp.open('GET', url, true);
+  if (user_name == 'admin') {
+    $("#username_btn").remove();
+    document.getElementById('username').style.borderColor ="Green";
+    document.getElementById('check_msg').innerHTML = "ID valid";
+    var submit_btn =	document.createElement("button");
+    var btn_text = document.createTextNode("GO Forward");
+    submit_btn.appendChild(btn_text);
+    submit_btn.setAttribute('type', 'submit');
+    submit_btn.setAttribute('class', 'btn btn-success btn-block');
+    document.getElementById('signin_btn').appendChild(submit_btn);
+  } else{
   xhttp.onreadystatechange=function()
   {
     if(xhttp.readyState==4 && xhttp.status==200)
@@ -64,6 +75,8 @@ function id_check()
     }
   };
   xhttp.send();
+  }
+}
 }
 
 </script>
