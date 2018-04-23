@@ -34,17 +34,17 @@ function time_greet()
 
   if( time_hour >=0 && time_hour <12 )
   {
-      document.getElementById("time_expression").innerHTML = "Good Morning, " ;
+      document.getElementById("time_expression").innerHTML = "Good Morning " ;
   }
 
   else if( time_hour >=12 && time_hour <18 )
   {
-      document.getElementById("time_expression").innerHTML = "Good Afternoon, " ;
+      document.getElementById("time_expression").innerHTML = "Good Afternoon " ;
   }
 
   else if( time_hour >=18 && time_hour <24 )
   {
-      document.getElementById("time_expression").innerHTML = "Good Evening, ";
+      document.getElementById("time_expression").innerHTML = "Good Evening ";
   }
 
 }
@@ -74,7 +74,7 @@ function for_onload()
 {
   time_greet();
   real_time();
-  get_user(1);
+  get_user();
   account_own();
   paymentFunction();
   editCredFunction();
@@ -90,9 +90,10 @@ function for_onload()
   document.getElementById('container').style.display="none";
 }
 
-function get_user(id)
+function get_user()
 {
- var url = "http://localhost/oamk_bank/index.php/api/bank/users/id/" + id;
+ var id_for_greet = document.getElementById('user_id_from_login').value;
+ var url = "http://localhost/oamk_bank/index.php/api/bank/users/id/" + id_for_greet;
  var xhttp = new XMLHttpRequest();
  var json='';
  xhttp.open('GET', url, true);

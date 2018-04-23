@@ -1,5 +1,6 @@
 var id_boolean = false;
 var email_boolean = false;
+var agree_terms = false;
 
 function id_check()
 {
@@ -39,11 +40,11 @@ function id_check()
 
 function signup()
 {
-  if(email_boolean == true && id_boolean == true)
+  if(email_boolean == true && id_boolean == true && agree_terms == true)
   {
   document.getElementById('result').innerHTML = "Loading...";
-  document.getElementById('signup_form').style.display="none";
-  var url = "http://localhost/oamk_bank_kihun/index.php/api/bank/logins/";
+  document.getElementById('registration_form').style.display="none";
+  var url = "http://localhost/oamk_bank/index.php/api/bank/logins/";
   var xhttp = new XMLHttpRequest();
   xhttp.open('POST', url, true);
 
@@ -53,30 +54,29 @@ function signup()
   {
     if(xhttp.readyState==4 && xhttp.status==201)
     {
-      document.getElementById('result').innerHTML = "signup";
-      var audio = document.createElement("audio");
-      audio.setAttribute('src', 'audio/test1.mp3');
-      audio.autoplay = true;
-      document.getElementById('result').appendChild(audio);
+      document.getElementById('result').style.display = "block";
+      document.getElementById('result').innerHTML = "You have signed up successfully";
 
       setTimeout(function(){
-      window.location.replace("http://localhost/homepage_proto");
+      // window.location.replace("http://localhost/oamk_bank");
       document.getElementById('submit_btn').disabled= false;
       email_boolean =false;
       id_boolean = false;
+      agree_terms = false;
     }, 10000);
     }
     else
     {
-      document.getElementById('result').innerHTML = "Fail";
-      document.getElementById('signup_form').style.display="block";
+      document.getElementById('result').style.display = "block";
+      document.getElementById('result').innerHTML = "Sign up has failed";
+      document.getElementById('registration_form').style.display="block";
     }
   };
   xhttp.send(formData);
 }
 else
 {
-  alert("Username and Email should be checked, first");
+    alert("Email should be checked and please check the terms and conditions, first");
 }
 }
 
@@ -84,7 +84,7 @@ else
 function email_check()
 {
   document.getElementById('email_check').innerHTML = " ";
-  var url = "http://localhost/oamk_bank_kihun/index.php/api/bank/users/";
+  var url = "http://localhost/oamk_bank/index.php/api/bank/users/";
   var jsonData='';
   var email = document.getElementById('email').value;
   var xhttp = new XMLHttpRequest();
@@ -115,4 +115,17 @@ function email_check()
     }
   };
   xhttp.send();
+}
+
+function agree_the_terms()
+{
+  if(agree_terms == false)
+  {
+      agree_terms = true;
+  }
+  else
+  {
+    agree_terms = false;
+  }
+
 }
