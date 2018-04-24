@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OAMK Bank OYJ</title>
     <!-- Fonts used -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <!-- Scripts  -->
   <script type="text/javascript" src="<?php echo base_url('java/top.js')?>"></script>

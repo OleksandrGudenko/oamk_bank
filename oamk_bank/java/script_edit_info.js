@@ -1,11 +1,5 @@
 function edit_show()
 {
-  // document.getElementById('edit_btn').disabled = true;
-  // document.getElementById('contact_btn').disabled = false;
-  // document.getElementById('pay_btn').disabled = false;
-  // document.getElementById('loan_btn').disabled = false;
-
-
   document.getElementById('container').style.display = 'none';
   document.getElementById('container1').style.display = 'none';
 

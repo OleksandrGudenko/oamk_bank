@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 function show_accounts()
 {
@@ -34,8 +33,6 @@ function show_accounts()
 }
 
 
-=======
->>>>>>> origin/kihun
 function account_own()
 {
   document.getElementById('formdiv0').style.display = 'none';

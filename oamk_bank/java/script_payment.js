@@ -1,10 +1,6 @@
 
 function payment_show()
 {
-  // document.getElementById('pay_btn').disabled = true;
-  // document.getElementById('contact_btn').disabled = false;
-  // document.getElementById('edit_btn').disabled = false;
-  // document.getElementById('loan_btn').disabled = false;
   document.getElementById('result').innerHTML = " ";
   document.getElementById('result').style.display = "none";
   for (var i = 0; i < 8; i++)
