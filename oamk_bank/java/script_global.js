@@ -67,7 +67,7 @@ function for_onload()
   loanFunction();
 
   document.getElementById('pagetitle').innerHTML = " ";
-  for (var i = 0; i < 8; i++)
+  for (var i = 0; i <= 8; i++)
   {
     var name_div = "formdiv" ;
     document.getElementById(name_div + i).style.display="none";

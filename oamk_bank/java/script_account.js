@@ -3,7 +3,7 @@ function show_accounts()
 {
   document.getElementById('li_button1').removeAttribute('disabled');
 
-  for (var i = 0; i < 8; i++)
+  for (var i = 0; i <= 8; i++)
   {
     var name_div = "formdiv" ;
     document.getElementById(name_div + i).style.display="none";
@@ -63,7 +63,7 @@ function account_own()
               document.getElementById('formdiv0').appendChild(li_button);
              }
          }
-         for (var i = 0; i < 8; i++)
+         for (var i = 0; i <= 8; i++)
          {
            var name_div = "formdiv" ;
            document.getElementById(name_div + i).style.display="none";

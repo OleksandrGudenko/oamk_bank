@@ -3,7 +3,7 @@ function loan_show()
 {
   document.getElementById('result').innerHTML = " ";
   document.getElementById('result').style.display = "none";
-  for (var i = 0; i < 8; i++)
+  for (var i = 0; i <= 8; i++)
   {
     var name_div = "formdiv" ;
     document.getElementById(name_div + i).style.display="none";
@@ -137,7 +137,7 @@ function loanFunction(){
           user_idelement.name = 'user_id';
           user_idelement.readOnly = true;
           user_idelement.value = jsonData[x].user_id;
-          // user_idelement.style.display = 'none';
+          user_idelement.style.display = 'none';
           document.getElementById('requestForm').appendChild(user_idelement);
 
           var user_account = document.createElement('input');
@@ -145,7 +145,7 @@ function loanFunction(){
           user_account.id = 'Account_test'
           user_account.name = 'account_id';
           user_account.readOnly = true;
-          // user_account.style.display = 'none';
+          user_account.style.display = 'none';
           document.getElementById('requestForm').appendChild(user_account);
 
           
@@ -264,14 +264,13 @@ function request_money()
 
   };
   xhttp.send(formData);
-  console.log(form);
-    // setTimeout(function(){
-  //   if(reload_yes == 1){
+    setTimeout(function(){
+    if(reload_yes == 1){
 
-  //     location.reaload();
+      location.reaload();
 
-  //   }
-  // },2000);
+    }
+  },2000);
 
 
 }
@@ -313,11 +312,11 @@ xhttp.onreadystatechange = function(){
 xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 xhttp.send(jsonData);
 
-// setTimeout(function(){
-//   if(reload_yes == 1){
+setTimeout(function(){
+  if(reload_yes == 1){
 
-//       location.reload();
+      location.reload();
 
-//   }
-// },2000);
+  }
+},2000);
 }
