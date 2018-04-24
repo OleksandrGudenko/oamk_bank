@@ -67,7 +67,7 @@ function for_onload()
   loanFunction();
 
   document.getElementById('pagetitle').innerHTML = " ";
-  for (var i = 0; i < 8; i++)
+  for (var i = 0; i <= 8; i++)
   {
     var name_div = "formdiv" ;
     document.getElementById(name_div + i).style.display="none";
@@ -78,10 +78,17 @@ function for_onload()
   setTimeout(function(){ show_accounts(); }, 2000);
 }
 
+var user_id_global;
+
 function get_user()
 {
+  ///because of time difference between javascript(client side) and Rest API(server side)
+  // set global value here
+ user_id_global = document.getElementById('user_id_from_login').value;
+
  var id_for_greet = document.getElementById('user_id_from_login').value;
  var url = "http://localhost/oamk_bank/index.php/api/bank/users/id/" + id_for_greet;
+
  var xhttp = new XMLHttpRequest();
  var json='';
  xhttp.open('GET', url, true);

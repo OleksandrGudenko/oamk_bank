@@ -2,7 +2,7 @@
 
 
   function paybackformFunction(){
-    
+
     document.getElementById('loading').style.display = "block";
     document.getElementById('loading').innerHTML = "Wait...";
 
@@ -12,7 +12,7 @@
   var jsonData='';
   var xhttp = new XMLHttpRequest();
   xhttp.open('GET', url, true);
-  
+
   xhttp.onreadystatechange=function()
   {
     if(xhttp.readyState==4 && xhttp.status==200)
@@ -25,9 +25,9 @@
       your_iban.name = 'account_id';
       your_iban.style.display = 'none';
       document.getElementById('formdiv5').appendChild(your_iban);
-      
+
       createListFunction(5);
-      
+
       var your_id = document.createElement('input');
       your_id.readOnly = true;
       your_id.id = 'user_id_payback';
@@ -35,9 +35,9 @@
       your_id.style.display = 'none';
       document.getElementById('formdiv5').appendChild(your_id);
 
-      
+
       createListFunction(5);
-  
+
       var loan_id = document.createElement('input');
       loan_id.readOnly = true;
       loan_id.id = 'loan_id_payback';
@@ -45,7 +45,7 @@
       loan_id.style.display = 'none';
       document.getElementById('formdiv5').appendChild(loan_id);
 
-      
+
       createListFunction(5);
 
       var label_send = document.createElement("label");
@@ -57,7 +57,7 @@
       reciever.setAttribute('id', 'loan_reciever');
       reciever.setAttribute('onchange', 'right_loan_amount()')
       document.getElementById('formdiv5').appendChild(reciever);
-      
+
       var option_reciever = document.createElement("option");
       option_reciever.text = "select from here";
       option_reciever.disabled = true;
@@ -66,7 +66,7 @@
 
       for(x in jsonData)
       {
-        if(jsonData[x].user_id == 1)
+        if(jsonData[x].user_id == user_id_global)
         {
         var option_reciever = document.createElement("option");
         option_reciever.value = jsonData[x].amount;
@@ -75,7 +75,7 @@
         reciever.appendChild(option_reciever);
         }
       }
-      
+
       createListFunction(5);
       paybackformFunction2();
       createListFunction(5);
@@ -92,7 +92,7 @@
       document.getElementById('formdiv5').appendChild(your_balance);
 
       createListFunction(5);
-      
+
       var label_loan = document.createElement('label');
       var label_loan_text = document.createTextNode("Loan Amount Left:"+" ");
       label_loan.appendChild(label_loan_text);
@@ -102,8 +102,8 @@
       loan_money.readOnly = true;
       loan_money.id = 'loan_money';
       loan_money.text = 'amount';
-      document.getElementById('formdiv5').appendChild(loan_money);  
-      
+      document.getElementById('formdiv5').appendChild(loan_money);
+
       createListFunction(5);
 
       var amount = document.createElement("input");
@@ -120,14 +120,14 @@
       sendbtn.setAttribute('value', 'send');
       sendbtn.setAttribute('onclick', 'payback_money(),payback_money2()');
       document.getElementById('formdiv5').appendChild(sendbtn);
-  
+
       document.getElementById('loading').inner=" ";
       document.getElementById('loading').style.display="none";
-  
+
     }
   };
   xhttp.send();
-  
+
 }//here is end of function
 
 function paybackformFunction2(){
@@ -141,9 +141,9 @@ xhttp.onreadystatechange=function()
 {
 if(xhttp.readyState==4 && xhttp.status==200)
 {
-  
+
   jsonData = JSON.parse(xhttp.responseText);
-  
+
   var label_send = document.createElement("label");
   var send_from = document.createTextNode("Select account:"+" ");
   label_send.appendChild(send_from);
@@ -161,7 +161,7 @@ if(xhttp.readyState==4 && xhttp.status==200)
   sender.appendChild(option_sender);
   for(x in jsonData)
   {
-    if(jsonData[x].user_id == 1)
+    if(jsonData[x].user_id == user_id_global)
     {
     var option_sender = document.createElement("option");
     option_sender.value = jsonData[x].account_id;
@@ -170,7 +170,7 @@ if(xhttp.readyState==4 && xhttp.status==200)
     sender.appendChild(option_sender);
     }
   }
-  
+
 }
 };
 xhttp.send();
@@ -181,18 +181,18 @@ function right_loan_amount(){
   var account = document.getElementById('account_payback');
   var userid = document.getElementById('user_id_payback');
   var loanid = document.getElementById('loan_id_payback');
-  
+
   var loan_amount = document.getElementById('loan_reciever');
   var selectedNode = loan_amount[loan_amount.selectedIndex].value;
   var selectedNode2 = loan_amount[loan_amount.selectedIndex].id;
   var selectedNode3 = loan_amount[loan_amount.selectedIndex].text;
-  
+
   var account_id = document.getElementById('loan_from');
   var selectedNode4 = account_id[account_id.selectedIndex].value;
-  
+
   var balance_acc = document.getElementById('account_payback_balance');
   var selectedNode5 = account_id[account_id.selectedIndex].id;
-  
+
   amount.value = selectedNode;
   userid.value = selectedNode2;
   loanid.value = selectedNode3;
@@ -201,9 +201,9 @@ function right_loan_amount(){
  }
 
 function payback_money(){
-      
+
   var account = document.getElementById('account_payback').value;
-  // debugger
+
   var url_account = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/" +account;
 
   var xhttp = new XMLHttpRequest();
@@ -212,7 +212,7 @@ function payback_money(){
   var balance_remain = parseFloat(document.getElementById('account_payback_balance').value);
   var how_much_paid = parseFloat(document.getElementById('payback_amount').value);
 
-  var new_balance = balance_remain - how_much_paid;  
+  var new_balance = balance_remain - how_much_paid;
   new_balance = new_balance.toFixed(2);
   var data = {};
   data.account_id = account;
@@ -241,7 +241,7 @@ function payback_money(){
       document.getElementById('formdiv').style.fontSize = '3vw';
     }
   };
- 
+
 
 }
 else if(loan_new = 0){
@@ -266,7 +266,7 @@ xhttp.send(jsonData);
 
 setTimeout(function(){
   if(reload_yes == 1){
-  
+
       location.reload();
 
   }
@@ -274,7 +274,7 @@ setTimeout(function(){
 
   console.log(jsonData);
   console.log(loan_new);
-      
+
 }
 
 function payback_money2(){
@@ -291,7 +291,7 @@ xhttp.open('PUT', url_account, true)
 var loan_old = parseFloat(document.getElementById('loan_money').value);
 var amount_payed = parseFloat(document.getElementById('payback_amount').value);
 
-var loan_new = loan_old - amount_payed;  
+var loan_new = loan_old - amount_payed;
 loan_new = loan_new.toFixed(2);
 var data = {};
 data.loan_id = loanid;
@@ -321,16 +321,16 @@ if(loan_new > 0){
 
   setTimeout(function(){
     if(reload_yes == 1){
-    
+
         location.reload();
-  
+
     }
   },2000);
 }
 else if(loan_new == 0){
-  
+
   delete_loan();
-  
+
 }
   else{
     document.getElementById('formdiv').innerHTML = 'Type in valid amount';
@@ -360,7 +360,7 @@ function delete_loan(){
       }
       else{
         document.getElementById('formdiv').innerHTML = "Internal error, please try again later.";
-        document.getElementById('formdiv').style.display = 'block';    
+        document.getElementById('formdiv').style.display = 'block';
         document.getElementById('formdiv').style.color = 'red';
         document.getElementById('formdiv').style.fontSize = '3vw';
       }
@@ -369,9 +369,9 @@ function delete_loan(){
 
   setTimeout(function(){
     if(reload_yes == 1){
-    
+
         location.reload();
-  
+
     }
   },2000);
 }
