@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 function show_accounts()
 {
@@ -33,6 +34,8 @@ function show_accounts()
 }
 
 
+=======
+>>>>>>> origin/kihun
 function account_own()
 {
   document.getElementById('formdiv0').style.display = 'none';
@@ -51,6 +54,7 @@ function account_own()
          for(x in jsonData)
          {
            if(jsonData[x].user_id == id_for_own_acc)
+
              {
               createListFunction(0);
               var li_button = document.createElement("input");

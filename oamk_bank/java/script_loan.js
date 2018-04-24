@@ -1,3 +1,4 @@
+
 function loan_show()
 {
   document.getElementById('result').innerHTML = " ";
@@ -47,9 +48,9 @@ function loanFunction(){
     loanbtn2();
     requestformFunction();
     paybackformFunction();
-    
+
   }
-  
+
   function loanbtn1(){
     var loanoptionbtn1 = document.createElement("input");
     loanoptionbtn1.setAttribute('type', 'button');
@@ -58,20 +59,25 @@ function loanFunction(){
     loanoptionbtn1.setAttribute('onclick', 'requestTrigger()');
     document.getElementById('container1').appendChild(loanoptionbtn1);
   }
-  
-  
+
+
   function loanbtn2(){
-  
+
     var loanoptionbtn2 = document.createElement("input");
     loanoptionbtn2.setAttribute('type', 'button');
     loanoptionbtn2.setAttribute('value', 'Payback');
     loanoptionbtn2.setAttribute('id', 'loanoptbtn2');
     loanoptionbtn2.setAttribute('onclick', 'paybacktrigger()');
+<<<<<<< HEAD
     document.getElementById('container1').appendChild(loanoptionbtn2);
   
+=======
+    document.getElementById('container').appendChild(loanoptionbtn2);
+
+>>>>>>> origin/kihun
   }
-  
-  
+
+
   function requestTrigger(){
     var request = document.getElementById('formdiv4').style.display = 'none';
     if(request){
@@ -86,7 +92,7 @@ function loanFunction(){
     else{
   return;  }
   }
-  
+
   function paybacktrigger(){
     var loan = document.getElementById('formdiv5').style.display = 'none';
     if(loan){
@@ -102,7 +108,7 @@ function loanFunction(){
       return;
     }
   }
-  
+
   function requestformFunction(){
 
       var br = document.createElement('br');
@@ -110,58 +116,62 @@ function loanFunction(){
       var br2 = document.createElement('br');
       var br3 = document.createElement('br');
       var br4 = document.createElement('br');
-      
+
       ///From here for getting account with RESTAPI request
 
       var url = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid";
       var jsonData='';
       var xhttp = new XMLHttpRequest();
       xhttp.open('GET', url, true);
-  
+
   xhttp.onreadystatechange=function()
   {
     if(xhttp.readyState==4 && xhttp.status==200)
     {
-      
+
       jsonData = JSON.parse(xhttp.responseText);
-      
-      var user_idelement = document.createElement('input');
-      user_idelement.id = jsonData[0].user_id;
-      user_idelement.name = 'user_id';
-      user_idelement.readOnly = true;
-      user_idelement.value = jsonData[0].user_id;
-      user_idelement.style.display = 'none';
-      document.getElementById('requestForm').appendChild(user_idelement);
 
-      var user_account = document.createElement('input');
-      user_account.type = 'text';
-      user_account.id = 'Account_test'
-      user_account.name = 'account_id';
-      user_account.readOnly = true;
-      user_account.style.display = 'none';
-      document.getElementById('requestForm').appendChild(user_account);
 
-     
-      var label_send = document.createElement("label");
-      var send_from = document.createTextNode("Select account:  ");
-      label_send.appendChild(send_from);
-      
-      document.getElementById('requestForm').appendChild(label_send);
-  
-      var sender = document.createElement("select");
-      sender.setAttribute('onchange', 'right_balance()');
-      sender.setAttribute('id', 'loan_to');
-      document.getElementById('requestForm').appendChild(sender);
-
-      var option_sender = document.createElement("option");
-      option_sender.text = "select from here";
-      option_sender.disabled = true;
-      option_sender.selected = true;
-      sender.appendChild(option_sender);
       for(x in jsonData)
       {
-        if(jsonData[x].user_id == 1)
+        if(jsonData[x].user_id == user_id_global)
         {
+          var user_idelement = document.createElement('input');
+          user_idelement.id = jsonData[x].user_id;
+          user_idelement.name = 'user_id';
+          user_idelement.readOnly = true;
+          user_idelement.value = jsonData[x].user_id;
+          user_idelement.style.display = 'none';
+          document.getElementById('requestForm').appendChild(user_idelement);
+
+          var user_account = document.createElement('input');
+          user_account.type = 'text';
+          user_account.id = 'Account_test'
+          user_account.name = 'account_id';
+          user_account.readOnly = true;
+          user_account.style.display = 'none';
+          document.getElementById('requestForm').appendChild(user_account);
+
+
+          var label_send = document.createElement("label");
+          var send_from = document.createTextNode("Select account:  ");
+          label_send.appendChild(send_from);
+
+          document.getElementById('requestForm').appendChild(label_send);
+
+          var sender = document.createElement("select");
+          sender.setAttribute('onchange', 'right_balance()');
+          sender.setAttribute('id', 'loan_to');
+          document.getElementById('requestForm').appendChild(sender);
+
+          var option_sender = document.createElement("option");
+          option_sender.text = "select from here";
+          option_sender.disabled = true;
+          option_sender.selected = true;
+          sender.appendChild(option_sender);
+          var user_id_for_loan = document.getElementById('user_id_from_login').value;
+
+
         var option_sender = document.createElement("option");
         option_sender.value = jsonData[x].Balance;
         option_sender.setAttribute('id', jsonData[x].account_id);
@@ -169,15 +179,15 @@ function loanFunction(){
         sender.appendChild(option_sender);
         }
       }
-      
+
     document.getElementById('requestForm').appendChild(br);
     document.getElementById('requestForm').appendChild(br1);
-    
+
     var balance_lable = document.createElement('label')
     var balance_text = document.createTextNode("Chosen Account Balance:")
     balance_lable.appendChild(balance_text);
     document.getElementById('requestForm').appendChild(balance_lable);
-    
+
     var user_balance = document.createElement('input');
     user_balance.type = 'text';
     user_balance.id = 'Balance_test';
@@ -187,14 +197,14 @@ function loanFunction(){
 
     document.getElementById('requestForm').appendChild(br2);
     document.getElementById('requestForm').appendChild(br3);
-    
+
     var amount_loan = document.createElement("input");
     amount_loan.setAttribute('type', 'number');
     amount_loan.setAttribute('name', 'amount');
     amount_loan.setAttribute( 'id', 'amount_loan');
     amount_loan.setAttribute('placeholder', 'amount to request');
     document.getElementById('requestForm').appendChild(amount_loan);
-    
+
     document.getElementById('requestForm').appendChild(br4);
 
     var  sendbtn = document.createElement('input');
@@ -210,7 +220,7 @@ function loanFunction(){
     }
   };
   xhttp.send();
- } 
+ }
 
  function right_balance(){
   var balance = document.getElementById('Balance_test');
@@ -221,7 +231,7 @@ function loanFunction(){
 
   var account_id = document.getElementById('loan_to');
   var selectedNode2 = account_id[account_id.selectedIndex].id;
-  
+
   balance.value = selectedNode;
   account.value = selectedNode2;
  }
@@ -230,9 +240,9 @@ function request_money()
 {
   document.getElementById('loading').innerHTML = "loading...";
   document.getElementById('formdiv').style.display = "none";
-  
+
   var url_loan = "http://localhost/oamk_bank/index.php/api/bank/loans/loan/";
-  
+
 // debugger
 
   var xhttp = new XMLHttpRequest();
@@ -260,13 +270,13 @@ function request_money()
       document.getElementById('formdiv').style.color = 'red';
       document.getElementById('formdiv').style.fontSize = '3vw';
     }
-  
+
   };
   setTimeout(function(){
     if(reload_yes == 1){
-    
+
       xhttp.send(formData);
-    
+
     }
   },2000);
 
@@ -284,7 +294,7 @@ xhttp.open('PUT', url_account, true)
 var loan_a = parseFloat(document.getElementById('amount_loan').value);
 var old_b = parseFloat(document.getElementById('Balance_test').value);
 
-var new_balance = loan_a + old_b;  
+var new_balance = loan_a + old_b;
 new_balance = new_balance.toFixed(2);
 var data = {};
 data.account_id = account;
@@ -296,14 +306,14 @@ xhttp.onreadystatechange = function(){
     document.getElementById('formdiv').innerHTML = 'Request processed successfully.';
     document.getElementById('formdiv').style.display = 'block';
     document.getElementById('formdiv').style.color = 'green';
-      document.getElementById('formdiv').style.fontSize = '3vw';
+    document.getElementById('formdiv').style.fontSize = '3vw';
     reload_yes = 1;
   }
   else{
     document.getElementById('formdiv').innerHTML = 'Internal error, loan request denied.';
     document.getElementById('formdiv').style.display = 'block';
     document.getElementById('formdiv').style.color = 'red';
-      document.getElementById('formdiv').style.fontSize = '3vw';
+    document.getElementById('formdiv').style.fontSize = '3vw';
   }
 };
 xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
@@ -311,7 +321,7 @@ xhttp.send(jsonData);
 
 setTimeout(function(){
   if(reload_yes == 1){
-  
+
       location.reload();
 
   }
@@ -319,8 +329,3 @@ setTimeout(function(){
 console.log(new_balance);
 console.log(jsonData);
 }
-
-
-
-
-
