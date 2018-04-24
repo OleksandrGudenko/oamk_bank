@@ -131,12 +131,13 @@ function loanFunction(){
       {
         if(jsonData[x].user_id == user_id_global)
         {
+          if (sender_exist == null){
           var user_idelement = document.createElement('input');
           user_idelement.id = jsonData[x].user_id;
           user_idelement.name = 'user_id';
           user_idelement.readOnly = true;
           user_idelement.value = jsonData[x].user_id;
-          user_idelement.style.display = 'none';
+          // user_idelement.style.display = 'none';
           document.getElementById('requestForm').appendChild(user_idelement);
 
           var user_account = document.createElement('input');
@@ -144,10 +145,10 @@ function loanFunction(){
           user_account.id = 'Account_test'
           user_account.name = 'account_id';
           user_account.readOnly = true;
-          user_account.style.display = 'none';
+          // user_account.style.display = 'none';
           document.getElementById('requestForm').appendChild(user_account);
 
-          if (sender_exist == null){
+          
           var label_send = document.createElement("label");
           var send_from = document.createTextNode("Select account:  ");
           label_send.appendChild(send_from);
@@ -234,23 +235,17 @@ function loanFunction(){
 
 function request_money()
 {
+  debugger
   document.getElementById('loading').innerHTML = "loading...";
   document.getElementById('formdiv').style.display = "none";
 
   var url_loan = "http://localhost/oamk_bank/index.php/api/bank/loans/loan/";
-
-// debugger
 
   var xhttp = new XMLHttpRequest();
   xhttp.open('POST', url_loan, true)
 
   var form = document.getElementById('requestForm');
   var formData = new FormData(form);
-
-  for(var value of formData.values()){
-    console.log(value);
-  }
-
 
   xhttp.onreadystatechange = function(){
 
@@ -268,20 +263,23 @@ function request_money()
     }
 
   };
-  setTimeout(function(){
-    if(reload_yes == 1){
+  xhttp.send(formData);
+  console.log(form);
+    // setTimeout(function(){
+  //   if(reload_yes == 1){
 
-      xhttp.send(formData);
+  //     location.reaload();
 
-    }
-  },2000);
+  //   }
+  // },2000);
 
 
 }
 
 function request_money2(){
+
 var account = document.getElementById('Account_test').value;
-// debugger
+
 var url_account = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/" +account;
 
 var xhttp = new XMLHttpRequest();
@@ -315,13 +313,11 @@ xhttp.onreadystatechange = function(){
 xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 xhttp.send(jsonData);
 
-setTimeout(function(){
-  if(reload_yes == 1){
+// setTimeout(function(){
+//   if(reload_yes == 1){
 
-      location.reload();
+//       location.reload();
 
-  }
-},2000);
-console.log(new_balance);
-console.log(jsonData);
+//   }
+// },2000);
 }
