@@ -1,22 +1,42 @@
 function loan_show()
 {
-  document.getElementById('pay_btn').disabled = false;
-  document.getElementById('contact_btn').disabled = false;
-  document.getElementById('edit_btn').disabled = false;
-  document.getElementById('loan_btn').disabled = true;
   document.getElementById('result').innerHTML = " ";
   document.getElementById('result').style.display = "none";
   for (var i = 0; i < 8; i++)
   {
     var name_div = "formdiv" ;
     document.getElementById(name_div + i).style.display="none";
+
+    document.getElementById('contact_btn').style.color = 'white';
+    document.getElementById('contact_btn').style.backgroundColor = '#F2882F';
+    
+    
+    document.getElementById('edit_btn').style.color = 'white';
+    document.getElementById('edit_btn').style.backgroundColor = '#F2882F';
+    
+    document.getElementById('loan_btn').style.color = '#F2882F';
+    document.getElementById('loan_btn').style.backgroundColor = 'white';
+    
+    document.getElementById('pay_btn').style.color = 'white';
+    document.getElementById('pay_btn').style.backgroundColor = '#F2882F';
+    
+    document.getElementById('accounts_btn').style.color = 'white';
+    document.getElementById('accounts_btn').style.backgroundColor = '#F2882F';
   }
 
-  document.getElementById('container').style.display="flex";
+
+  document.getElementById('container').style.display = 'none';
+  document.getElementById('container1').style.display = 'flex';
+
   var paymentsection = "<h2>Loan</h2>";
   document.getElementById("pagetitle").innerHTML = paymentsection;
 
-  document.getElementById('container').innerHTML=" ";
+  document.getElementById('loanoptbtn1').style.color = '#F2882F' ;
+  document.getElementById('loanoptbtn1').style.backgroundColor = 'white'
+  document.getElementById('loanoptbtn2').style.color = '#F2882F' ;
+  document.getElementById('loanoptbtn2').style.backgroundColor = 'white';
+
+  document.getElementById('container1').innerHTML=" ";
   loanbtn1();
   loanbtn2();
 }
@@ -36,7 +56,7 @@ function loanFunction(){
     loanoptionbtn1.setAttribute('value', 'Request');
     loanoptionbtn1.setAttribute('id', 'loanoptbtn1');
     loanoptionbtn1.setAttribute('onclick', 'requestTrigger()');
-    document.getElementById('container').appendChild(loanoptionbtn1);
+    document.getElementById('container1').appendChild(loanoptionbtn1);
   }
   
   
@@ -47,7 +67,7 @@ function loanFunction(){
     loanoptionbtn2.setAttribute('value', 'Payback');
     loanoptionbtn2.setAttribute('id', 'loanoptbtn2');
     loanoptionbtn2.setAttribute('onclick', 'paybacktrigger()');
-    document.getElementById('container').appendChild(loanoptionbtn2);
+    document.getElementById('container1').appendChild(loanoptionbtn2);
   
   }
   
@@ -57,6 +77,11 @@ function loanFunction(){
     if(request){
       document.getElementById('formdiv4').style.display = 'block';
       document.getElementById('formdiv5').style.display = 'none';
+
+      document.getElementById('loanoptbtn1').style.color = 'white' ;
+      document.getElementById('loanoptbtn1').style.backgroundColor = '#F2882F'
+      document.getElementById('loanoptbtn2').style.color = '#F2882F' ;
+      document.getElementById('loanoptbtn2').style.backgroundColor = 'white';
     }
     else{
   return;  }
@@ -67,6 +92,11 @@ function loanFunction(){
     if(loan){
       document.getElementById('formdiv5').style.display = 'block';
       document.getElementById('formdiv4').style.display = 'none';
+
+      document.getElementById('loanoptbtn1').style.color = '#F2882F' ;
+      document.getElementById('loanoptbtn1').style.backgroundColor = 'white'
+      document.getElementById('loanoptbtn2').style.color = 'white' ;
+      document.getElementById('loanoptbtn2').style.backgroundColor = '#F2882F';
     }
     else{
       return;
@@ -266,14 +296,14 @@ xhttp.onreadystatechange = function(){
     document.getElementById('formdiv').innerHTML = 'Request processed successfully.';
     document.getElementById('formdiv').style.display = 'block';
     document.getElementById('formdiv').style.color = 'green';
-    document.getElementById('formdiv').style.fontSize = '3vw';
+      document.getElementById('formdiv').style.fontSize = '3vw';
     reload_yes = 1;
   }
   else{
     document.getElementById('formdiv').innerHTML = 'Internal error, loan request denied.';
     document.getElementById('formdiv').style.display = 'block';
     document.getElementById('formdiv').style.color = 'red';
-    document.getElementById('formdiv').style.fontSize = '3vw';
+      document.getElementById('formdiv').style.fontSize = '3vw';
   }
 };
 xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');

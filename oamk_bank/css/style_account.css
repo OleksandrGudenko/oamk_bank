@@ -79,20 +79,21 @@ textarea#body:focus
     z-index: 1;
 }
 
-#li_button {
+#li_button, #li_button1 {
     color: white;
     background-color: #F2882F;
     border: none;
     padding: 12px 16px;
-    width: 100%;
-    margin-left: -0.5%;
+    width: 80%;
+    border-radius: 1vw;
 }
 
 
 
-#li_button:hover {
+#li_button:hover, #li_button1:hover {
     background-color: white;
     color: #F2882F;
+    border: 1px solid #F2882F;
 }
 
 .show {
@@ -110,7 +111,7 @@ textarea#body:focus
     text-decoration: none;
     display: block;
     font-size: 16px;
-    cursor: pointer;
+
 }
 
 .signout-btn:hover{
@@ -118,10 +119,9 @@ textarea#body:focus
     color: #F2882F;
 }
 
-.signout-btn:disabled 
+.signout-btn:focus 
 {
-    background-color: white;
-    color: #F2882F;
+    outline: none;
 }
 
 
@@ -171,8 +171,8 @@ ul {
     color: white;
 }
 
-#container{
-    margin-top: 10px;
+#container, #container1{
+    margin-top: 50px;
     margin-bottom: 5%;
 
     text-align: center;

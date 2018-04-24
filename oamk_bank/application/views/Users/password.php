@@ -4,7 +4,6 @@
 <script src="http://cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
 
 <?php echo form_open('Users/banking'); ?>
-<br><br><br><br><br><br>
  <div class="row">
    <div class="col-md-4 col-md-offset-4 text-center">
      <h1 class="text-center"> <?php echo 'Username: '.$user; ?></h1>
@@ -19,4 +18,4 @@
 <?php echo form_close(); ?>
 
 
-<br><br><br><br><br><br>
+<br><br><br>
