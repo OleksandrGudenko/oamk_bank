@@ -105,7 +105,7 @@ function loanFunction(){
   }
 
   function requestformFunction(){
-
+      var sender_exist = null;
       var br = document.createElement('br');
       var br1 = document.createElement('br');
       var br2 = document.createElement('br');
@@ -147,7 +147,7 @@ function loanFunction(){
           user_account.style.display = 'none';
           document.getElementById('requestForm').appendChild(user_account);
 
-
+          if (sender_exist == null){
           var label_send = document.createElement("label");
           var send_from = document.createTextNode("Select account:  ");
           label_send.appendChild(send_from);
@@ -165,7 +165,8 @@ function loanFunction(){
           option_sender.selected = true;
           sender.appendChild(option_sender);
           var user_id_for_loan = document.getElementById('user_id_from_login').value;
-
+          sender_exist = 1;
+          }
 
         var option_sender = document.createElement("option");
         option_sender.value = jsonData[x].Balance;
