@@ -4,6 +4,8 @@ login// rest api is modified,
 but notice that login post and user post is pretty much same
 there is option that we can change url in javascript then check rest api user post method
 
+++database for password default is defined
+
 
 javascript, checking booleans have been deleted
 instead, used form "required" features,
