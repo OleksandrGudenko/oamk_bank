@@ -68,13 +68,8 @@ function loanFunction(){
     loanoptionbtn2.setAttribute('value', 'Payback');
     loanoptionbtn2.setAttribute('id', 'loanoptbtn2');
     loanoptionbtn2.setAttribute('onclick', 'paybacktrigger()');
-<<<<<<< HEAD
     document.getElementById('container1').appendChild(loanoptionbtn2);
   
-=======
-    document.getElementById('container').appendChild(loanoptionbtn2);
-
->>>>>>> origin/kihun
   }
 
 
