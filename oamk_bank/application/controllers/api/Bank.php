@@ -514,58 +514,33 @@ public function logins_post()
 {
     // add a new login
 
-    $id_num = rand(0, 10);
+  $add_user = array(
+    'username'=>$this->post('username'),
+    'firstname'=>$this->post('firstname'),
+    'lastname'=>$this->post('lastname'),
+    'city'=>$this->post('city'),
+    'address'=>$this->post('address'),
+    'postalcode'=>$this->post('postalcode'),
+    'email'=>$this->post('email'),
+    'phone'=>$this->post('phone'),
+    'occupation'=>$this->post('occupation')
+  );
 
-    $id_num_array = $this->Bank_model->id_check();
+$this->Bank_model->add_user($add_user);
 
-if(!in_array($id_num, $id_num_array, true))
-{
-//   $add_user = array(
-//     'id'=>$id_num,
-//     'firstname'=>$this->post('firstname'),
-//     'lastname'=>$this->post('lastname'),
-//     'city'=>$this->post('city'),
-//     'address'=>$this->post('address'),
-//     'postalcode'=>$this->post('postalcode'),
-//     'email'=>$this->post('email'),
-//     'phone'=>$this->post('phone'),
-//     'occupation'=>$this->post('occupation')
-//   );
-//     $add_login = array(
-//       'id'=>$id_num,
-//       'username'=>$this->post('username')
-//     );
-
-
-// $this->Bank_model->add_user($add_user);
-// $this->Bank_model->add_login($add_login);
-
-//     $message = [
-//       'username'=>$this->post('username'),
-//       'firstname'=>$this->post('firstname'),
-//       'lastname'=>$this->post('lastname'),
-//       'city'=>$this->post('city'),
-//       'address'=>$this->post('address'),
-//       'postalcode'=>$this->post('postalcode'),
-//       'email'=>$this->post('email'),
-//       'phone'=>$this->post('phone'),
-//       'occupation'=>$this->post('timestamp'),
-//       'message' => 'Added a resource'
-//     ];
-$message = [
-    in_array($id_num, $id_num_array, true),
-    $id_num,
-    $id_num_array
-        ];
+    $message = [
+      'username'=>$this->post('username'),
+      'firstname'=>$this->post('firstname'),
+      'lastname'=>$this->post('lastname'),
+      'city'=>$this->post('city'),
+      'address'=>$this->post('address'),
+      'postalcode'=>$this->post('postalcode'),
+      'email'=>$this->post('email'),
+      'phone'=>$this->post('phone'),
+      'occupation'=>$this->post('timestamp'),
+      'message' => 'Added a resource'
+                ];
     $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
-}
-else
-{
-  $message = [
-    'message' => 'id already exists'
-  ];
-      $this->set_response($message, REST_Controller::HTTP_NOT_FOUND); // CREATED (201) being the HTTP response code
-}
 }
 
 //till here login

@@ -2,17 +2,18 @@
 toggle between hiding and showing the dropdown content */
 function dropdownFunction() {
     document.getElementById("navDropdown").classList.toggle("show");
+    window.onclick = function(e) {
+      if (!e.target.matches('.dropbtn')) {
+        var navDropdown = document.getElementById("navDropdown");
+          if (navDropdown.classList.contains('show')) {
+            navDropdown.classList.remove('show');
+          }
+      }
+    }
 }
 
 // Close the dropdown if the user clicks outside of it
-window.onclick = function(e) {
-  if (!e.target.matches('.dropbtn')) {
-    var navDropdown = document.getElementById("navDropdown");
-      if (navDropdown.classList.contains('show')) {
-        navDropdown.classList.remove('show');
-      }
-  }
-}
+
 
 function createListFunction(number){
 
@@ -88,12 +89,20 @@ function for_onload()
     document.getElementById(name_div + i).style.display="none";
   }
   document.getElementById('container').style.display="none";
+  create_account_terms();
 }
+
+var user_id_global;
 
 function get_user()
 {
+  ///because of time difference between javascript(client side) and Rest API(server side)
+  // set global value here
+ user_id_global = document.getElementById('user_id_from_login').value;
+
  var id_for_greet = document.getElementById('user_id_from_login').value;
  var url = "http://localhost/oamk_bank/index.php/api/bank/users/id/" + id_for_greet;
+
  var xhttp = new XMLHttpRequest();
  var json='';
  xhttp.open('GET', url, true);

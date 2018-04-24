@@ -3,87 +3,59 @@
 <h2 style="color:blue;"><div class="text-center" style="display:none" id="result">Here shows result</div></h2>
 		<h1 class="text-center">Registration</h1>
     <div id="registration_form">
-<form id="signup_form">
+<form id="signup_form" action="javascript:;" onsubmit="signup()">
 <div class="container">
+	<br>
 		<div class="row justify-content-center">
-			<div class="col-2 text-right">
-        <i title="This is used for log in OAMK BANK and username should be checked" class="material-icons">warning</i>
-        <label>User Name</label>
-			</div>
-			<div class="col-3">
-			<input autocomplete="off" onchange="id_check()" type="text" class="input-group mb-2" name="username" id="username" required>
-			<div id="id_check"></div>
+			<div class="col-8">
+				<input placeholder="User Name" autocomplete="off" onchange="id_check()" type="text" class="form-control" name="username" id="username" required>
+				<div id="id_check"><i title="This is used for log in OAMK BANK and username should be checked" class="material-icons">help_outline</i></div>
 			</div>
 		</div>
 		<div class="row justify-content-center">
-			<div class="col-2 text-right">
-			<label>Firstname</label>
-			</div>
-			<div class="col-3">
-			<input type="text" class="input-group mb-2" name="firstname">
+			<div class="col-8">
+			<input placeholder="First Name" type="text" class="form-control" name="firstname" required>
 			</div>
 		</div>
 		<div class="row justify-content-center">
-			<div class="col-2 text-right">
-			<label>Lastname</label>
-			</div>
-			<div class="col-3">
-			<input type="text" class="input-group mb-2" name="lastname">
+			<div class="col-8">
+			<input placeholder="Last Name" type="text" class="form-control" name="lastname" required>
 			</div>
 		</div>
 		<div class="row justify-content-center">
-			<div class="col-2 text-right">
-			<label>City</label>
-			</div>
-			<div class="col-3">
-			<input type="text" class="input-group mb-2" name="city">
+			<div class="col-8">
+			<input placeholder="City" type="text" class="form-control" name="city" required>
 			</div>
 		</div>
 		<div class="row justify-content-center">
-			<div class="col-2 text-right">
-			<label>Address</label>
-			</div>
-			<div class="col-3">
-			<input type="text" class="input-group mb-2" name="address">
+			<div class="col-8">
+			<input placeholder="Address" type="text" class="form-control" name="address" required>
 			</div>
 		</div>
 		<div class="row justify-content-center">
-			<div class="col-2 text-right">
-			<label>Postal Code</label>
-			</div>
-			<div class="col-3">
-			<input type="number" class="input-group mb-2" name="postalcode">
+			<div class="col-8">
+			<input placeholder="Postal Code" type="number" class="form-control" name="postalcode" required>
 			</div>
 		</div>
 		<div class="row justify-content-center text-danger">
-			<div class="col-2 text-right">
-      <i title="This is used for sending passwords from OAMK BANK and username should be checked" class="material-icons">add_alert</i>
-			<label>Email</label>
-			</div>
-			<div class="col-3">
-			<input type="text" class="input-group mb-2" name="email" id="email" onchange="email_check()" required>
-			<div id="email_check"></div>
+			<div class="col-8">
+			<input placeholder="E-mail" type="text" class="form-control" name="email" id="email" onchange="email_check()" required>
+			<div id="email_check"><i style="color: black;" title="This is used for sending passwords from OAMK BANK and e-mail should be checked" class="material-icons">info_outline</i></div>
 			</div>
 		</div>
 		<div class="row justify-content-center">
-			<div class="col-2 text-right">
-			<label>Phone</label>
-			</div>
-			<div class="col-3">
-			<input type="text" class="input-group mb-2" name="phone">
+			<div class="col-8">
+			<input placeholder="Phone Number" type="text" class="form-control" name="phone" required>
 			</div>
 		</div>
 		<div class="row justify-content-center">
-			<div class="col-2 text-right">
-			<label>Occupation</label>
-			</div>
-			<div class="col-3">
-			<input type="text" class="input-group mb-2" name="occupation">
-			</div>
-      </form>
+			<div class="col-8">
+			<input placeholder="Occupation" type="text" class="form-control" name="occupation" required>
 		</div>
+		<br>
+		<br><br>
+	</div>
 </div><!--end of container-->
-
 <div class="centering">
   <span><b>Terms and Conditions OAMK BANK</b></span>
   <div class="scroll_for_terms_conditions">
@@ -102,14 +74,16 @@ The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for t
 Where can I get some?
 There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
   </div>
-<input onclick="agree_the_terms()" type="checkbox" name="terms_conditions_check_box" id="terms_conditions_check_box" value="" required>
-<label for=""> I read the terms and conditions of oamk bank and agree terms and conditions</label>
+<input type="checkbox" name="terms_conditions_check_box" id="terms_conditions_check_box" value="" required>
+<i>I have read the terms and conditions of OAMK BANK and agree terms and conditions.</i>
+<br> <br>
+</div>
+</div>
+	<div class="row justify-content-center">
+		<button type="submit" class="btn btn-primary col-2" id="submit_btn">Submit</button>
+	</div>
+</form>
 <br><br>
-	<button type="button" class="btn btn-primary center" id="submit_btn" onclick="signup()">Submit</button>
-</div>
-</div>
-<br><br><br><br>
-
 
 
 <button onclick="topFunction()" id="Bttop" title="Go to top">Top</button>
