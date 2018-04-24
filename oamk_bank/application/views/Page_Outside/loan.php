@@ -8,7 +8,8 @@
 <div class="loan-text">
     <h2>Simple Unsecured Loans</h2>
     <p>
-      We provide our customers with effortless access to loans without the need for collateral. Flexible terms for virtually any budget</p> <br>
+      We provide our customers with effortless access to loans without the need for collateral. <br>
+      Flexible terms for virtually any budget <br></p>
 
     <p>
         <br>

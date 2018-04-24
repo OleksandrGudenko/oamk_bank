@@ -1,19 +1,3 @@
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function dropdownFunction() {
-    document.getElementById("navDropdown").classList.toggle("show");
-    window.onclick = function(e) {
-      if (!e.target.matches('.dropbtn')) {
-        var navDropdown = document.getElementById("navDropdown");
-          if (navDropdown.classList.contains('show')) {
-            navDropdown.classList.remove('show');
-          }
-      }
-    }
-}
-
-// Close the dropdown if the user clicks outside of it
-
 
 function createListFunction(number){
 
@@ -73,8 +57,8 @@ function checkTime(i)
 
 function for_onload()
 {
-  time_greet();
-  real_time();
+  // time_greet();
+  // real_time();
   get_user();
   account_own();
   paymentFunction();
@@ -88,11 +72,20 @@ function for_onload()
     var name_div = "formdiv" ;
     document.getElementById(name_div + i).style.display="none";
   }
-  document.getElementById('container').style.display="none";
+  document.getElementById('container').style.display = 'none';
+  document.getElementById('container1').style.display = 'none';
+
+  setTimeout(function(){ show_accounts(); }, 2000);
 }
+
+var user_id_global;
 
 function get_user()
 {
+  ///because of time difference between javascript(client side) and Rest API(server side)
+  // set global value here
+ user_id_global = document.getElementById('user_id_from_login').value;
+
  var id_for_greet = document.getElementById('user_id_from_login').value;
  var url = "http://localhost/oamk_bank/index.php/api/bank/users/id/" + id_for_greet;
 
@@ -103,7 +96,7 @@ function get_user()
  {
    if(xhttp.readyState==4 && xhttp.status==200)
    {
-     json=JSON.parse(xhttp.responseText);;
+     json=JSON.parse(xhttp.responseText);
      document.getElementById('user').innerHTML = json[0].firstname + " " + json[0].lastname ;
    }
  };
@@ -111,3 +104,4 @@ function get_user()
 }
 
 var reload_yes = 0;
+var create_new_div = null;

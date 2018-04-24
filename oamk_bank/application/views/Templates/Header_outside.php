@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OAMK Bank OYJ</title>
     <!-- Fonts used -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <!-- Scripts  -->
   <script type="text/javascript" src="<?php echo base_url('java/top.js')?>"></script>
@@ -26,7 +27,7 @@
         <ul>
           <li><a href="<?php echo site_url('Page_Controller/openAcct');?>">OPEN ACCOUNT</a></li>
           <li><a href="<?php echo site_url('Page_Controller/everyBank');?>">EVERYDAY BANKING</a></li>
-          <li><a href="#">LOANS</a></li>
+          <li><a href="<?php echo site_url('Page_Controller/loan');?>">LOANS</a></li>
           <li><a href="<?php echo site_url('Page_Controller/About');?>">ABOUT</a></li>
           <li><a href="<?php echo site_url('Page_Controller/Contact');?>">CONTACT</a></li>
         </ul>

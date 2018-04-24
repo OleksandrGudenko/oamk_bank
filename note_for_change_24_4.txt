@@ -1,0 +1,13 @@
+applied request/payback loan
+global user_id
+**needed to modify variables' name(ex, text_account, and so on)
+also consloe log part,
+
+
+** needed to check when user doesn't have account
+
+
+***global user_id is defined in global_script and because of time differece,
+set it in get_user function
+
+

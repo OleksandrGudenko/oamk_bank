@@ -74,8 +74,8 @@ body {
 .nav-bar li a {
   color: #000000;
   font-size: 14px;
-  font-family: Roboto, sans-serif;
-  font-weight: 350;
+  font-family: Roboto;
+  font-weight: 400;
   font-style: bold;
   text-decoration: none;
   line-height: 70px;
@@ -570,7 +570,7 @@ body {
 .steprow {
   margin-left: 30%;
   margin-right: 30%;
-  margin-bottom: 20%;
+  margin-bottom: 30%;
 }
 
 /* Styles for Loans */
@@ -600,28 +600,49 @@ body {
   padding: 10px;
 }
 
-.loan-top img {
-  /* position: relative; */
-  max-width: 100%;
-  height: auto;
+.loan-text h2 {
+  position: relative;
+  font-size: 2vw;
+  font-weight: 100;
+  margin-left: 20%;
+  letter-spacing: 1.2px;
 }
 
-.loan-top p {
-  position: absolute;
-  top: 35%;
-  left: 52%;
-  width: 100%;
-  font-size: 15px;
+.loan-text p {
+  font-size: 1.5vw;
   font-weight: 400;
-}
+  letter-spacing: 1.2px;
+  box-sizing: border-box;
+  margin-left: 30%;
+  margin-right: 10%;
+  max-width: 1080px;
+  text-align: justify;
+ }
 
-.loan-top p span {
+ 
+.btnonloanoa {
+  margin-bottom: 10%;
+  margin-top: 3%;
+ }
+ 
+ .btnonloanoa .btnoa {
+  background-color: #F2882F;
+  border: none;
   color: white;
-  letter-spacing: -1px;
-  background: rgba(0, 0, 0, 0.301); /* fallback color */
-  background: rgba(0, 0, 0, 0.404);
-  padding: 10px;
-}
+  padding: 8px 16px;
+  margin-left: 30%;
+  letter-spacing: 1.2px;
+  transition: all 0.8s ease 0s;
+  text-decoration: none;
+  
+ }
+ 
+ .btnonloanoa .btnoa:hover {
+    background: grey;
+ }
+ 
+
+
 
 /* here is for registration terms and condition scroll style */
 .scroll_for_terms_conditions
