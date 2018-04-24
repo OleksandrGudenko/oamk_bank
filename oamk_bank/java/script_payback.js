@@ -5,7 +5,7 @@
     
     document.getElementById('loading').style.display = "block";
     document.getElementById('loading').innerHTML = "Wait...";
-
+    var user_id_payback = document.getElementById('user_id_from_login').value;
   //from here for sender account with drop down
 
   var url = "http://localhost/oamk_bank/index.php/api/bank/loans/loan";
@@ -66,7 +66,7 @@
 
       for(x in jsonData)
       {
-        if(jsonData[x].user_id == 1)
+        if(jsonData[x].user_id == user_id_payback)
         {
         var option_reciever = document.createElement("option");
         option_reciever.value = jsonData[x].amount;
@@ -131,7 +131,7 @@
 }//here is end of function
 
 function paybackformFunction2(){
-
+  var user_id_payback = document.getElementById('user_id_from_login').value;
   var url = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid";
   var jsonData='';
   var xhttp = new XMLHttpRequest();
@@ -161,7 +161,7 @@ if(xhttp.readyState==4 && xhttp.status==200)
   sender.appendChild(option_sender);
   for(x in jsonData)
   {
-    if(jsonData[x].user_id == 1)
+    if(jsonData[x].user_id == user_id_payback)
     {
     var option_sender = document.createElement("option");
     option_sender.value = jsonData[x].account_id;
@@ -201,9 +201,7 @@ function right_loan_amount(){
  }
 
 function payback_money(){
-      
   var account = document.getElementById('account_payback').value;
-  // debugger
   var url_account = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/" +account;
 
   var xhttp = new XMLHttpRequest();
@@ -244,7 +242,7 @@ function payback_money(){
  
 
 }
-else if(loan_new = 0){
+else if(loan_new == 0){
 
       if(xhttp.readyState == 4 && xhttp.status == 201){
         document.getElementById('formdiv').innerHTML = 'Loan was successfully paid off.'
