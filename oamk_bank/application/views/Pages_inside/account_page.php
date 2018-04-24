@@ -41,6 +41,7 @@
     <div id="hide_form"><form id="requestform">
     <div style="display:block; text-align:center" id="formdiv6"></div>
     <div style="display:none; text-align:center" id="formdiv7"></div>
+    <div style="display:none; text-align:center" id="formdiv8"></div>
     </form></div>
 
     <div style="text-align:center" id="result"></div>
