@@ -8,15 +8,15 @@
 <div class="loan-text">
     <h2>Simple Unsecured Loans</h2>
     <p>
-      We provide our customers with effortless access to loans without the need for collateral. <br>
-      Flexible terms for virtually any budget <br></p>
+      We provide our customers with effortless access to loans without the need for collateral. <br> <br> 
+      Flexible terms for virtually any budget. <br></p>
 
     <p>
         <br>
         <b>Online account management.</b> Check your loan and balance anytime, 
         anywhere. <br>
         <br>
-        <b>Easy payback options.</b>  Make quick one-time payments from any of your OAMK Bank account<br>
+        <b>Easy payback options.</b>  Make quick one-time payments from any of your OAMK Bank account.<br>
         <br>
     </p>
 </div>

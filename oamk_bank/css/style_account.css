@@ -96,6 +96,10 @@ textarea#body:focus
     border: 1px solid #F2882F;
 }
 
+#li_button:focus, #li_button1:focus {
+    outline: none;
+}
+
 .show {
     display: block;
 }

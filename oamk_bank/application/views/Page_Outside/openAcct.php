@@ -61,7 +61,43 @@
 <div class="centering">
   <span><b>Terms and Conditions OAMK BANK</b></span>
   <div class="scroll_for_terms_conditions">
-    What is Lorem Ipsum?
+================================================================================
+		THIS IS A FICTITIOUS SCHOOL PROJECT. OAMK BANK DOES NOT EXIST!!!
+================================================================================
+<br>
+<br>
+We hereby formulate the Terms and Conditions of Online Banking Services (the “Terms”) in order to provide you with better 
+Online Banking Services, prevent risks inherent in the Online Banking, and specify the rights and obligations of the parties 
+in the Online Banking. Please read the Terms carefully before you use any of our Online Banking Services. If you have any 
+questions, DO NOT contact us, THIS ISN'T REAL. You can browse our website www.oamkbank.gq for the most up-to-date information.
+<br><br>
+Terms and Conditions of Online Banking Services<br>
+Scope of Application
+<br>
+Terms and Conditions of Online Banking Services (as may be varied and amended from time to time, hereinafter referred 
+to as these “Terms ”) shall apply to the Online Banking Services provided by OAMK Bank Oyj (hereinafter referred to as “We ” or “Us ”) and SHALL 
+NOT be legally binding on customers and us. Both customers and we shall comply with the Terms.
+<br><br>
+Before a customer applies to us for activation of Online Banking Services or uses Online Banking Services for the first time, 
+the customer shall carefully read the Terms and fully understand relevant provisions hereof, and the customer shall have the right to require 
+us to provide sufficient explanation about the Terms. <br><br>BY APPLYING TO US FOR THE ACTIVATION OF ONLINE BANKING SERVICES OR USING ONLINE BANKING SERVICES 
+FOR THE FIRST TIME, CUSTOMERS SHALL BE DEEMED TO HAVE CAREFULLY READ, UNDERSTOOD AND ACCEPTED THE TERMS AND AGREED TO BE BOUND HEREBY.
+<br><br>
+Provision of Services
+<br>
+Customers may apply to us for the activation of Online Banking Services, and we may also activate all or part of the functions of Online Banking Services
+for qualified customers. Customers may use part of Online Banking Services without applications or requiring our additional operations. 
+Customers may apply to us for the termination of certain Online Banking Services, and we have the right to accept or reject such application of the customers.
+<br><br>Customers may use computers, fixed-line phones, mobile phones, and other self-service bank facilities, or other electronic devices to use or 
+operate all or part of financial services via the Internet, telephone communication networks, wireless networks, other open public networks or 
+private networks provided by us (hereinafter referred to as “Online Banking Services” or these “Services”).
+<br>
+Content of Services
+<br>
+Online Banking Services
+Customers may enjoy Online Banking Services via our website at www.oamkbank.gq.
+<br><br><br>
+What is Lorem Ipsum?
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 
 Why do we use it?

@@ -3,7 +3,7 @@ function loan_show()
 {
   document.getElementById('result').innerHTML = " ";
   document.getElementById('result').style.display = "none";
-  for (var i = 0; i < 8; i++)
+  for (var i = 0; i <= 8; i++)
   {
     var name_div = "formdiv" ;
     document.getElementById(name_div + i).style.display="none";
@@ -131,6 +131,7 @@ function loanFunction(){
       {
         if(jsonData[x].user_id == user_id_global)
         {
+          if (sender_exist == null){
           var user_idelement = document.createElement('input');
           user_idelement.id = jsonData[x].user_id;
           user_idelement.name = 'user_id';
@@ -147,7 +148,11 @@ function loanFunction(){
           user_account.style.display = 'none';
           document.getElementById('requestForm').appendChild(user_account);
 
+<<<<<<< HEAD
           if (sender_exist == null){
+=======
+          
+>>>>>>> 68b4b161791e5e809a1252e1a82db57d5db41bea
           var label_send = document.createElement("label");
           var send_from = document.createTextNode("Select account:  ");
           label_send.appendChild(send_from);
@@ -234,23 +239,17 @@ function loanFunction(){
 
 function request_money()
 {
+  debugger
   document.getElementById('loading').innerHTML = "loading...";
   document.getElementById('formdiv').style.display = "none";
 
   var url_loan = "http://localhost/oamk_bank/index.php/api/bank/loans/loan/";
-
-// debugger
 
   var xhttp = new XMLHttpRequest();
   xhttp.open('POST', url_loan, true)
 
   var form = document.getElementById('requestForm');
   var formData = new FormData(form);
-
-  for(var value of formData.values()){
-    console.log(value);
-  }
-
 
   xhttp.onreadystatechange = function(){
 
@@ -268,10 +267,11 @@ function request_money()
     }
 
   };
-  setTimeout(function(){
+  xhttp.send(formData);
+    setTimeout(function(){
     if(reload_yes == 1){
 
-      xhttp.send(formData);
+      location.reaload();
 
     }
   },2000);
@@ -280,8 +280,9 @@ function request_money()
 }
 
 function request_money2(){
+
 var account = document.getElementById('Account_test').value;
-// debugger
+
 var url_account = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/" +account;
 
 var xhttp = new XMLHttpRequest();
@@ -322,6 +323,4 @@ setTimeout(function(){
 
   }
 },2000);
-console.log(new_balance);
-console.log(jsonData);
 }
