@@ -1,4 +1,5 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <h2 style="color:blue;"><div class="text-center" style="display:none" id="result">Here shows result</div></h2>
 		<h1 class="text-center">Registration</h1>
     <div id="registration_form">
