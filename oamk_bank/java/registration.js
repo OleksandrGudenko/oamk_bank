@@ -44,7 +44,7 @@ function signup()
 {
   document.getElementById('result').innerHTML = "Loading...";
   document.getElementById('signup_form').style.display="none";
-  var url = "http://localhost/oamk_bank_kihun/index.php/api/bank/logins/";
+  var url = "http://localhost/oamk_bank/index.php/api/Bank/logins/";
   var xhttp = new XMLHttpRequest();
   xhttp.open('POST', url, true);
 
@@ -77,7 +77,7 @@ function signup()
 function email_check()
 {
   document.getElementById('email_check').innerHTML = " ";
-  var url = "http://localhost/oamk_bank_kihun/index.php/api/bank/users/";
+  var url = "http://localhost/oamk_bank/index.php/api/ank/users/";
   var jsonData='';
   var email = document.getElementById('email').value;
   var xhttp = new XMLHttpRequest();

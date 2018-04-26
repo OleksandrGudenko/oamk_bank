@@ -1,7 +1,11 @@
 
 function show_accounts()
 {
-  document.getElementById('li_button1').removeAttribute('disabled');
+  setTimeout(function()
+  {
+    document.getElementById('li_button1').removeAttribute('disabled');
+  }, 20000);
+
 
   for (var i = 0; i <= 8; i++)
   {
@@ -10,17 +14,17 @@ function show_accounts()
 
     document.getElementById('contact_btn').style.color = 'white';
     document.getElementById('contact_btn').style.backgroundColor = '#F2882F';
-    
-    
+
+
     document.getElementById('edit_btn').style.color = 'white';
     document.getElementById('edit_btn').style.backgroundColor = '#F2882F';
-    
+
     document.getElementById('loan_btn').style.color = 'white';
     document.getElementById('loan_btn').style.backgroundColor = '#F2882F';
-    
+
     document.getElementById('pay_btn').style.color = 'white';
     document.getElementById('pay_btn').style.backgroundColor = '#F2882F';
-    
+
     document.getElementById('accounts_btn').style.color = '#F2882F';
     document.getElementById('accounts_btn').style.backgroundColor = 'white';
   }
@@ -29,6 +33,7 @@ function show_accounts()
   document.getElementById('container').style.display = 'none';
   document.getElementById('container1').style.display = 'none';
   document.getElementById('formdiv0').style.display = 'block';
+  document.getElementById('pagetitle').style.display = 'block';
   document.getElementById('pagetitle').innerHTML = '<h2>' + 'List of your available accounts:' + '</h2>';
 }
 
@@ -47,7 +52,6 @@ function account_own()
        if(xhttp.readyState==4 && xhttp.status==200)
        {
         jsonData = JSON.parse(xhttp.responseText);
-        
          for(x in jsonData)
          {
            if(jsonData[x].user_id == id_for_own_acc)
@@ -59,7 +63,6 @@ function account_own()
               li_button.setAttribute('id', 'li_button');
               li_button.setAttribute('onclick','getaccountinfo("'+jsonData[x].account_id+'","'+jsonData[x].Balance+'","'+jsonData[x].credit+'")');
               li_button.setAttribute('value', jsonData[x].account_id);
-              
               document.getElementById('formdiv0').appendChild(li_button);
              }
          }
@@ -102,7 +105,7 @@ function getaccountinfo(account_id,Balance,credit){
     document.getElementById('formdiv0').style.display = 'none';
     document.getElementById('formdiv1').style.display = 'block';
 
-    createListFunction(1);   
+    createListFunction(1);
 }
 
 function get_loan(){
@@ -113,7 +116,6 @@ function get_loan(){
   var jsonData='';
   var xhttp = new XMLHttpRequest();
   xhttp.open('GET', url, true);
-  
   xhttp.onreadystatechange=function()
   {
     if(xhttp.readyState==4 && xhttp.status==200)
@@ -125,7 +127,6 @@ function get_loan(){
         if(jsonData[x].user_id == user_accounts)
         {
          document.getElementById('pagetitle').innerHTML = '<h2>'+'View all Loans'+'</h2>';
-         
          if(create_new_div == null){
          var loan_table = document.createElement('div');
          loan_table.style.overflowY = 'scroll';

@@ -234,4 +234,68 @@ input:focus {
     color: white;
 }
 
+.create_account_terms
+{
+    background: white;
+    margin-left: 10%;
+    margin-right: 10%;
+    height:40%;
+    overflow: scroll;
+    overflow-x: hidden;
+    border: 1px solid black;
+}
 
+#checkbox_div, #checkbox_div_condition
+{
+
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#input_checkbox_condition
+{
+    width:5%;
+}
+
+#input_checkbox_terms
+{
+    width:5%;
+}
+
+#create_account
+{
+    background-color: white;
+    border: 1px solid #F2882F;
+    font-size: 2vw;
+    width: 10vw;
+    border-radius: 1vw;
+    padding: 1vw 1vw 1vw 1vw;
+    margin-top: 3vw;
+}
+
+#create_account:hover{
+    background-color: #F2882F;
+    border: 3px solid white;
+    color: white;
+}
+
+#create_account:disabled:hover{
+    background-color: grey;
+    color: white;
+    border: 1px solid grey;
+}
+
+#create_account:disabled{
+    background-color: gray;
+    color: white;
+}
+
+#formdiv8
+{
+    border-radius: 25px;
+    margin-left: 30%;
+    margin-right: 30%;
+    background: #f2882f;
+    padding-top: 1%;
+    padding-bottom: 2%;
+}

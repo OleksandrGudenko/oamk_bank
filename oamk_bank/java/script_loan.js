@@ -148,7 +148,7 @@ function loanFunction(){
           user_account.style.display = 'none';
           document.getElementById('requestForm').appendChild(user_account);
 
-          if (sender_exist == null){
+          
           var label_send = document.createElement("label");
           var send_from = document.createTextNode("Select account:  ");
           label_send.appendChild(send_from);
