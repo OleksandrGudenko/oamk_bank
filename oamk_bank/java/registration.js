@@ -43,7 +43,7 @@ function id_check()
 function signup()
 {
   document.getElementById('result').innerHTML = "Loading...";
-  document.getElementById('registration_form').style.display="none";
+  document.getElementById('signup_form').style.display="none";
   var url = "http://localhost/oamk_bank/index.php/api/bank/logins/";
   var xhttp = new XMLHttpRequest();
   xhttp.open('POST', url, true);
@@ -66,9 +66,8 @@ function signup()
     }
     else
     {
-      document.getElementById('result').style.display = "block";
-      document.getElementById('result').innerHTML = "Sign up has failed";
-      document.getElementById('registration_form').style.display="block";
+      document.getElementById('result').innerHTML = "Fail";
+      document.getElementById('signup_form').style.display="block";
     }
   };
   xhttp.send(formData);
@@ -78,6 +77,7 @@ function signup()
 function email_check()
 {
   document.getElementById('email_check').innerHTML = " ";
+  var url = "http://localhost/oamk_bank/index.php/api/bank/users/";
   var url = "http://localhost/oamk_bank/index.php/api/bank/users/";
   var jsonData='';
   var email = document.getElementById('email').value;

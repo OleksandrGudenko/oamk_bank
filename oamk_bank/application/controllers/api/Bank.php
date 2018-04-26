@@ -193,7 +193,7 @@ public function accounts_get()
     else
     {
         $this->set_response([
-            'status' => FALSE,
+            'status' => FALSE,x
             'message' => 'Account could not be found'
         ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
     }
@@ -537,7 +537,7 @@ $this->Bank_model->add_user($add_user);
       'postalcode'=>$this->post('postalcode'),
       'email'=>$this->post('email'),
       'phone'=>$this->post('phone'),
-      'occupation'=>$this->post('timestamp'),
+      'occupation'=>$this->post('occupation'),
       'message' => 'Added a resource'
                 ];
     $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code

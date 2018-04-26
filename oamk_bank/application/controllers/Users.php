@@ -17,7 +17,7 @@ public function login_verify()
 		$data['body']='Users/password';
 		$this->load->view('Structure/Home', $data);
 	}
-	else {	
+	else {
 		$username=$this->User_model->username($user);
 		if ($username != FALSE){
 		$this->load->model('User_model');
@@ -31,7 +31,7 @@ public function login_verify()
 		$data['body']='Users/password';
 		$this->load->view('Structure/Home', $data);
 		} else {
-			
+
 			$this->session->set_flashdata('id_invalid', 'Username invalid.');
 			redirect('users/login');
 		}
@@ -42,7 +42,7 @@ public function banking()
 {
 	$this->load->model('User_model');
 	$user=$this->input->post('user');
-	$password = $this->input->post('password');	
+	$password = $this->input->post('password');
 	$confirm_password=$this->User_model->get_password($user);
 	if ($user == 'admin'){
 		if($password == $confirm_password){
@@ -66,13 +66,13 @@ public function banking()
 
 			$this->load->view('Structure/Account', $data);
 		}
-	} else {	
+	} else {
 		$userinfo = $this->User_model->getinfo($user);
 		if(password_verify($password, $confirm_password)){
 			// Create session
 			$data['user'] = $user;
 			$data['body']='Pages_inside/account_page';
-			
+
 			$userinfo_data = array(
 				'user_id' => $userinfo[0]['id'],
 				'username' => $userinfo[0]['username'],
@@ -96,7 +96,7 @@ public function banking()
 			$data['msg']='ID or Password was wrong';
 			$this->load->view('Structure/Account', $data);
 		}
-	}	
+	}
 }
 
 

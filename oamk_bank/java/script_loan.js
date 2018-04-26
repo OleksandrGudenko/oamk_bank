@@ -1,23 +1,43 @@
 
 function loan_show()
 {
-  document.getElementById('pay_btn').disabled = false;
-  document.getElementById('contact_btn').disabled = false;
-  document.getElementById('edit_btn').disabled = false;
-  document.getElementById('loan_btn').disabled = true;
   document.getElementById('result').innerHTML = " ";
   document.getElementById('result').style.display = "none";
-  for (var i = 0; i < 8; i++)
+  for (var i = 0; i <= 8; i++)
   {
     var name_div = "formdiv" ;
     document.getElementById(name_div + i).style.display="none";
+
+    document.getElementById('contact_btn').style.color = 'white';
+    document.getElementById('contact_btn').style.backgroundColor = '#F2882F';
+    
+    
+    document.getElementById('edit_btn').style.color = 'white';
+    document.getElementById('edit_btn').style.backgroundColor = '#F2882F';
+    
+    document.getElementById('loan_btn').style.color = '#F2882F';
+    document.getElementById('loan_btn').style.backgroundColor = 'white';
+    
+    document.getElementById('pay_btn').style.color = 'white';
+    document.getElementById('pay_btn').style.backgroundColor = '#F2882F';
+    
+    document.getElementById('accounts_btn').style.color = 'white';
+    document.getElementById('accounts_btn').style.backgroundColor = '#F2882F';
   }
 
-  document.getElementById('container').style.display="flex";
+
+  document.getElementById('container').style.display = 'none';
+  document.getElementById('container1').style.display = 'flex';
+
   var paymentsection = "<h2>Loan</h2>";
   document.getElementById("pagetitle").innerHTML = paymentsection;
 
-  document.getElementById('container').innerHTML=" ";
+  document.getElementById('loanoptbtn1').style.color = '#F2882F' ;
+  document.getElementById('loanoptbtn1').style.backgroundColor = 'white'
+  document.getElementById('loanoptbtn2').style.color = '#F2882F' ;
+  document.getElementById('loanoptbtn2').style.backgroundColor = 'white';
+
+  document.getElementById('container1').innerHTML=" ";
   loanbtn1();
   loanbtn2();
 }
@@ -37,7 +57,7 @@ function loanFunction(){
     loanoptionbtn1.setAttribute('value', 'Request');
     loanoptionbtn1.setAttribute('id', 'loanoptbtn1');
     loanoptionbtn1.setAttribute('onclick', 'requestTrigger()');
-    document.getElementById('container').appendChild(loanoptionbtn1);
+    document.getElementById('container1').appendChild(loanoptionbtn1);
   }
 
 
@@ -48,8 +68,8 @@ function loanFunction(){
     loanoptionbtn2.setAttribute('value', 'Payback');
     loanoptionbtn2.setAttribute('id', 'loanoptbtn2');
     loanoptionbtn2.setAttribute('onclick', 'paybacktrigger()');
-    document.getElementById('container').appendChild(loanoptionbtn2);
-
+    document.getElementById('container1').appendChild(loanoptionbtn2);
+  
   }
 
 
@@ -58,6 +78,11 @@ function loanFunction(){
     if(request){
       document.getElementById('formdiv4').style.display = 'block';
       document.getElementById('formdiv5').style.display = 'none';
+
+      document.getElementById('loanoptbtn1').style.color = 'white' ;
+      document.getElementById('loanoptbtn1').style.backgroundColor = '#F2882F'
+      document.getElementById('loanoptbtn2').style.color = '#F2882F' ;
+      document.getElementById('loanoptbtn2').style.backgroundColor = 'white';
     }
     else{
   return;  }
@@ -68,6 +93,11 @@ function loanFunction(){
     if(loan){
       document.getElementById('formdiv5').style.display = 'block';
       document.getElementById('formdiv4').style.display = 'none';
+
+      document.getElementById('loanoptbtn1').style.color = '#F2882F' ;
+      document.getElementById('loanoptbtn1').style.backgroundColor = 'white'
+      document.getElementById('loanoptbtn2').style.color = 'white' ;
+      document.getElementById('loanoptbtn2').style.backgroundColor = '#F2882F';
     }
     else{
       return;
@@ -75,7 +105,7 @@ function loanFunction(){
   }
 
   function requestformFunction(){
-
+      var sender_exist = null;
       var br = document.createElement('br');
       var br1 = document.createElement('br');
       var br2 = document.createElement('br');
@@ -101,6 +131,7 @@ function loanFunction(){
       {
         if(jsonData[x].user_id == user_id_global)
         {
+          if (sender_exist == null){
           var user_idelement = document.createElement('input');
           user_idelement.id = jsonData[x].user_id;
           user_idelement.name = 'user_id';
@@ -117,7 +148,7 @@ function loanFunction(){
           user_account.style.display = 'none';
           document.getElementById('requestForm').appendChild(user_account);
 
-
+          
           var label_send = document.createElement("label");
           var send_from = document.createTextNode("Select account:  ");
           label_send.appendChild(send_from);
@@ -135,7 +166,8 @@ function loanFunction(){
           option_sender.selected = true;
           sender.appendChild(option_sender);
           var user_id_for_loan = document.getElementById('user_id_from_login').value;
-
+          sender_exist = 1;
+          }
 
         var option_sender = document.createElement("option");
         option_sender.value = jsonData[x].Balance;
@@ -203,23 +235,17 @@ function loanFunction(){
 
 function request_money()
 {
+  debugger
   document.getElementById('loading').innerHTML = "loading...";
   document.getElementById('formdiv').style.display = "none";
 
   var url_loan = "http://localhost/oamk_bank/index.php/api/bank/loans/loan/";
-
-// debugger
 
   var xhttp = new XMLHttpRequest();
   xhttp.open('POST', url_loan, true)
 
   var form = document.getElementById('requestForm');
   var formData = new FormData(form);
-
-  for(var value of formData.values()){
-    console.log(value);
-  }
-
 
   xhttp.onreadystatechange = function(){
 
@@ -237,10 +263,11 @@ function request_money()
     }
 
   };
-  setTimeout(function(){
+  xhttp.send(formData);
+    setTimeout(function(){
     if(reload_yes == 1){
 
-      xhttp.send(formData);
+      location.reaload();
 
     }
   },2000);
@@ -249,8 +276,9 @@ function request_money()
 }
 
 function request_money2(){
+
 var account = document.getElementById('Account_test').value;
-// debugger
+
 var url_account = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/" +account;
 
 var xhttp = new XMLHttpRequest();
@@ -291,6 +319,4 @@ setTimeout(function(){
 
   }
 },2000);
-console.log(new_balance);
-console.log(jsonData);
 }

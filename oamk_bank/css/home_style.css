@@ -106,7 +106,7 @@ body {
   letter-spacing: 1.2px;
  }
 
-
+ 
 .top-banner p {
   position: relative;
   top: 155px;
@@ -115,7 +115,7 @@ body {
   font-size: 20px;
   letter-spacing: 1.2px;
   color: grey;
-}
+} 
 
 .mid-banner {
   position: relative;
@@ -224,7 +224,7 @@ body {
 }
 
 .bottomright {
-  float: right;
+  float: right;  
   margin: 0% 3% 0 1.5%;
   width: 45.5%;
   text-align: justify;
@@ -273,7 +273,7 @@ body {
 .oamkfooter {
   font-size: 2em;
   margin: 30px 20px 5px 20px;
-  font-weight: 500px;
+  font-weight: 500px; 
 }
 
 .contactfoot {
@@ -289,7 +289,7 @@ body {
 }
 
 .somefooter a {
-  text-decoration: none;
+  text-decoration: none;    
 }
 
 .mid-banner h1 {
@@ -304,7 +304,7 @@ body {
   font-weight: 100;
   letter-spacing: 1.2px;
   margin: 0 auto;
-}
+} 
 
 .nav-bar a:hover {
   color: #F2882F;
@@ -316,7 +316,7 @@ body {
   margin-right: 1%;
   margin-bottom: 1%;
   margin-left: 1%;
-
+  
 }
 
 /* Styles for everyBankshrunken-20e */
