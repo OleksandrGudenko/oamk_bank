@@ -1,4 +1,4 @@
-    <div id="navbar" class="navbar">
+        <div id="navbar" class="navbar">
     <div class="account_label">
         <span style="color:white;" id="time_expression"></span>
         <span style="color:white;" id="user"><?php if ($this->session->userdata('admin')) : ?>Admin<?php endif;?></span>
@@ -41,6 +41,7 @@
     <div id="hide_form"><form id="requestform">
     <div style="display:block; text-align:center" id="formdiv6"></div>
     <div style="display:none; text-align:center" id="formdiv7"></div>
+    <div style="display:none; text-align:center" id="formdiv8"></div>
     </form></div>
     <div style="display:none; text-align:center" id="formdiv8"></div>
     <div style="text-align:center" id="result"></div>

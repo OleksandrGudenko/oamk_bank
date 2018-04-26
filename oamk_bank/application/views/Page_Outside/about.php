@@ -44,10 +44,10 @@
 
     </div>
     <div class="btnonabtcontainer">
-      <a href="/everyBank.html" class="btn">OUR SERVICES</a>
+      <a href="<?php echo site_url('Page_Controller/everyBank');?>" class="btn">OUR SERVICES</a>
     </div>
     <div class="btnonabtoa">
-      <a href="/openAcct.html" class="btnoa">OPEN ACCOUNT</a>
+      <a href="<?php echo site_url('Page_Controller/openAcct');?>" class="btnoa">OPEN ACCOUNT</a>
     </div>
 
 

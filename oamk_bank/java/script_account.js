@@ -52,7 +52,7 @@ function account_own()
        if(xhttp.readyState==4 && xhttp.status==200)
        {
         jsonData = JSON.parse(xhttp.responseText);
-
+        
          for(x in jsonData)
          {
            if(jsonData[x].user_id == id_for_own_acc)
@@ -64,7 +64,6 @@ function account_own()
               li_button.setAttribute('id', 'li_button');
               li_button.setAttribute('onclick','getaccountinfo("'+jsonData[x].account_id+'","'+jsonData[x].Balance+'","'+jsonData[x].credit+'")');
               li_button.setAttribute('value', jsonData[x].account_id);
-
               document.getElementById('formdiv0').appendChild(li_button);
              }
          }
@@ -118,7 +117,6 @@ function get_loan(){
   var jsonData='';
   var xhttp = new XMLHttpRequest();
   xhttp.open('GET', url, true);
-
   xhttp.onreadystatechange=function()
   {
     if(xhttp.readyState==4 && xhttp.status==200)
@@ -130,7 +128,6 @@ function get_loan(){
         if(jsonData[x].user_id == user_accounts)
         {
          document.getElementById('pagetitle').innerHTML = '<h2>'+'View all Loans'+'</h2>';
-
          if(create_new_div == null){
          var loan_table = document.createElement('div');
          loan_table.style.overflowY = 'scroll';
