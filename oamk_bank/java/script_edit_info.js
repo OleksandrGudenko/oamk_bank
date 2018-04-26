@@ -1,15 +1,28 @@
 function edit_show()
 {
-  document.getElementById('edit_btn').disabled = true;
-  document.getElementById('contact_btn').disabled = false;
-  document.getElementById('pay_btn').disabled = false;
-  document.getElementById('loan_btn').disabled = false;
+  document.getElementById('container').style.display = 'none';
+  document.getElementById('container1').style.display = 'none';
 
-  document.getElementById('container').style.display="none";
-  for (var i = 0; i < 8; i++)
+  for (var i = 0; i <= 8; i++)
   {
     var name_div = "formdiv" ;
     document.getElementById(name_div + i).style.display="none";
+
+    document.getElementById('contact_btn').style.color = 'white';
+    document.getElementById('contact_btn').style.backgroundColor = '#F2882F';
+    
+    
+    document.getElementById('edit_btn').style.color = '#F2882F';
+    document.getElementById('edit_btn').style.backgroundColor = 'white';
+    
+    document.getElementById('loan_btn').style.color = 'white';
+    document.getElementById('loan_btn').style.backgroundColor = '#F2882F';
+    
+    document.getElementById('pay_btn').style.color = 'white';
+    document.getElementById('pay_btn').style.backgroundColor = '#F2882F';
+    
+    document.getElementById('accounts_btn').style.color = 'white';
+    document.getElementById('accounts_btn').style.backgroundColor = '#F2882F';
   }
 
   document.getElementById('formdiv7').style.display = "block";

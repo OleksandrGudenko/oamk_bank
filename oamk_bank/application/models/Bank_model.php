@@ -148,20 +148,20 @@ function delete_loan($id)
 function get_logins()
 {
   $this->db->select('*');
-  $this->db->from('users');
+  $this->db->from('login_credentials');
   return  $this->db->get()->result_array();
 }
 function get_login($id)
 {
   $this->db->select('*');
-  $this->db->from('users');
+  $this->db->from('login_credentials');
   $this->db->where('username', $id);
   return  $this->db->get()->result_array();
 }
 
 function add_login($add_login)
 {
-  $this->db->insert('users', $add_login);
+  $this->db->insert('login_credentials', $add_login);
 }
 
 function add_user($add_user)
@@ -172,12 +172,28 @@ function add_user($add_user)
 function id_check()
 {
   $this->db->select('id');
-  $this->db->from('users');
+  $this->db->from('login_credentials');
   return  $this->db->get()->result_array();
 }
 
+function get_transactions()
+{
+  $this->db->select('*');
+  $this->db->from('transactions');
+  return $this->db->get()->result_array();
+}
+
+
+function get_transaction($id)
+{
+  $this->db->select('*');
+  $this->db->from('transactions');
+  $this->db->where('transaction_id', $id);
+  return  $this->db->get()->result_array();
+}
 
 }//this is end of bank model
+
 
 
 ?>

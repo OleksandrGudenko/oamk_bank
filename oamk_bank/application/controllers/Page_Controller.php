@@ -50,6 +50,15 @@ class Page_Controller extends CI_Controller
     $this->load->view('Structure/Home', $data);
   }
 
+  public function loan()
+  {
+    if($this->session->userdata('logged_in')){
+      redirect('users/logout');
+    }
+    $data['body']='Page_Outside/loan';
+    $this->load->view('Structure/Home', $data);
+  }
+
 
 }
 
