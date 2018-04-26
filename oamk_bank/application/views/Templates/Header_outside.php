@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <!-- Scripts  -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script type="text/javascript" src="<?php echo base_url('java/top.js')?>"></script>
   <script type="text/javascript" src="<?php echo base_url('java/registration.js')?>"></script>
     <!-- CSS Stylesheet  -->
@@ -40,6 +41,9 @@
     </div>
     <div id = "flash_message" class="container">
       <!-- Flash messages -->
+      <?php if($this->session->flashdata('user_loggedout')): ?>
+        <?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedout').'</p>'; ?>
+      <?php endif; ?>
       <?php if($this->session->flashdata('id_invalid')): ?>
         <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('id_invalid').'</p>'; ?>
       <?php endif; ?>

@@ -658,6 +658,19 @@ body {
   border-radius: 25px;
   margin-left: 30%;
   margin-right: 30%;
-  /* background: linear-gradient(to right, #f2882f, #ee9149, #e99960, #e2a276, #daaa8b); */
   background: #f2882f;
+}
+
+.alert{
+  position:relative;
+  padding:.75rem 1.25rem;
+  margin-bottom:1rem;
+  border:1px solid transparent;
+  border-radius:.25rem
+}
+
+.alert-success{
+  color:#155724;
+  background-color:#d4edda;
+  border-color:#c3e6cb
 }

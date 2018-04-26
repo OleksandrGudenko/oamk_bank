@@ -52,6 +52,7 @@ function account_own()
        if(xhttp.readyState==4 && xhttp.status==200)
        {
         jsonData = JSON.parse(xhttp.responseText);
+        
          for(x in jsonData)
          {
            if(jsonData[x].user_id == id_for_own_acc)

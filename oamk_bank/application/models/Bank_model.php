@@ -176,8 +176,24 @@ function id_check()
   return  $this->db->get()->result_array();
 }
 
+function get_transactions()
+{
+  $this->db->select('*');
+  $this->db->from('transactions');
+  return $this->db->get()->result_array();
+}
+
+
+function get_transaction($id)
+{
+  $this->db->select('*');
+  $this->db->from('transactions');
+  $this->db->where('transaction_id', $id);
+  return  $this->db->get()->result_array();
+}
 
 }//this is end of bank model
+
 
 
 ?>

@@ -58,13 +58,14 @@ public function banking()
 			$this->session->set_userdata($userinfo_data);
 			$this->load->view('Structure/Account', $data);
 		}	else {
+			if($user == null){
+				redirect('users/login');
+			  }
 			// Set message
 			$data['user'] = $user;
 			$data['body']='Users/password';
-			$data['msg']='ID or Password was wrong';
-			$this->session->set_flashdata('login_failed', 'Login is invalid');
-
-			$this->load->view('Structure/Account', $data);
+			$data['msg']='Password was wrong';
+			$this->load->view('Structure/Home', $data);
 		}
 	} else {
 		$userinfo = $this->User_model->getinfo($user);
@@ -90,11 +91,14 @@ public function banking()
 
 			$this->load->view('Structure/Account', $data);
 		} else {
+			if($user == null){
+				redirect('users/login');
+			  }
 			// Set message
 			$data['user'] = $user;
 			$data['body']='Users/password';
-			$data['msg']='ID or Password was wrong';
-			$this->load->view('Structure/Account', $data);
+			$data['msg']='Password was wrong';
+			$this->load->view('Structure/Home', $data);
 		}
 	}
 }

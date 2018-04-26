@@ -193,7 +193,7 @@ public function accounts_get()
     else
     {
         $this->set_response([
-            'status' => FALSE,x
+            'status' => FALSE,
             'message' => 'Account could not be found'
         ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
     }
@@ -543,6 +543,30 @@ $this->Bank_model->add_user($add_user);
     $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
 }
 
-//till here login
+
+public function transactions_post()
+    {
+        // add a new loan
+
+        $add_data = array(
+            'sender'=>$this->post('sender'),
+            'receiver'=>$this->post('receiver'),
+            'amount'=>$this->post('amount'),
+            'reference'=>$this->post('reference'),
+            'message' => 'Added a resource'
+        );
+
+        $this->Bank_model->add_transaction($add_data);
+
+        $message = [
+            'sender'=>$this->post('sender'),
+            'receiver'=>$this->post('receiver'),
+            'amount'=>$this->post('amount'),
+            'reference'=>$this->post('reference'),
+            'message' => 'Added a resource'
+        ];
+
+        $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
+    }
 
 }//this is end of BANK RESTAPI
