@@ -48,6 +48,9 @@ public function banking()
 		if($password == $confirm_password){
 			$data['user'] = $user;
 			$data['body']='Pages_inside/account_page';
+			$this->load->model('Bank_model');
+		  $data['users_for_info']=$this->Bank_model->get_users();
+		  $data['request']=$this->Bank_model->get_requests();
 			$userinfo_data = array(
 				'firstname' => 'Admin',
 				'lastname' => '',
