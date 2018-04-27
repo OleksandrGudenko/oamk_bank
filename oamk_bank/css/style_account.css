@@ -79,7 +79,7 @@ textarea#body:focus
     z-index: 1;
 }
 
-#li_button, #li_button1 {
+#li_button, #li_button1, #li_button2 {
     color: white;
     background-color: #F2882F;
     border: none;
@@ -90,13 +90,13 @@ textarea#body:focus
 
 
 
-#li_button:hover, #li_button1:hover {
+#li_button:hover, #li_button1:hover, #li_button2:hover {
     background-color: white;
     color: #F2882F;
     border: 1px solid #F2882F;
 }
 
-#li_button:focus, #li_button1:focus {
+#li_button:focus, #li_button1:focus ,#li_button2:focus {
     outline: none;
 }
 
@@ -234,4 +234,106 @@ input:focus {
     color: white;
 }
 
+.create_account_terms
+{
+    background: white;
+    margin-left: 10%;
+    margin-right: 10%;
+    height:40%;
+    overflow: scroll;
+    overflow-x: hidden;
+    border: 1px solid black;
+}
 
+#checkbox_div, #checkbox_div_condition
+{
+
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#input_checkbox_condition
+{
+    width:5%;
+}
+
+#input_checkbox_terms
+{
+    width:5%;
+}
+
+#create_account
+{
+    background-color: white;
+    border: 1px solid #F2882F;
+    font-size: 2vw;
+    width: 10vw;
+    border-radius: 1vw;
+    padding: 1vw 1vw 1vw 1vw;
+    margin-top: 3vw;
+}
+
+#create_account:hover{
+    background-color: #F2882F;
+    border: 3px solid white;
+    color: white;
+}
+
+#create_account:disabled:hover{
+    background-color: grey;
+    color: white;
+    border: 1px solid grey;
+}
+
+#create_account:disabled{
+    background-color: gray;
+    color: white;
+}
+
+#formdiv8
+{
+    border-radius: 25px;
+    margin-left: 30%;
+    margin-right: 30%;
+    background: #f2882f;
+    padding-top: 1%;
+    padding-bottom: 2%;
+}
+
+#trans_history{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #F2882F;
+}
+
+#thead_history{
+    text-align: center;
+    border-bottom: 1px solid #F2882F;
+    color: #F2882F;
+}
+
+#new_cell {
+    text-align: center;
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px white; 
+    border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #F2882F; 
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #F2882F; 
+}

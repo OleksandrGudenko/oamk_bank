@@ -55,7 +55,7 @@ function paymentbtn2(){
   paymentoptionbtn2.setAttribute('type', 'button');
   paymentoptionbtn2.setAttribute('value', 'Payment');
   paymentoptionbtn2.setAttribute('id', 'payoptbtn2');
-  paymentoptionbtn2.setAttribute('onclick', 'paymenttrigger()');
+  paymentoptionbtn2.setAttribute('onclick', 'paymenttrigger(); onchangeValue()');
   document.getElementById('container').appendChild(paymentoptionbtn2);
 
 }
@@ -93,6 +93,13 @@ xhttp.onreadystatechange=function()
   {
     jsonData = JSON.parse(xhttp.responseText);
 
+    createListFunction(3);
+    var id_other = document.createElement("input");
+    id_other.setAttribute('value', id_for_payment);
+    id_other.setAttribute('name', 'user_id');
+    id_other.setAttribute('style', 'display:none');
+    document.getElementById('formdiv3').appendChild(id_other);
+
     var label_send = document.createElement("label");
     var send_from = document.createTextNode("From  ");
     label_send.appendChild(send_from);
@@ -100,6 +107,7 @@ xhttp.onreadystatechange=function()
 
     var sender = document.createElement("select");
     sender.setAttribute('id', 'sender_payment');
+    sender.setAttribute('onchange', 'onchangeValue()');
     document.getElementById('formdiv3').appendChild(sender);
     for(x in jsonData)
     {
@@ -112,11 +120,19 @@ xhttp.onreadystatechange=function()
       sender.appendChild(option_sender);
       }
     }
+    createListFunction(3);
+    var sender_other = document.createElement("input");
+    sender_other.setAttribute('type', 'text');
+    sender_other.setAttribute('id', 'sender_other');
+    sender_other.setAttribute('name', 'sender');
+    sender_other.setAttribute('style', 'display:none');
+    document.getElementById('formdiv3').appendChild(sender_other);
 
     createListFunction(3);
     var reciever = document.createElement("input");
     reciever.setAttribute('type', 'text');
     reciever.setAttribute('id', 'reciever_payment');
+    reciever.setAttribute('name', 'receiver');
     reciever.setAttribute('placeholder', 'IBAN where money will go');
     document.getElementById('formdiv3').appendChild(reciever);
 
@@ -125,8 +141,17 @@ xhttp.onreadystatechange=function()
     var amount = document.createElement("input");
     amount.setAttribute('type', 'number');
     amount.setAttribute('id', 'amount_payment');
+    amount.setAttribute('name', 'amount');
     amount.setAttribute('placeholder', 'amount to pay');
     document.getElementById('formdiv3').appendChild(amount);
+    
+    createListFunction(3);
+    var reference = document.createElement("input");
+    reference.setAttribute('type', 'text');
+    reference.setAttribute('placeholder','Reference Number/ Message')
+    reference.setAttribute('name', 'reference');
+    document.getElementById('formdiv3').appendChild(reference);
+
 
 
     createListFunction(3);
@@ -134,7 +159,7 @@ xhttp.onreadystatechange=function()
     sendbtn.setAttribute('type', 'button');
     sendbtn.setAttribute('id', 'sendbtn');
     sendbtn.setAttribute('value', 'send');
-    sendbtn.setAttribute('onclick', 'payment_money()');
+    sendbtn.setAttribute('onclick', 'payment_money(); othersendingSubmit()');
     document.getElementById('formdiv3').appendChild(sendbtn);
 
     document.getElementById('loading').inner=" ";

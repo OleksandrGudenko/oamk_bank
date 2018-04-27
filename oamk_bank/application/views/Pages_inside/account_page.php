@@ -1,4 +1,4 @@
-    <div id="navbar" class="navbar">
+        <div id="navbar" class="navbar">
     <div class="account_label">
         <span style="color:white;" id="time_expression"></span>
         <span style="color:white;" id="user"><?php if ($this->session->userdata('admin')) : ?>Admin<?php endif;?></span>
@@ -27,11 +27,15 @@
     <div style="display:block; text-align:center" id="formdiv"></div>
     <div style="display:block; text-align:center" id="formdiv0">
         <ul><li></li></ul>
-        <button id="li_button">Create New Account</button>
+        <button id="li_button" onclick="terms_conditions()">Create New Account</button>
     </div>
     <div style="display:none; text-align:center" id="formdiv1"></div>
-    <div style="display:none; text-align:center" id="formdiv2"></div>
-    <div style="display:block; text-align:center" id="formdiv3"></div>
+    <form id="ownsending_form">
+        <div style="display:none; text-align:center" id="formdiv2"></div>
+    </form>
+    <form id="othersending_form">
+        <div style="display:block; text-align:center" id="formdiv3"></div>
+    </form>
     <div style="display:block; text-align:center" id="formdiv4">
         <form id="requestForm"></form>
     </div>
@@ -41,7 +45,10 @@
     <div id="hide_form"><form id="requestform">
     <div style="display:block; text-align:center" id="formdiv6"></div>
     <div style="display:none; text-align:center" id="formdiv7"></div>
+    <div style="display:none; text-align:center" id="formdiv8"></div>
     </form></div>
-
+    <div style="display:none; text-align:center" id="formdiv8"></div>
+    <div style="display:none" id="formdiv10">
+    </div>
     <div style="text-align:center" id="result"></div>
     <?php endif;?>

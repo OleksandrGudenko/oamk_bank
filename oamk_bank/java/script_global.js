@@ -65,6 +65,7 @@ function for_onload()
   editCredFunction();
   contactBankFunction();
   loanFunction();
+  create_account_terms();
 
   document.getElementById('pagetitle').innerHTML = " ";
   for (var i = 0; i <= 8; i++)

@@ -1,7 +1,5 @@
 <link rel="stylesheet" href="https://bootswatch.com/3/united/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="http://cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
 <?php echo form_open('users/login_verify'); ?>
 <br><br><br><br>
 <form id="signin_form">
@@ -9,7 +7,7 @@
     <div class="col-md-4 col-md-offset-4">
       <h1 class="text-center">SIGN IN</h1>
       <div class="form-group">
-        <input autocomplete="off" type="text" id="username" name="username" class="form-control" placeholder="Enter Username" required>
+        <input autocomplete="off" type="text" id="username" name="username" class="form-control" placeholder="Enter Username" required autofocus>
       </div>
       <div id="check_msg"></div>
       <div id="signin_btn"></div>

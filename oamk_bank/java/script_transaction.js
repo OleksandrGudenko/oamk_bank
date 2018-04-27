@@ -5,7 +5,7 @@ function paymentbtn1(){
   paymentoptionbtn1.setAttribute('type', 'button');
   paymentoptionbtn1.setAttribute('value', 'Own Transfer');
   paymentoptionbtn1.setAttribute('id', 'payoptbtn1');
-  paymentoptionbtn1.setAttribute('onclick', 'transferTrigger()');
+  paymentoptionbtn1.setAttribute('onclick', 'transferTrigger(); onchangeValue()');
   document.getElementById('container').appendChild(paymentoptionbtn1);
 }
 
@@ -36,11 +36,19 @@ function trasferformFunction(){
 
   document.getElementById('loading').inner="Loading...";
   document.getElementById('loading').style.display="block";
+
 xhttp.onreadystatechange=function()
 {
 if(xhttp.readyState==4 && xhttp.status==200)
 {
   jsonData = JSON.parse(xhttp.responseText);
+    
+  createListFunction(2);
+  var id_own = document.createElement("input");
+  id_own.setAttribute('name', 'user_id');
+  id_own.setAttribute('style', 'display:none');
+  id_own.setAttribute('value', id_for_own_trans);
+  document.getElementById('formdiv2').appendChild(id_own);
 
   var label_send = document.createElement("label");
   var send_from = document.createTextNode("From  ");
@@ -49,6 +57,7 @@ if(xhttp.readyState==4 && xhttp.status==200)
 
   var sender = document.createElement("select");
   sender.setAttribute('id', 'sender_transfer');
+  sender.setAttribute('onchange', 'onchangeValue()');
   document.getElementById('formdiv2').appendChild(sender);
   for(x in jsonData)
   {
@@ -63,6 +72,14 @@ if(xhttp.readyState==4 && xhttp.status==200)
   }
 
   createListFunction(2);
+  var sender_own = document.createElement("input");
+  sender_own.setAttribute('type', 'text');
+  sender_own.setAttribute('id', 'sender_own');
+  sender_own.setAttribute('style', 'display:none');
+  sender_own.setAttribute('name', 'sender');
+  document.getElementById('formdiv2').appendChild(sender_own);
+
+  createListFunction(2);
   var label_recieve = document.createElement("label");
   var recieve_to = document.createTextNode("To  ");
   label_recieve.appendChild(recieve_to);
@@ -70,6 +87,7 @@ if(xhttp.readyState==4 && xhttp.status==200)
 
   var reciever = document.createElement("select");
   reciever.setAttribute('id', 'reciever_transfer');
+  reciever.setAttribute('onchange', 'onchangeValue()');
   document.getElementById('formdiv2').appendChild(reciever);
 
   for(x in jsonData)
@@ -86,19 +104,36 @@ if(xhttp.readyState==4 && xhttp.status==200)
   }
 
   createListFunction(2);
+  var receiver_own = document.createElement("input");
+  receiver_own.setAttribute('type', 'text');
+  receiver_own.setAttribute('id', 'receiver_own');
+  receiver_own.setAttribute('style', 'display:none');
+  receiver_own.setAttribute('name', 'receiver');
+  document.getElementById('formdiv2').appendChild(receiver_own);
 
+  createListFunction(2);
   var amount = document.createElement("input");
   amount.setAttribute('type', 'number');
   amount.setAttribute('id', 'amount_transfer');
+  amount.setAttribute('name', 'amount');
   amount.setAttribute('placeholder', 'amount to transfer');
   document.getElementById('formdiv2').appendChild(amount);
+
+  createListFunction(2);
+  var reference = document.createElement("input");
+  reference.setAttribute('type', 'text');
+  reference.setAttribute('id', 'reference_own');
+  reference.setAttribute('name', 'reference');
+  reference.setAttribute('value', 'Own Sending');
+  reference.setAttribute('style', 'display:none');
+  document.getElementById('formdiv2').appendChild(reference);
 
   createListFunction(2);
   var  sendbtn = document.createElement('input');
   sendbtn.setAttribute('id', 'sendbtn');
   sendbtn.setAttribute('type', 'button');
   sendbtn.setAttribute('value', 'send');
-  sendbtn.setAttribute('onclick', 'send_money_own()');
+  sendbtn.setAttribute('onclick', 'send_money_own(); ownsendingSubmit()');
   document.getElementById('formdiv2').appendChild(sendbtn);
 
   document.getElementById('loading').inner=" ";

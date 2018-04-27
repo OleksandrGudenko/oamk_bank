@@ -12,5 +12,6 @@
     <script type="text/javascript" src="<?php echo base_url(); ?>Java/script_account.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>Java/script_payback.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>Java/create_account.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>Java/script_smtransaction.js"></script>
 </head>
 <body onload="time_greet();real_time();<?php if(!$this->session->userdata('admin')) : ?>for_onload();<?php endif;?>">

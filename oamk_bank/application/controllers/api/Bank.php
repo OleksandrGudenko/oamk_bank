@@ -339,7 +339,7 @@ public function loans_get()
     // loans from a data store e.g. database
     $loans=$this->Bank_model->get_loans();
 
-    $id = $this->get('loan');
+    $id = $this->get('loan_id');
 
     // If the loans parameter doesn't exist return all the loans
 
@@ -537,12 +537,87 @@ $this->Bank_model->add_user($add_user);
       'postalcode'=>$this->post('postalcode'),
       'email'=>$this->post('email'),
       'phone'=>$this->post('phone'),
-      'occupation'=>$this->post('timestamp'),
+      'occupation'=>$this->post('occupation'),
       'message' => 'Added a resource'
                 ];
     $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
 }
 
-//till here login
+public function transactions_get()
+{
+    // loans from a data store e.g. database
+    $transactions=$this->Bank_model->get_transactions();
+
+    $id = $this->get('user_id');
+
+    // If the loans parameter doesn't exist return all the loans
+
+    if ($id === NULL)
+    {
+        // Check if the loans data store contains loans (in case the database result returns NULL)
+        if ($transactions)
+        {
+            // Set the response and exit
+            $this->response($transactions, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+        }
+        else
+        {
+            // Set the response and exit
+            $this->response([
+                'status' => FALSE,
+                'message' => 'No transaction were found'
+            ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
+        }
+    }
+
+    // Find and return a single record for a particular user.
+
+
+    $transaction = NULL;
+
+    if (!empty($transactions))
+    {
+      //GET the loan from database
+      $transaction=$this->Bank_model->get_transaction($id);
+    }
+
+    if (!empty($transaction))
+    {
+        $this->set_response($transaction, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+    }
+    else
+    {
+        $this->set_response([
+            'status' => FALSE,
+            'message' => 'Transaction could not be found'
+        ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
+    }
+}
+
+public function transactions_post()
+    {
+        // add a new transaction
+
+        $add_data = array(
+            'sender'=>$this->post('sender'),
+            'receiver'=>$this->post('receiver'),
+            'amount'=>$this->post('amount'),
+            'reference'=>$this->post('reference'),
+            'user_id'=>$this->post('user_id')
+        );
+
+        $this->Bank_model->add_transaction($add_data);
+
+        $message = [
+            'sender'=>$this->post('sender'),
+            'receiver'=>$this->post('receiver'),
+            'amount'=>$this->post('amount'),
+            'reference'=>$this->post('reference'),
+            'user_id'=>$this->post('user_id'),
+            'message' => 'Added a resource'
+        ];
+
+        $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
+    }
 
 }//this is end of BANK RESTAPI
