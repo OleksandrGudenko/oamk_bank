@@ -188,8 +188,13 @@ function get_transaction($id)
 {
   $this->db->select('*');
   $this->db->from('transactions');
-  $this->db->where('transaction_id', $id);
+  $this->db->where('user_id', $id);
   return  $this->db->get()->result_array();
+}
+
+function add_transaction($add_data)
+{
+  $this->db->insert('transactions', $add_data);
 }
 
 }//this is end of bank model

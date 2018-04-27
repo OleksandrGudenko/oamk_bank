@@ -235,7 +235,6 @@ function loanFunction(){
 
 function request_money()
 {
-  debugger
   document.getElementById('loading').innerHTML = "loading...";
   document.getElementById('formdiv').style.display = "none";
 
@@ -246,6 +245,7 @@ function request_money()
 
   var form = document.getElementById('requestForm');
   var formData = new FormData(form);
+  console.log(form);
 
   xhttp.onreadystatechange = function(){
 
