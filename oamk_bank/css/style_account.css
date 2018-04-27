@@ -299,3 +299,8 @@ input:focus {
     padding-top: 1%;
     padding-bottom: 2%;
 }
+
+input.input_for_edit
+{
+    width: 8vw;
+}
