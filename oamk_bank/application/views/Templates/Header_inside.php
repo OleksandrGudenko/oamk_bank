@@ -12,5 +12,8 @@
     <script type="text/javascript" src="<?php echo base_url(); ?>Java/script_account.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>Java/script_payback.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>Java/create_account.js"></script>
+    <?php if($this->session->userdata('admin')) : ?>
+      <script type="text/javascript" src="<?php echo base_url(); ?>Java/user_info_admin.js"></script>
+    <?php endif;?>
 </head>
 <body onload="time_greet();real_time();<?php if(!$this->session->userdata('admin')) : ?>for_onload();<?php endif;?>">
