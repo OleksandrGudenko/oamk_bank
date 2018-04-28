@@ -192,7 +192,7 @@ function get_trans_history(){
         tr.appendChild(receiver_td);
         tr.appendChild(amount_td);
         tr.appendChild(reference_td);
-        document.getElementById('trans_history').appendChild(tr);
+        document.getElementById('trans_history').insertBefore(tr,document.getElementById('trans_history').childNodes[0]);
       
 
         document.getElementById('formdiv0').style.display = 'none';
