@@ -17,6 +17,12 @@ class Bank_model extends CI_model
       return  $this->db->get()->result_array();
     }
 
+    function admin_update_user($id, $update_data)
+    {
+      $this->db->where('id', $id);
+      $this->db->update('users', $update_data); 
+    }
+
     function update_user($id, $update_data)
     {
       $data = array(

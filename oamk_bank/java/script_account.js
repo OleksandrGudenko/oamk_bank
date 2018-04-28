@@ -10,6 +10,7 @@ function show_accounts()
   {
     var name_div = "formdiv" ;
     document.getElementById(name_div + i).style.display="none";
+    document.getElementById(name_div).style.display = 'none';
 
     document.getElementById('contact_btn').style.color = 'white';
     document.getElementById('contact_btn').style.backgroundColor = '#F2882F';
@@ -192,7 +193,7 @@ function get_trans_history(){
         tr.appendChild(receiver_td);
         tr.appendChild(amount_td);
         tr.appendChild(reference_td);
-        document.getElementById('trans_history').appendChild(tr);
+        document.getElementById('trans_history').insertBefore(tr,document.getElementById('trans_history').childNodes[0]);
       
 
         document.getElementById('formdiv0').style.display = 'none';

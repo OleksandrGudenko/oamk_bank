@@ -140,11 +140,37 @@ public function users_put()
 
     $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
 }
+//From here for deleting user
+public function users_delete()
+    {
+        $id = (int) $this->get('id');
+        // Validate the id.
+        if ($id <= 0)
+        {
+            // Set the response and exit
+            $this->response(NULL, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
+        }
 
+        //check if the user exists
+        $test=$this->Bank_model->get_user($id);
+        if(!empty($test[0]['id'])) 
+        {
+          $this->Bank_model->delete_user($id);
+          $message = [
+              'id' => $id,
+              'message' => 'Deleted the resource'
+          ];
+          $this->set_response($message, REST_Controller::HTTP_OK);
+        }
+        else {
+          $message="Error";
+          $this->set_response($message, REST_Controller::HTTP_NO_CONTENT); // NO_CONTENT (204) being the HTTP response code
+        }
+        }
 
-//until here
+//until here for user
 
-//account test
+//from here account
 public function accounts_get()
 {
     // Accounts from a data store e.g. database
@@ -619,5 +645,107 @@ public function transactions_post()
 
         $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
     }
+
+//from here for admin that different user edit setting
+
+public function admins_get()
+    {
+        // Users from a data store e.g. database
+        $admins=$this->Bank_model->get_users();
+
+        $id = $this->get('id');
+
+        // If the id parameter doesn't exist return all the users
+
+        if ($id === NULL)
+        {
+            // Check if the users data store contains users (in case the database result returns NULL)
+            if ($admins)
+            {
+                // Set the response and exit
+                $this->response($admins, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+            }
+            else
+            {
+                // Set the response and exit
+                $this->response([
+                    'status' => FALSE,
+                    'message' => 'No users were found'
+                ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
+            }
+        }
+
+        // Find and return a single record for a particular user.
+
+        $id = (int) $id;
+
+        // Validate the id.
+        if ($id < 0)
+        {
+            // Invalid id, set the response and exit.
+            $this->response(NULL, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
+        }
+
+        // Get the user from the array, using the id as key for retrieval.
+        // Usually a model is to be used for this.
+
+        $admin = NULL;
+
+        if (!empty($admins))
+        {
+          //GET the user from database
+          $admin=$this->Bank_model->get_user($id);
+        }
+
+        if (!empty($admin))
+        {
+            $this->set_response($admin, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+        }
+        else
+        {
+            $this->set_response([
+                'status' => FALSE,
+                'message' => 'User could not be found'
+            ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
+        }
+    }
+//from here for put(update)user
+
+public function admins_put()
+{
+    $id=$this->put('id');
+
+    $update_data = array(
+      'id'=>$this->put('id'),
+      'firstname'=>$this->put('firstname'),
+      'lastname'=>$this->put('lastname'),
+      'city'=>$this->put('city'),
+      'address'=>$this->put('address'),
+      'postalcode'=>$this->put('postalcode'),
+      'email'=>$this->put('email'),
+      'phone'=>$this->put('phone'),
+      'occupation'=>$this->put('occupation'),
+      'username'=>$this->put('username')
+      );
+
+    $this->Bank_model->admin_update_user($id, $update_data);
+
+    $message = [
+      'id'=>$this->put('id'),
+      'firstname'=>$this->put('firstname'),
+      'lastname'=>$this->put('lastname'),
+      'city'=>$this->put('city'),
+      'address'=>$this->put('address'),
+      'postalcode'=>$this->put('postalcode'),
+      'email'=>$this->put('email'),
+      'phone'=>$this->put('phone'),
+      'occupation'=>$this->put('occupation'),
+      'username'=>$this->put('username'),
+      'message' => 'Updates a resource'
+    ];
+
+    $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
+}
+
 
 }//this is end of BANK RESTAPI
