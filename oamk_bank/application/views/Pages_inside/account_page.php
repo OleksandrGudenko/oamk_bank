@@ -34,8 +34,12 @@
         <button id="li_button" onclick="terms_conditions()">Create New Account</button>
     </div>
     <div style="display:none; text-align:center" id="formdiv1"></div>
-    <div style="display:none; text-align:center" id="formdiv2"></div>
-    <div style="display:block; text-align:center" id="formdiv3"></div>
+    <form id="ownsending_form">
+        <div style="display:none; text-align:center" id="formdiv2"></div>
+    </form>
+    <form id="othersending_form">
+        <div style="display:block; text-align:center" id="formdiv3"></div>
+    </form>
     <div style="display:block; text-align:center" id="formdiv4">
         <form id="requestForm"></form>
     </div>
@@ -48,6 +52,8 @@
     <div style="display:none; text-align:center" id="formdiv8"></div>
     </form></div>
     <div style="display:none; text-align:center" id="formdiv8"></div>
+    <div style="display:none" id="formdiv10">
+    </div>
     <div style="text-align:center" id="result"></div>
     <?php endif;?>
 

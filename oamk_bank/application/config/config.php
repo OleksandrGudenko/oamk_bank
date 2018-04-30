@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/oamk_bank/';
+$config['base_url'] = 'http://www.students.oamk.fi/~t7haki01/oamk_bank/';
 
 /*
 |--------------------------------------------------------------------------

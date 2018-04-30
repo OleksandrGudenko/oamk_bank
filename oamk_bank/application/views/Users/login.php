@@ -27,7 +27,7 @@
 function id_check()
 {
   document.getElementById('check_msg').innerHTML = "Checking username...";
-  var url = "http://localhost/oamk_bank/index.php/api/bank/users/user";
+  var url = "http://www.students.oamk.fi/~t7haki01/oamk_bank/index.php/api/bank/users/user";
   var jsonData='';
   var user_name = document.getElementById('username').value;
   var xhttp = new XMLHttpRequest();

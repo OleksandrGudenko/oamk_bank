@@ -114,7 +114,7 @@ function loanFunction(){
 
       ///From here for getting account with RESTAPI request
 
-      var url = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid";
+      var url = "http://www.students.oamk.fi/~t7haki01/oamk_bank/index.php/api/Bank/accounts/accountid";
       var jsonData='';
       var xhttp = new XMLHttpRequest();
       xhttp.open('GET', url, true);
@@ -235,17 +235,17 @@ function loanFunction(){
 
 function request_money()
 {
-  debugger
   document.getElementById('loading').innerHTML = "loading...";
   document.getElementById('formdiv').style.display = "none";
 
-  var url_loan = "http://localhost/oamk_bank/index.php/api/bank/loans/loan/";
+  var url_loan = "http://www.students.oamk.fi/~t7haki01/oamk_bank/index.php/api/Bank/loans/loan/";
 
   var xhttp = new XMLHttpRequest();
   xhttp.open('POST', url_loan, true)
 
   var form = document.getElementById('requestForm');
   var formData = new FormData(form);
+  console.log(form);
 
   xhttp.onreadystatechange = function(){
 
@@ -279,7 +279,7 @@ function request_money2(){
 
 var account = document.getElementById('Account_test').value;
 
-var url_account = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/" +account;
+var url_account = "http://www.students.oamk.fi/~t7haki01/oamk_bank/index.php/api/Bank/accounts/accountid/" +account;
 
 var xhttp = new XMLHttpRequest();
 xhttp.open('PUT', url_account, true)

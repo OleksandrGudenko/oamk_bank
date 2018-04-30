@@ -1,8 +1,11 @@
 
+var id_check_boolean = false;
+var email_check_boolean = false;
+
 function id_check()
 {
   document.getElementById('id_check').innerHTML = " ";
-  var url = "http://localhost/oamk_bank/index.php/api/bank/logins/login/";
+  var url = "http://www.students.oamk.fi/~t7haki01/oamk_bank/index.php/api/Bank/logins/login/";
   var jsonData='';
   var username = document.getElementById('username').value;
   var xhttp = new XMLHttpRequest();
@@ -27,9 +30,30 @@ function id_check()
         document.getElementById('id_check').innerHTML = "Username valid";
         document.getElementById('username').style.borderColor ="Green";
         document.getElementById('id_check').style.color = "Green";
+
+        //here for checking
+        id_check_boolean = true;
+
+        if(id_check_boolean == true && email_check_boolean == true )
+        {
+          document.getElementById('signup_btn').disabled = false;
+        }
+        else
+        {
+          document.getElementById('signup_btn').disabled = true;
+        }
       }
       else
       {
+        id_check_boolean = false;
+        if(id_check_boolean == true && email_check_boolean == true )
+        {
+          document.getElementById('signup_btn').disabled = false;
+        }
+        else
+        {
+          document.getElementById('signup_btn').disabled = true;
+        }
         document.getElementById('id_check').innerHTML = "Username already taken";
         document.getElementById('username').style.borderColor ="red";
         document.getElementById('id_check').style.color = "red";
@@ -44,7 +68,7 @@ function signup()
 {
   document.getElementById('result').innerHTML = "Loading...";
   document.getElementById('signup_form').style.display="none";
-  var url = "http://localhost/oamk_bank/index.php/api/Bank/logins/";
+  var url = "http://www.students.oamk.fi/~t7haki01/oamk_bank/index.php/api/Bank/logins/";
   var xhttp = new XMLHttpRequest();
   xhttp.open('POST', url, true);
 
@@ -57,11 +81,11 @@ function signup()
       document.getElementById('result').style.display = "block";
       document.getElementById('result').innerHTML = "You have signed up successfully";
       document.getElementById('registration_form').style.display="none";
-      document.getElementById('submit_btn').disabled= true;
-      document.getElementById('submit_btn').style.display= "none";
+      document.getElementById('signup_btn').disabled= true;
+      document.getElementById('signup_btn').style.display= "none";
       setTimeout(function()
       {
-        window.location.replace("http://localhost/oamk_bank");
+        window.location.replace("http://www.students.oamk.fi/~t7haki01/oamk_bank");
       }, 10000);
     }
     else
@@ -77,7 +101,7 @@ function signup()
 function email_check()
 {
   document.getElementById('email_check').innerHTML = " ";
-  var url = "http://localhost/oamk_bank/index.php/api/Bank/users/";
+  var url = "http://www.students.oamk.fi/~t7haki01/oamk_bank/index.php/api/Bank/users/";
   var jsonData='';
   var email = document.getElementById('email').value;
   var xhttp = new XMLHttpRequest();
@@ -94,12 +118,30 @@ function email_check()
       }
       if(check_array.indexOf(email)==-1)
       {
-        document.getElementById('email_check').innerHTML = "Email valid";
-        document.getElementById('email').style.borderColor ="Green";
-        document.getElementById('email_check').style.color = "Green";
+          document.getElementById('email_check').innerHTML = "Email valid";
+          document.getElementById('email').style.borderColor ="Green";
+          document.getElementById('email_check').style.color = "Green";
+          email_check_boolean = true;
+          if(id_check_boolean == true && email_check_boolean == true )
+          {
+            document.getElementById('signup_btn').disabled = false;
+          }
+          else
+          {
+            document.getElementById('signup_btn').disabled = true;
+          }
       }
       else
       {
+        email_check_boolean = false;
+        if(id_check_boolean == true && email_check_boolean == true )
+        {
+          document.getElementById('signup_btn').disabled = false;
+        }
+        else
+        {
+          document.getElementById('signup_btn').disabled = true;
+        }
         document.getElementById('email_check').innerHTML = "Email already taken";
         document.getElementById('email').style.borderColor ="red";
         document.getElementById('email_check').style.color = "red";

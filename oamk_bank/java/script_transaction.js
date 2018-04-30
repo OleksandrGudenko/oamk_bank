@@ -5,7 +5,7 @@ function paymentbtn1(){
   paymentoptionbtn1.setAttribute('type', 'button');
   paymentoptionbtn1.setAttribute('value', 'Own Transfer');
   paymentoptionbtn1.setAttribute('id', 'payoptbtn1');
-  paymentoptionbtn1.setAttribute('onclick', 'transferTrigger()');
+  paymentoptionbtn1.setAttribute('onclick', 'transferTrigger(); onchangeValue()');
   document.getElementById('container').appendChild(paymentoptionbtn1);
 }
 
@@ -29,18 +29,23 @@ function trasferformFunction(){
   var id_for_own_trans = document.getElementById('user_id_from_login').value;
   ///From here for getting account with RESTAPI request
   document.getElementById('formdiv2').innerHTML = " ";
-  var url = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid";
+  var url = "http://www.students.oamk.fi/~t7haki01/oamk_bank/index.php/api/Bank/accounts/accountid";
   var jsonData='';
   var xhttp = new XMLHttpRequest();
   xhttp.open('GET', url, true);
 
-  document.getElementById('loading').inner="Loading...";
-  document.getElementById('loading').style.display="block";
 xhttp.onreadystatechange=function()
 {
 if(xhttp.readyState==4 && xhttp.status==200)
 {
   jsonData = JSON.parse(xhttp.responseText);
+
+  createListFunction(2);
+  var id_own = document.createElement("input");
+  id_own.setAttribute('name', 'user_id');
+  id_own.setAttribute('style', 'display:none');
+  id_own.setAttribute('value', id_for_own_trans);
+  document.getElementById('formdiv2').appendChild(id_own);
 
   var label_send = document.createElement("label");
   var send_from = document.createTextNode("From  ");
@@ -49,18 +54,27 @@ if(xhttp.readyState==4 && xhttp.status==200)
 
   var sender = document.createElement("select");
   sender.setAttribute('id', 'sender_transfer');
+  sender.setAttribute('onchange', 'onchangeValue()');
   document.getElementById('formdiv2').appendChild(sender);
   for(x in jsonData)
   {
     if(jsonData[x].user_id == id_for_own_trans)
     {
-    var option_sender = document.createElement("option");
-    option_sender.value = jsonData[x].Balance;
-    option_sender.setAttribute('id', jsonData[x].account_id);
-    option_sender.text = jsonData[x].account_id;
-    sender.appendChild(option_sender);
+      var option_sender = document.createElement("option");
+      option_sender.value = jsonData[x].account_id;
+      option_sender.setAttribute('id', jsonData[x].account_id);
+      option_sender.text = jsonData[x].account_id;
+      sender.appendChild(option_sender);
     }
   }
+
+  createListFunction(2);
+  var sender_own = document.createElement("input");
+  sender_own.setAttribute('type', 'text');
+  sender_own.setAttribute('id', 'sender_own');
+  sender_own.setAttribute('style', 'display:none');
+  sender_own.setAttribute('name', 'sender');
+  document.getElementById('formdiv2').appendChild(sender_own);
 
   createListFunction(2);
   var label_recieve = document.createElement("label");
@@ -70,39 +84,55 @@ if(xhttp.readyState==4 && xhttp.status==200)
 
   var reciever = document.createElement("select");
   reciever.setAttribute('id', 'reciever_transfer');
+  reciever.setAttribute('onchange', 'onchangeValue()');
   document.getElementById('formdiv2').appendChild(reciever);
 
   for(x in jsonData)
   {
     if(jsonData[x].user_id == id_for_own_trans)
     {
-    var option_reciever = document.createElement("option");
-    option_reciever.value = jsonData[x].Balance;
-    option_reciever.setAttribute('id', jsonData[x].account_id);
-    option_reciever.text = jsonData[x].account_id;
-    option_sender.selected = true;
-    reciever.appendChild(option_reciever);
+      var option_reciever = document.createElement("option");
+      option_reciever.value = jsonData[x].account_id;
+      option_reciever.setAttribute('id', jsonData[x].account_id);
+      option_reciever.text = jsonData[x].account_id;
+      option_sender.selected = true;
+      reciever.appendChild(option_reciever);
     }
   }
 
   createListFunction(2);
+  var receiver_own = document.createElement("input");
+  receiver_own.setAttribute('type', 'text');
+  receiver_own.setAttribute('id', 'receiver_own');
+  receiver_own.setAttribute('style', 'display:none');
+  receiver_own.setAttribute('name', 'receiver');
+  document.getElementById('formdiv2').appendChild(receiver_own);
 
+  createListFunction(2);
   var amount = document.createElement("input");
   amount.setAttribute('type', 'number');
   amount.setAttribute('id', 'amount_transfer');
+  amount.setAttribute('name', 'amount');
+  amount.setAttribute('min', 0);
   amount.setAttribute('placeholder', 'amount to transfer');
   document.getElementById('formdiv2').appendChild(amount);
+
+  createListFunction(2);
+  var reference = document.createElement("input");
+  reference.setAttribute('type', 'text');
+  reference.setAttribute('id', 'reference_own');
+  reference.setAttribute('name', 'reference');
+  reference.setAttribute('value', 'Own Sending');
+  reference.setAttribute('style', 'display:none');
+  document.getElementById('formdiv2').appendChild(reference);
 
   createListFunction(2);
   var  sendbtn = document.createElement('input');
   sendbtn.setAttribute('id', 'sendbtn');
   sendbtn.setAttribute('type', 'button');
   sendbtn.setAttribute('value', 'send');
-  sendbtn.setAttribute('onclick', 'send_money_own()');
+  sendbtn.setAttribute('onclick', 'send_money_own(); ownsendingSubmit()');
   document.getElementById('formdiv2').appendChild(sendbtn);
-
-  document.getElementById('loading').inner=" ";
-  document.getElementById('loading').style.display="none";
 
 }
 };
@@ -111,17 +141,16 @@ xhttp.send();
 
 function send_money_own()
 {
+  document.getElementById('loading').style.display="block";
   document.getElementById('loading').innerHTML = "loading...";
-  // document.getElementById('formdiv').style.display = "none";
-  // document.getElementById('formdiv2').style.display = "none";
-  var sender_account = document.getElementById('sender_transfer').id;
-  var reciever_account = document.getElementById('reciever_transfer').id;
+  document.getElementById('formdiv2').style.display = "none";
+  var sender_account = document.getElementById('sender_transfer').value;
+  var reciever_account = document.getElementById('reciever_transfer').value;
   var amount = document.getElementById('amount_transfer').value;
-
+  var json_sender = '';
   var xhttp = new XMLHttpRequest();
 
-  var url_sender = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/";
-
+  var url_sender = "http://www.students.oamk.fi/~t7haki01/oamk_bank/index.php/api/Bank/accounts/accountid/" + sender_account;
 
   xhttp.onreadystatechange=function()
   {
@@ -136,13 +165,13 @@ function send_money_own()
 
       if(amount <= money_limit)
       {
-        transaction_sender(sender_balance_before);
+        transaction_sender(sender_account, sender_balance_before);
 
         other_transaction(reciever_account);
       }
       else
       {
-        document.getElementById('formdiv').innerHTML = "Money is not enough from the account that you are trying to send.";
+        document.getElementById('loading').innerHTML = "Money is not enough from the account that you are trying to send.";
       }
     }
   };
@@ -150,18 +179,18 @@ function send_money_own()
   xhttp.send();
 }
 
-function transaction_sender(variable)
+function transaction_sender(account, balance)
 {
   //from here put sender's account
-    var sender_balance_before = document.getElementById('sender_transfer')[document.getElementById('sender_transfer').selectedIndex].value;
+    var sender_balance_before = balance;
     var xhttp = new XMLHttpRequest();
-    var url_sender = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/";
+    var url_sender = "http://www.students.oamk.fi/~t7haki01/oamk_bank/index.php/api/Bank/accounts/accountid/";
     var money = document.getElementById('amount_transfer').value;
 
     var sender_account_after = parseFloat(sender_balance_before) - parseFloat(money) ;
     sender_account_after.toFixed(2);
     var data_sender = {} ;
-    data_sender.account_id = document.getElementById('sender_transfer')[document.getElementById('sender_transfer').selectedIndex].id;
+    data_sender.account_id = account;
     data_sender.Balance= Number(sender_account_after);
     var jsonData1 = JSON.stringify(data_sender);
 
@@ -170,19 +199,16 @@ function transaction_sender(variable)
     {
       if(xhttp.readyState==4 && xhttp.status==201)
       {
-        document.getElementById('formdiv').style.display = "block";
-        document.getElementById('formdiv').innerHTML = 'Transaction went succesfully';
-        document.getElementById('formdiv').style.color = 'green';
-        document.getElementById('formdiv').style.fontSize = '3vw';
+        document.getElementById('loading').innerHTML = 'Transaction went succesfully';
+        document.getElementById('loading').style.color = 'green';
+        document.getElementById('loading').style.fontSize = '3vw';
         reload_yes = 1;
-
       }
       else
       {
-        document.getElementById('formdiv').style.display = "block";
-        document.getElementById('formdiv').innerHTML = "Something went wrong";
-        document.getElementById('formdiv').style.color = 'red';
-        document.getElementById('formdiv').style.fontSize = '3vw';
+        document.getElementById('loading').innerHTML = "Something went wrong";
+        document.getElementById('loading').style.color = 'red';
+        document.getElementById('loading').style.fontSize = '3vw';
       }
     };
     xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
@@ -198,40 +224,39 @@ function transaction_sender(variable)
 }
 
 
-function other_transaction()
+function other_transaction(account)
 {
   //from here get reciever's balance
-  var account = document.getElementById('reciever_transfer')[document.getElementById('reciever_transfer').selectedIndex].id;
-  var url_recieve = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/" + account;
+  var url_recieve = "http://www.students.oamk.fi/~t7haki01/oamk_bank/index.php/api/Bank/accounts/accountid/" + account;
   var xhttp = new XMLHttpRequest();
   var json_recieve='';
   xhttp.onreadystatechange=function()
 {
   if(xhttp.readyState==4 && xhttp.status==200)
   {
-    var recieve_balance_before ;
     json_recieve = JSON.parse(xhttp.responseText);
-    recieve_balance_before = json_recieve[0].Balance;
-    recieve_transaction(recieve_balance_before);
+    var recieve_balance_before = json_recieve[0].Balance;
+    recieve_transaction(account, recieve_balance_before);
   }
 };
 xhttp.open('GET', url_recieve, true);
 xhttp.send();
 }
 
-function recieve_transaction(variable)
+function recieve_transaction(account, balance)
 {
   //from here put reciever's balance
-  var recieve_balance_before = variable;
+//even though unnecessary part but variable defining is performed for making flow understandable to other partners
+  var recieve_balance_before = balance;
 
   var money = document.getElementById('amount_transfer').value;
   var xhttp = new XMLHttpRequest();
-  var url = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/";
+  var url = "http://www.students.oamk.fi/~t7haki01/oamk_bank/index.php/api/Bank/accounts/accountid/";
 
   var reciever_account_after = parseFloat(recieve_balance_before) + parseFloat(money) ;
 
   var data = {} ;
-  data.account_id = document.getElementById('reciever_transfer')[document.getElementById('reciever_transfer').selectedIndex].id;
+  data.account_id = account;
   data.Balance = reciever_account_after.toFixed(2);
   var jsonData = JSON.stringify(data);
 
@@ -240,18 +265,16 @@ function recieve_transaction(variable)
   {
     if(xhttp.readyState==4 && xhttp.status==201)
     {
-      document.getElementById('formdiv').style.display = "block";
-      document.getElementById('formdiv').innerHTML = 'Transaction went succesfully';
-      document.getElementById('formdiv').style.color = 'green';
-      document.getElementById('formdiv').style.fontSize = '3vw';
+      document.getElementById('loading').innerHTML = 'Transaction went succesfully';
+      document.getElementById('loading').style.color = 'green';
+      document.getElementById('loading').style.fontSize = '3vw';
       reload_yes = 1;
    }
     else
     {
-      document.getElementById('formdiv').style.display = "block";
-      document.getElementById('formdiv').innerHTML = "Something went wrong";
-      document.getElementById('formdiv').style.color = 'red';
-      document.getElementById('formdiv').style.fontSize = '3vw';
+      document.getElementById('loading').innerHTML = "Something went wrong";
+      document.getElementById('loading').style.color = 'red';
+      document.getElementById('loading').style.fontSize = '3vw';
     }
   };
 

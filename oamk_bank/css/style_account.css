@@ -79,7 +79,7 @@ textarea#body:focus
     z-index: 1;
 }
 
-#li_button, #li_button1 {
+#li_button, #li_button1, #li_button2 {
     color: white;
     background-color: #F2882F;
     border: none;
@@ -90,13 +90,13 @@ textarea#body:focus
 
 
 
-#li_button:hover, #li_button1:hover {
+#li_button:hover, #li_button1:hover, #li_button2:hover {
     background-color: white;
     color: #F2882F;
     border: 1px solid #F2882F;
 }
 
-#li_button:focus, #li_button1:focus {
+#li_button:focus, #li_button1:focus ,#li_button2:focus {
     outline: none;
 }
 
@@ -300,6 +300,43 @@ input:focus {
     padding-bottom: 2%;
 }
 
+#trans_history{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #F2882F;
+}
+
+#thead_history{
+    text-align: center;
+    border-bottom: 1px solid #F2882F;
+    color: #F2882F;
+}
+
+#new_cell {
+    text-align: center;
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px white; 
+    border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #F2882F; 
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #F2882F; 
+}
 input.input_for_edit
 {
     width: 8vw;
