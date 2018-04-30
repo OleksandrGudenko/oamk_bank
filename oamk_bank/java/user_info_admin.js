@@ -45,7 +45,7 @@ function delete_user(user_id)
 {
   document.getElementById('result_in_admin').innerHTML = "Deleting...";
   document.getElementById('user_info').style.display ="none";
-  var url = 'http://localhost/oamk_bank/index.php/api/Bank/users/id/' + user_id;
+  var url = 'http://localhost/oamk_bank/index.php/api/bank/users/id/' + user_id;
   var xhttp = new XMLHttpRequest();
   xhttp.open('DELETE', url, true);
   xhttp.onreadystatechange = function()
@@ -86,7 +86,7 @@ function edit_an_user(user_id)
 document.getElementById('result_in_admin').style.display = "block";
 document.getElementById('result_in_admin').innerHTML = "Editing";
 
-var url = "http://localhost/oamk_bank/index.php/api/Bank/users/id/" + user_id;
+var url = "http://localhost/oamk_bank/index.php/api/bank/users/id/" + user_id;
 var xhttp = new XMLHttpRequest();
 xhttp.open('PUT', url, true);
 var data = {} ;
