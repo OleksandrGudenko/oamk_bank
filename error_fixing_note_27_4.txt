@@ -1,0 +1,14 @@
+Sign up / fixed as submit type
+added "required" for every input
+got rid of checkbox onclick(not exist)
+
+css, openAcct for checkbox layout little bit margin widden
+
+Open account / username, lastname, firstname => pattern is added for accepting letter or number
+
+postalcode / input min=0, max=99999 limit the 5 digit
+
+email = type and pattern is added
+
+signup button disabled is added for making sure check the email and username
+

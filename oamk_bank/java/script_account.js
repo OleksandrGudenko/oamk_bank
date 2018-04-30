@@ -43,7 +43,7 @@ function account_own()
   document.getElementById('formdiv0').style.display = 'none';
   document.getElementById('formdiv1').innerHTML = ' ';
   var id_for_own_acc = document.getElementById('user_id_from_login').value;
-  var url = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/";
+  var url = "http://localhost/oamk_bank/index.php/api/Bank/accounts/accountid/";
   var xhttp = new XMLHttpRequest();
   var jsonData ='';
      xhttp.open('GET', url, true);
@@ -194,7 +194,6 @@ function get_trans_history(){
         tr.appendChild(amount_td);
         tr.appendChild(reference_td);
         document.getElementById('trans_history').insertBefore(tr,document.getElementById('trans_history').childNodes[0]);
-      
 
         document.getElementById('formdiv0').style.display = 'none';
         document.getElementById('formdiv1').style.display = 'block';
@@ -210,7 +209,7 @@ function get_loan(){
   document.getElementById('formdiv1').innerHTML = ' ';
   document.getElementById('li_button1').disabled = true;
   var user_accounts = document.getElementById('user_id_from_login').value;
-  var url = "http://localhost/oamk_bank/index.php/api/bank/loans/loan";
+  var url = "http://localhost/oamk_bank/index.php/api/Bank/loans/loan";
   var jsonData='';
   var xhttp = new XMLHttpRequest();
   xhttp.open('GET', url, true);

@@ -44,7 +44,7 @@ function editCredFunction(){
 
   //from here about information
   var id_for_edit = document.getElementById('user_id_from_login').value;
-  var url = "http://localhost/oamk_bank/index.php/api/bank/users/id/" + id_for_edit;
+  var url = "http://localhost/oamk_bank/index.php/api/Bank/users/id/" + id_for_edit;
   var xhttp = new XMLHttpRequest();
   var json='';
   xhttp.open('GET', url, true);
@@ -174,7 +174,7 @@ function save_own_info()
   document.getElementById('loading').innerHTML = "Loading...";
   document.getElementById('formdiv7').style.display = "none";
 
-var url = "http://localhost/oamk_bank/index.php/api/bank/users/id/" + id_for_edit;
+var url = "http://localhost/oamk_bank/index.php/api/Bank/users/id/" + id_for_edit;
 var xhttp = new XMLHttpRequest();
 xhttp.open('PUT', url, true);
 var data = {} ;

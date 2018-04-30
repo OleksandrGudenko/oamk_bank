@@ -656,8 +656,8 @@ body {
 
 #registration_form {
   border-radius: 25px;
-  margin-left: 30%;
-  margin-right: 30%;
+  margin-left: 29.5%;
+  margin-right: 29.5%;
   background: #f2882f;
 }
 
@@ -673,4 +673,9 @@ body {
   color:#155724;
   background-color:#d4edda;
   border-color:#c3e6cb
+}
+
+#signup_btn:disabled
+{
+  background-color: gray;
 }

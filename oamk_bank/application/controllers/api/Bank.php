@@ -24,6 +24,9 @@ class Bank extends REST_Controller {
         // Construct the parent class
         parent::__construct();
 
+	header("Access-Control-Allow_Origin: *");
+	header("Access-Control-Allow_Methods: GET, POST; DELETE, PUT");
+
         // Configure limits on our controller methods
         // Ensure you have created the 'limits' table and enabled 'limits' within application/config/rest.php
         $this->methods['users_get']['limit'] = 500; // 500 requests per hour per user/key

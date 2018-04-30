@@ -151,10 +151,10 @@ function check_account()
  {
    var loading_msg = document.getElementById('result') ;
    document.getElementById('result').style.display = "block";
-
+   document.getElementById('result').innerHTML = "Generating an account..." ;
    document.getElementById('formdiv8').style.display="none";
 
-   var url = "http://localhost/oamk_bank/index.php/api/bank/accounts/";
+   var url = "http://localhost/oamk_bank/index.php/api/Bank/accounts/";
 
    var xhttp = new XMLHttpRequest();
    xhttp.open('GET', url, true);
@@ -173,7 +173,6 @@ function check_account()
         // var first_2_number = Math.random() * ( 10 - 0 + 1 ) + 0 ;
         // var first_2_number_floor = Math.floor(first_2_number) ;
         // account_generated = account_generated + first_2_number_floor;
-
 
         var first_2_number = Math.random() * ( 99 - 10 + 1 ) + 10 ;
         var first_2_number_floor = Math.floor(first_2_number) ;
@@ -204,6 +203,7 @@ function check_account()
 
           check_account();
           loop_counter ++;
+//if account_id is occupied all, it will search until 25 times of loop, it takes around 30 seconds
           if(loop_counter == 25)
           {
             document.getElementById('result').innerHTML = "Unexpected error happened, Please contact the bank";
@@ -224,10 +224,11 @@ function check_account()
 
  function account_generate(account_generated)
  {
-   var url = "http://localhost/oamk_bank/index.php/api/bank/accounts/";
+   var url = "http://localhost/oamk_bank/index.php/api/Bank/accounts/";
    var xhttp = new XMLHttpRequest();
    xhttp.open('POST', url, true);
 
+   document.getElementById('result').innerHTML = "Opening an account..." ;
    document.getElementById('user_id_for_form_value').value = user_id_global;
    document.getElementById('account_id_for_form_value').value = account_generated;
 

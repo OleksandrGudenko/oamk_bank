@@ -8,7 +8,7 @@
 
   //from here for sender account with drop down
 
-  var url = "http://localhost/oamk_bank/index.php/api/bank/loans/loan";
+  var url = "http://localhost/oamk_bank/index.php/api/Bank/loans/loan";
   var jsonData='';
   var xhttp = new XMLHttpRequest();
   xhttp.open('GET', url, true);
@@ -132,7 +132,7 @@
 
 function paybackformFunction2(){
 
-  var url = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid";
+  var url = "http://localhost/oamk_bank/index.php/api/Bank/accounts/accountid";
   var jsonData='';
   var xhttp = new XMLHttpRequest();
   xhttp.open('GET', url, true);
@@ -204,7 +204,7 @@ function payback_money(){
 
   var account = document.getElementById('account_payback').value;
 
-  var url_account = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/" +account;
+  var url_account = "http://localhost/oamk_bank/index.php/api/Bank/accounts/accountid/" +account;
 
   var xhttp = new XMLHttpRequest();
   xhttp.open('PUT', url_account, true)
@@ -283,7 +283,7 @@ var account = document.getElementById('account_payback').value;
 var user = document.getElementById('user_id_payback').value;
 var loanid = document.getElementById('loan_id_payback').value;
 
-var url_account = "http://localhost/oamk_bank/index.php/api/bank/loans/loan/" +loanid;
+var url_account = "http://localhost/oamk_bank/index.php/api/Bank/loans/loan/" +loanid;
 
 var xhttp = new XMLHttpRequest();
 xhttp.open('PUT', url_account, true)
@@ -346,7 +346,7 @@ console.log(jsonData);
 
 function delete_loan(){
   var delete_loan_id  = document.getElementById('loan_id_payback').value;
-  var url = "http://localhost/oamk_bank/index.php/api/bank/loans/loan_id/" + delete_loan_id;
+  var url = "http://localhost/oamk_bank/index.php/api/Bank/loans/loan_id/" + delete_loan_id;
   var xhttp = new XMLHttpRequest();
   xhttp.open('DELETE', url,true)
 

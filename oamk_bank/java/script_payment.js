@@ -12,17 +12,17 @@ function payment_show()
 
     document.getElementById('contact_btn').style.color = 'white';
     document.getElementById('contact_btn').style.backgroundColor = '#F2882F';
-    
-    
+
+
     document.getElementById('edit_btn').style.color = 'white';
     document.getElementById('edit_btn').style.backgroundColor = '#F2882F';
-    
+
     document.getElementById('loan_btn').style.color = 'white';
     document.getElementById('loan_btn').style.backgroundColor = '#F2882F';
-    
+
     document.getElementById('pay_btn').style.color = '#F2882F';
     document.getElementById('pay_btn').style.backgroundColor = 'white';
-    
+
     document.getElementById('accounts_btn').style.color = 'white';
     document.getElementById('accounts_btn').style.backgroundColor = '#F2882F';
   }
@@ -30,7 +30,7 @@ function payment_show()
 
   document.getElementById('container').style.display = 'flex';
   document.getElementById('container1').style.display = 'none';
-  
+
   var paymentsection = "<h2>Payments</h2>";
   document.getElementById("pagetitle").innerHTML = paymentsection;
 
@@ -81,10 +81,8 @@ function paymentformFunction(){
 document.getElementById('formdiv3').innerHTML = " ";
 //from here for sender account with drop down
 
-document.getElementById('loading').inner="Loading...";
-document.getElementById('loading').style.display="block";
 var id_for_payment = document.getElementById('user_id_from_login').value;
-var url = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid";
+var url = "http://localhost/oamk_bank/index.php/api/Bank/accounts/accountid";
 var jsonData='';
 var xhttp = new XMLHttpRequest();
 xhttp.open('GET', url, true);
@@ -116,7 +114,7 @@ xhttp.onreadystatechange=function()
       if(jsonData[x].user_id == id_for_payment)
       {
       var option_sender = document.createElement("option");
-      option_sender.value = jsonData[x].Balance;
+      option_sender.value = jsonData[x].account_id;
       option_sender.setAttribute('id', jsonData[x].account_id);
       option_sender.text = jsonData[x].account_id;
       sender.appendChild(option_sender);
@@ -144,6 +142,7 @@ xhttp.onreadystatechange=function()
     amount.setAttribute('type', 'number');
     amount.setAttribute('id', 'amount_payment');
     amount.setAttribute('name', 'amount');
+    amount.setAttribute('min', 0);
     amount.setAttribute('placeholder', 'amount to pay');
     document.getElementById('formdiv3').appendChild(amount);
     
@@ -155,18 +154,20 @@ xhttp.onreadystatechange=function()
     document.getElementById('formdiv3').appendChild(reference);
 
 
+    createListFunction(3);
+    var reference = document.createElement("input");
+    reference.setAttribute('type', 'text');
+    reference.setAttribute('placeholder','Reference Number/ Message')
+    reference.setAttribute('name', 'reference');
+    document.getElementById('formdiv3').appendChild(reference);
 
     createListFunction(3);
     var sendbtn = document.createElement('input');
     sendbtn.setAttribute('type', 'button');
     sendbtn.setAttribute('id', 'sendbtn');
     sendbtn.setAttribute('value', 'send');
-    sendbtn.setAttribute('onclick', 'payment_money()');
+    sendbtn.setAttribute('onclick', 'payment_money(); othersendingSubmit()');
     document.getElementById('formdiv3').appendChild(sendbtn);
-
-    document.getElementById('loading').inner=" ";
-    document.getElementById('loading').style.display="none";
-
   }
 
 };
@@ -175,15 +176,16 @@ xhttp.send();
 
 function payment_money()
 {
-  document.getElementById('loading').innerHTML = "loading...";
-  var sender_account = document.getElementById('sender_payment').id;
-  var reciever_account = document.getElementById('reciever_payment').id;
+  document.getElementById('formdiv3').style.display = "none";
+  var sender_account = document.getElementById('sender_payment').value;
+  var reciever_account = document.getElementById('reciever_payment').value;
   var amount = document.getElementById('amount_payment').value;
 
   var xhttp = new XMLHttpRequest();
 
-  var url_sender = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/";
+  var url_sender = "http://localhost/oamk_bank/index.php/api/Bank/accounts/accountid/" + sender_account;
 
+  var json_sender = '';
 
   xhttp.onreadystatechange=function()
   {
@@ -198,7 +200,7 @@ function payment_money()
 
       if(amount <= money_limit)
       {
-        payment_sender(sender_balance_before);
+        payment_sender(sender_account, sender_balance_before);
         othersendingSubmit();
         other_payment(reciever_account);
       }
@@ -215,18 +217,18 @@ function payment_money()
   xhttp.send();
 }
 
-function payment_sender(variable)
+function payment_sender(account, balance)
 {
   //from here put sender's account
-    var sender_balance_before = document.getElementById('sender_payment')[document.getElementById('sender_payment').selectedIndex].value;
+    var sender_balance_before = balance;
     var xhttp = new XMLHttpRequest();
-    var url_sender = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/";
+    var url_sender = "http://localhost/oamk_bank/index.php/api/Bank/accounts/accountid/";
     var money = document.getElementById('amount_payment').value;
 
     var sender_account_after = parseFloat(sender_balance_before) - parseFloat(money) ;
     sender_account_after.toFixed(2);
     var data_sender = {} ;
-    data_sender.account_id = document.getElementById('sender_payment')[document.getElementById('sender_payment').selectedIndex].id;
+    data_sender.account_id = account;
     data_sender.Balance= Number(sender_account_after);
     var jsonData1 = JSON.stringify(data_sender);
 
@@ -235,7 +237,6 @@ function payment_sender(variable)
     {
       if(xhttp.readyState==4 && xhttp.status==201)
       {
-        document.getElementById('formdiv').style.display = "block";
         document.getElementById('formdiv').innerHTML = "Transaction went succesfully";
         document.getElementById('formdiv').style.color = 'green';
         document.getElementById('formdiv').style.fontSize = '3vw';;
@@ -243,10 +244,10 @@ function payment_sender(variable)
       }
       else
       {
-        document.getElementById('formdiv').style.display = "block";
         document.getElementById('formdiv').innerHTML = "Something went wrong";
         document.getElementById('formdiv').style.color = 'red';
         document.getElementById('formdiv').style.fontSize = '3vw';;
+        document.getElementById('formdiv3').style.display = "block";
       }
     };
     xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
@@ -262,11 +263,10 @@ function payment_sender(variable)
 }
 
 
-function other_payment()
+function other_payment(account)
 {
   //from here get reciever's balance
-  var account = document.getElementById('reciever_payment').value;
-  var url_recieve = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/" + account;
+  var url_recieve = "http://localhost/oamk_bank/index.php/api/Bank/accounts/accountid/" + account;
   var xhttp = new XMLHttpRequest();
   var json_recieve='';
   xhttp.onreadystatechange=function()
@@ -276,7 +276,7 @@ function other_payment()
     var recieve_balance_before ;
     json_recieve = JSON.parse(xhttp.responseText);
     recieve_balance_before = json_recieve[0].Balance;
-    recieve_payment(recieve_balance_before);
+    recieve_payment(account, recieve_balance_before);
   }
 };
 xhttp.open('GET', url_recieve, true);
@@ -284,19 +284,19 @@ xhttp.send();
 
 }
 
-function recieve_payment(variable)
+function recieve_payment(account, balance)
 {
   //from here put reciever's balance
-  var recieve_balance_before = variable;
+  var recieve_balance_before = balance;
 
   var money = document.getElementById('amount_payment').value;
   var xhttp = new XMLHttpRequest();
-  var url = "http://localhost/oamk_bank/index.php/api/bank/accounts/accountid/";
+  var url = "http://localhost/oamk_bank/index.php/api/Bank/accounts/accountid/";
 
   var reciever_account_after = parseFloat(recieve_balance_before) + parseFloat(money) ;
 
   var data = {} ;
-  data.account_id = document.getElementById('reciever_payment').value;
+  data.account_id = account;
   data.Balance = reciever_account_after.toFixed(2);
   var jsonData = JSON.stringify(data);
 
@@ -305,7 +305,6 @@ function recieve_payment(variable)
   {
     if(xhttp.readyState==4 && xhttp.status==201)
     {
-      document.getElementById('formdiv').style.display = "block";
       document.getElementById('formdiv').innerHTML = "Transaction went succesfully"
       document.getElementById('formdiv').style.color = 'green';
       document.getElementById('formdiv').style.fontSize = '3vw';
@@ -313,10 +312,10 @@ function recieve_payment(variable)
     }
     else
     {
-      document.getElementById('formdiv').style.display = "block";
       document.getElementById('formdiv').innerHTML = "Something went wrong";
       document.getElementById('formdiv').style.color = 'red';
       document.getElementById('formdiv').style.fontSize = '3vw';
+      document.getElementById('formdiv3').style.display ="block";
     }
   };
 
