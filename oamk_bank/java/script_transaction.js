@@ -133,7 +133,7 @@ if(xhttp.readyState==4 && xhttp.status==200)
   sendbtn.setAttribute('id', 'sendbtn');
   sendbtn.setAttribute('type', 'button');
   sendbtn.setAttribute('value', 'send');
-  sendbtn.setAttribute('onclick', 'send_money_own(); ownsendingSubmit()');
+  sendbtn.setAttribute('onclick', 'send_money_own()');
   document.getElementById('formdiv2').appendChild(sendbtn);
 
   document.getElementById('loading').inner=" ";
@@ -147,8 +147,6 @@ xhttp.send();
 function send_money_own()
 {
   document.getElementById('loading').innerHTML = "loading...";
-  // document.getElementById('formdiv').style.display = "none";
-  // document.getElementById('formdiv2').style.display = "none";
   var sender_account = document.getElementById('sender_transfer').id;
   var reciever_account = document.getElementById('reciever_transfer').id;
   var amount = document.getElementById('amount_transfer').value;
@@ -172,12 +170,15 @@ function send_money_own()
       if(amount <= money_limit)
       {
         transaction_sender(sender_balance_before);
-
+        ownsendingSubmit();
         other_transaction(reciever_account);
       }
       else
       {
-        document.getElementById('formdiv').innerHTML = "Money is not enough from the account that you are trying to send.";
+        document.getElementById('formdiv').style.display = 'block';
+        document.getElementById('formdiv').style.color = 'red';
+        document.getElementById('formdiv').style.fontSize = '3vw';
+        document.getElementById('formdiv').innerHTML = "Not enough money on the account.";
       }
     }
   };

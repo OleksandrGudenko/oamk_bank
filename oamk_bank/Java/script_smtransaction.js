@@ -4,6 +4,7 @@ function ownsendingSubmit(){
     xhttp.open('POST', url, true);
     var form = document.getElementById('ownsending_form');
     var formData = new FormData(form);
+
     xhttp.onreadystatechange = function() {
     };
     xhttp.send(formData);  
@@ -16,7 +17,7 @@ function othersendingSubmit(){
     xhttp.open('POST', url, true);
     var form = document.getElementById('othersending_form');
     var formData = new FormData(form);
-    xhttp.onreadystatechange = function() {
+    xhttp.onreadystatechange = function() {   
     };
     xhttp.send(formData);  
 }

@@ -8,6 +8,7 @@ function contact_show()
   {
     var name_div = "formdiv" ;
     document.getElementById(name_div + i).style.display="none";
+    document.getElementById(name_div).style.display = 'none';
 
     document.getElementById('contact_btn').style.color = '#F2882F';
     document.getElementById('contact_btn').style.backgroundColor = 'white';

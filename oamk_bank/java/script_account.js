@@ -10,6 +10,7 @@ function show_accounts()
   {
     var name_div = "formdiv" ;
     document.getElementById(name_div + i).style.display="none";
+    document.getElementById(name_div).style.display = 'none';
 
     document.getElementById('contact_btn').style.color = 'white';
     document.getElementById('contact_btn').style.backgroundColor = '#F2882F';

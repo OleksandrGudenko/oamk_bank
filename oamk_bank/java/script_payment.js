@@ -7,6 +7,8 @@ function payment_show()
   {
     var name_div = "formdiv" ;
     document.getElementById(name_div + i).style.display="none";
+    document.getElementById(name_div).style.display = 'none';
+
 
     document.getElementById('contact_btn').style.color = 'white';
     document.getElementById('contact_btn').style.backgroundColor = '#F2882F';
@@ -159,7 +161,7 @@ xhttp.onreadystatechange=function()
     sendbtn.setAttribute('type', 'button');
     sendbtn.setAttribute('id', 'sendbtn');
     sendbtn.setAttribute('value', 'send');
-    sendbtn.setAttribute('onclick', 'payment_money(); othersendingSubmit()');
+    sendbtn.setAttribute('onclick', 'payment_money()');
     document.getElementById('formdiv3').appendChild(sendbtn);
 
     document.getElementById('loading').inner=" ";
@@ -174,9 +176,9 @@ xhttp.send();
 function payment_money()
 {
   document.getElementById('loading').innerHTML = "loading...";
-  var sender_account = document.getElementById('sender_transfer').id;
-  var reciever_account = document.getElementById('reciever_transfer').id;
-  var amount = document.getElementById('amount_transfer').value;
+  var sender_account = document.getElementById('sender_payment').id;
+  var reciever_account = document.getElementById('reciever_payment').id;
+  var amount = document.getElementById('amount_payment').value;
 
   var xhttp = new XMLHttpRequest();
 
@@ -197,11 +199,12 @@ function payment_money()
       if(amount <= money_limit)
       {
         payment_sender(sender_balance_before);
-
+        othersendingSubmit();
         other_payment(reciever_account);
       }
       else
       {
+        document.getElementById('formdiv').style.display = 'block';
         document.getElementById('formdiv').innerHTML = "Not enough money on the account that you selected.";
         document.getElementById('formdiv').style.color = 'red';
         document.getElementById('formdiv').style.fontSize = '3vw';;
