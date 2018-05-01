@@ -1,5 +1,5 @@
 function ownsendingSubmit(){
-    var url = 'http://localhost/oamk_bank/index.php/api/Bank/transactions';
+    var url = 'http://www.oamkbank.com/oamk_bank/index.php/api/Bank/transactions';
     var xhttp = new XMLHttpRequest();
     xhttp.open('POST', url, true);
     var form = document.getElementById('ownsending_form');
@@ -12,7 +12,7 @@ function ownsendingSubmit(){
 }
 
 function othersendingSubmit(){
-    var url = 'http://localhost/oamk_bank/index.php/api/Bank/transactions';
+    var url = 'http://www.oamkbank.com/oamk_bank/index.php/api/Bank/transactions';
     var xhttp = new XMLHttpRequest();
     xhttp.open('POST', url, true);
     var form = document.getElementById('othersending_form');

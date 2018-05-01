@@ -5,7 +5,7 @@ function paymentbtn1(){
   paymentoptionbtn1.setAttribute('type', 'button');
   paymentoptionbtn1.setAttribute('value', 'Own Transfer');
   paymentoptionbtn1.setAttribute('id', 'payoptbtn1');
-  paymentoptionbtn1.setAttribute('onclick', 'transferTrigger(); onchangeValue()');
+  paymentoptionbtn1.setAttribute('onclick', ' hide_all_divs(); transferTrigger(); onchangeValue()');
   document.getElementById('container').appendChild(paymentoptionbtn1);
 }
 
@@ -29,7 +29,7 @@ function trasferformFunction(){
   var id_for_own_trans = document.getElementById('user_id_from_login').value;
   ///From here for getting account with RESTAPI request
   document.getElementById('formdiv2').innerHTML = " ";
-  var url = "http://www.oamkbank.com/oamk_bank/index.php/api/Bank/accounts/accountid";
+  var url = "http://localhost/oamk_bank/index.php/api/Bank/accounts/accountid";
   var jsonData='';
   var xhttp = new XMLHttpRequest();
   xhttp.open('GET', url, true);
@@ -69,11 +69,21 @@ if(xhttp.readyState==4 && xhttp.status==200)
     {
       var option_sender = document.createElement("option");
       option_sender.value = jsonData[x].account_id;
-      option_sender.setAttribute('id', jsonData[x].account_id);
+      option_sender.setAttribute('id', jsonData[x].Balance);
       option_sender.text = jsonData[x].account_id;
       sender.appendChild(option_sender);
     }
   }
+
+  
+  createListFunction(2);
+
+  var curr_balance = document.createElement('input');
+  curr_balance.setAttribute('type', 'text');
+  curr_balance.setAttribute('id', 'curr_balance');
+  curr_balance.setAttribute('readonly', 'readonly');
+  curr_balance.setAttribute('placeholder', 'selected account balance');
+  document.getElementById('formdiv2').appendChild(curr_balance);
 
   createListFunction(2);
   var sender_own = document.createElement("input");
@@ -107,6 +117,7 @@ if(xhttp.readyState==4 && xhttp.status==200)
     }
   }
 
+  
   createListFunction(2);
   var receiver_own = document.createElement("input");
   receiver_own.setAttribute('type', 'text');
@@ -116,11 +127,13 @@ if(xhttp.readyState==4 && xhttp.status==200)
   document.getElementById('formdiv2').appendChild(receiver_own);
 
   createListFunction(2);
+
   var amount = document.createElement("input");
   amount.setAttribute('type', 'number');
   amount.setAttribute('id', 'amount_transfer');
   amount.setAttribute('name', 'amount');
   amount.setAttribute('min', 0);
+  amount.setAttribute('step', 0.01);
   amount.setAttribute('placeholder', 'amount to transfer');
   document.getElementById('formdiv2').appendChild(amount);
 
@@ -136,9 +149,8 @@ if(xhttp.readyState==4 && xhttp.status==200)
   createListFunction(2);
   var  sendbtn = document.createElement('input');
   sendbtn.setAttribute('id', 'sendbtn');
-  sendbtn.setAttribute('type', 'button');
+  sendbtn.setAttribute('type', 'submit');
   sendbtn.setAttribute('value', 'send');
-  sendbtn.setAttribute('onclick', 'send_money_own(); ownsendingSubmit()');
   document.getElementById('formdiv2').appendChild(sendbtn);
 
 }
@@ -155,7 +167,7 @@ function send_money_own()
   var json_sender = '';
   var xhttp = new XMLHttpRequest();
 
-  var url_sender = "http://www.oamkbank.com/oamk_bank/index.php/api/Bank/accounts/accountid/" + sender_account;
+  var url_sender = "http://localhost/oamk_bank/index.php/api/Bank/accounts/accountid/" + sender_account;
 
   xhttp.onreadystatechange=function()
   {
@@ -192,7 +204,7 @@ function transaction_sender(account, balance)
   //from here put sender's account
     var sender_balance_before = balance;
     var xhttp = new XMLHttpRequest();
-    var url_sender = "http://www.oamkbank.com/oamk_bank/index.php/api/Bank/accounts/accountid/";
+    var url_sender = "http://localhost/oamk_bank/index.php/api/Bank/accounts/accountid/";
     var money = document.getElementById('amount_transfer').value;
 
     var sender_account_after = parseFloat(sender_balance_before) - parseFloat(money) ;
@@ -208,6 +220,7 @@ function transaction_sender(account, balance)
       if(xhttp.readyState==4 && xhttp.status==201)
       {
         document.getElementById('formdiv').innerHTML = 'Transaction went succesfully';
+        document.getElementById('formdiv').style.display = 'block';
         document.getElementById('formdiv').style.color = 'green';
         document.getElementById('formdiv').style.fontSize = '3vw';
         reload_yes = 1;
@@ -217,6 +230,7 @@ function transaction_sender(account, balance)
         document.getElementById('formdiv').innerHTML = "Something went wrong";
         document.getElementById('formdiv').style.color = 'red';
         document.getElementById('formdiv').style.fontSize = '3vw';
+        document.getElementById('formdiv').style.display = 'block';
       }
     };
     xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
@@ -235,7 +249,7 @@ function transaction_sender(account, balance)
 function other_transaction(account)
 {
   //from here get reciever's balance
-  var url_recieve = "http://www.oamkbank.com/oamk_bank/index.php/api/Bank/accounts/accountid/" + account;
+  var url_recieve = "http://localhost/oamk_bank/index.php/api/Bank/accounts/accountid/" + account;
   var xhttp = new XMLHttpRequest();
   var json_recieve='';
   xhttp.onreadystatechange=function()
@@ -259,7 +273,7 @@ function recieve_transaction(account, balance)
 
   var money = document.getElementById('amount_transfer').value;
   var xhttp = new XMLHttpRequest();
-  var url = "http://www.oamkbank.com/oamk_bank/index.php/api/Bank/accounts/accountid/";
+  var url = "http://localhost/oamk_bank/index.php/api/Bank/accounts/accountid/";
 
   var reciever_account_after = parseFloat(recieve_balance_before) + parseFloat(money) ;
 
@@ -276,6 +290,7 @@ function recieve_transaction(account, balance)
       document.getElementById('formdiv').innerHTML = 'Transaction went succesfully';
       document.getElementById('formdiv').style.color = 'green';
       document.getElementById('formdiv').style.fontSize = '3vw';
+      document.getElementById('formdiv').style.display = 'block';
       reload_yes = 1;
    }
     else
@@ -283,6 +298,7 @@ function recieve_transaction(account, balance)
       document.getElementById('formdiv').innerHTML = "Something went wrong";
       document.getElementById('formdiv').style.color = 'red';
       document.getElementById('formdiv').style.fontSize = '3vw';
+      document.getElementById('formdiv').style.display = 'block';
     }
   };
 

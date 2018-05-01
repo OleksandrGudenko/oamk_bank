@@ -8,7 +8,7 @@
 
   //from here for sender account with drop down
 
-  var url = "http://www.oamkbank.com/oamk_bank/index.php/api/Bank/loans/loan";
+  var url = "http://localhost/oamk_bank/index.php/api/Bank/loans/loan";
   var jsonData='';
   var xhttp = new XMLHttpRequest();
   xhttp.open('GET', url, true);
@@ -45,7 +45,6 @@
       loan_id.style.display = 'none';
       document.getElementById('formdiv5').appendChild(loan_id);
 
-
       createListFunction(5);
 
       var label_send = document.createElement("label");
@@ -75,40 +74,31 @@
         reciever.appendChild(option_reciever);
         }
       }
-
-      createListFunction(5);
-      paybackformFunction2();
-      createListFunction(5);
-
-      var label_send = document.createElement("label");
-      var acc_balance = document.createTextNode("Selected Account Balance:"+" ");
-      label_send.appendChild(acc_balance);
-      document.getElementById('formdiv5').appendChild(label_send);
-
-      var your_balance = document.createElement('input');
-      your_balance.readOnly = true;
-      your_balance.id = 'account_payback_balance';
-      your_balance.name = 'Balance';
-      document.getElementById('formdiv5').appendChild(your_balance);
-
-      createListFunction(5);
-
-      var label_loan = document.createElement('label');
-      var label_loan_text = document.createTextNode("Loan Amount Left:"+" ");
-      label_loan.appendChild(label_loan_text);
-      document.getElementById('formdiv5').appendChild(label_loan);
-
+     
+     createListFunction(5);
       var loan_money = document.createElement('input');
       loan_money.readOnly = true;
       loan_money.id = 'loan_money';
       loan_money.text = 'amount';
+      loan_money.placeholder = "Loan Amount Left";
       document.getElementById('formdiv5').appendChild(loan_money);
-
+      
+      paybackformFunction2(); 
+      
       createListFunction(5);
-
+      var your_balance = document.createElement('input');
+      your_balance.readOnly = true;
+      your_balance.id = 'account_payback_balance';
+      your_balance.name = 'Balance';
+      your_balance.placeholder = "Selected Account Balance";
+      document.getElementById('formdiv5').appendChild(your_balance);
+      
+      createListFunction(5);
       var amount = document.createElement("input");
       amount.setAttribute('type', 'number');
       amount.setAttribute('id', 'payback_amount');
+      amount.setAttribute('min', 0);
+      amount.setAttribute('step', 0.01);
       amount.setAttribute('placeholder', 'amount to payback');
       document.getElementById('formdiv5').appendChild(amount);
 
@@ -116,9 +106,8 @@
 
       var  sendbtn = document.createElement('input');
       sendbtn.setAttribute('id', 'sendbtn');
-      sendbtn.setAttribute('type', 'button');
+      sendbtn.setAttribute('type', 'submit');
       sendbtn.setAttribute('value', 'send');
-      sendbtn.setAttribute('onclick', 'payback_money(),payback_money2()');
       document.getElementById('formdiv5').appendChild(sendbtn);
 
       document.getElementById('loading').inner=" ";
@@ -129,30 +118,30 @@
   xhttp.send();
 
 }//here is end of function
-
 function paybackformFunction2(){
-
-  var url = "http://www.oamkbank.com/oamk_bank/index.php/api/Bank/accounts/accountid";
+  var url = "http://localhost/oamk_bank/index.php/api/Bank/accounts/accountid";
   var jsonData='';
   var xhttp = new XMLHttpRequest();
   xhttp.open('GET', url, true);
-
+  var br = document.createElement("BR");
+  document.getElementById('formdiv5').appendChild(br);
+  var br2 = document.createElement("BR");
+  document.getElementById('formdiv5').appendChild(br2);
 xhttp.onreadystatechange=function()
 {
 if(xhttp.readyState==4 && xhttp.status==200)
 {
 
   jsonData = JSON.parse(xhttp.responseText);
-
   var label_send = document.createElement("label");
   var send_from = document.createTextNode("Select account:"+" ");
   label_send.appendChild(send_from);
-  document.getElementById('formdiv5').insertBefore(label_send, document.getElementById('formdiv5').children[10]);
-
+  document.getElementById('formdiv5').insertBefore(label_send, document.getElementById('formdiv5').children[12]);
+ 
   var sender = document.createElement("select");
   sender.setAttribute('id', 'loan_from');
   sender.setAttribute('onchange', 'right_loan_amount()')
-  document.getElementById('formdiv5').insertBefore(sender, document.getElementById('formdiv5').children[11]);
+  document.getElementById('formdiv5').insertBefore(sender, document.getElementById('formdiv5').children[13]);
 
   var option_sender = document.createElement("option");
   option_sender.text = "select from here";
@@ -204,7 +193,7 @@ function payback_money(){
 
   var account = document.getElementById('account_payback').value;
 
-  var url_account = "http://www.oamkbank.com/oamk_bank/index.php/api/Bank/accounts/accountid/" +account;
+  var url_account = "http://localhost/oamk_bank/index.php/api/Bank/accounts/accountid/" +account;
 
   var xhttp = new XMLHttpRequest();
   xhttp.open('PUT', url_account, true)
@@ -224,7 +213,7 @@ function payback_money(){
 
   var loan_new = loan_old - amount_paid;
 
-  if(loan_new > 0){
+  if(loan_new >= 0){
   xhttp.onreadystatechange = function(){
 
     if(xhttp.readyState == 4 && xhttp.status == 201){
@@ -232,6 +221,7 @@ function payback_money(){
       document.getElementById('formdiv').style.display = 'block';
       document.getElementById('formdiv').style.color = 'green';
       document.getElementById('formdiv').style.fontSize = '3vw';
+      document.getElementById('formdiv5').style.display = 'none';
       reload_yes = 1;
     }
     else{
@@ -239,18 +229,17 @@ function payback_money(){
       document.getElementById('formdiv').style.display = 'block';
       document.getElementById('formdiv').style.color = 'red';
       document.getElementById('formdiv').style.fontSize = '3vw';
+      document.getElementById('formdiv5').style.display = 'none';
     }
   };
-
-
-}
-else if(loan_new = 0){
+if(loan_new = 0){
 
       if(xhttp.readyState == 4 && xhttp.status == 201){
         document.getElementById('formdiv').innerHTML = 'Loan was successfully paid off.'
         document.getElementById('formdiv').style.display = 'block';
         document.getElementById('formdiv').style.color = 'green';
         document.getElementById('formdiv').style.fontSize = '3vw';
+        document.getElementById('formdiv5').style.display = 'none';
         delete_loan();
         reload_yes = 1;
       }
@@ -259,11 +248,12 @@ else if(loan_new = 0){
         document.getElementById('formdiv').style.display = 'block';
         document.getElementById('formdiv').style.color = 'red';
         document.getElementById('formdiv').style.fontSize = '3vw';
+        document.getElementById('formdiv5').style.display = 'none';
       }
   }
 xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 xhttp.send(jsonData);
-
+}
 setTimeout(function(){
   if(reload_yes == 1){
 
@@ -271,9 +261,6 @@ setTimeout(function(){
 
   }
 },3000);
-
-  console.log(jsonData);
-  console.log(loan_new);
 
 }
 
@@ -283,7 +270,7 @@ var account = document.getElementById('account_payback').value;
 var user = document.getElementById('user_id_payback').value;
 var loanid = document.getElementById('loan_id_payback').value;
 
-var url_account = "http://www.oamkbank.com/oamk_bank/index.php/api/Bank/loans/loan/" +loanid;
+var url_account = "http://localhost/oamk_bank/index.php/api/Bank/loans/loan/" +loanid;
 
 var xhttp = new XMLHttpRequest();
 xhttp.open('PUT', url_account, true)
@@ -307,6 +294,7 @@ if(loan_new > 0){
       document.getElementById('formdiv').style.display = 'block';
       document.getElementById('formdiv').style.color = 'green';
       document.getElementById('formdiv').style.fontSize = '3vw';
+      document.getElementById('formdiv5').style.display = 'none';
       reload_yes = 1;
     }
     else{
@@ -314,6 +302,7 @@ if(loan_new > 0){
       document.getElementById('formdiv').style.display = 'block';
       document.getElementById('formdiv').style.color = 'red';
       document.getElementById('formdiv').style.fontSize = '3vw';
+      document.getElementById('formdiv5').style.display = 'none';
     }
   };
   xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
@@ -332,21 +321,20 @@ else if(loan_new == 0){
   delete_loan();
 
 }
-  else{
+ else{
     document.getElementById('formdiv').innerHTML = 'Type in valid amount';
     document.getElementById('formdiv').style.display = 'block';
     document.getElementById('formdiv').style.color = 'red';
     document.getElementById('formdiv').style.fontSize = '3vw';
+    document.getElementById('formdiv5').style.display = 'none';
 }
-
-console.log(jsonData);
 
 }
 
 
 function delete_loan(){
   var delete_loan_id  = document.getElementById('loan_id_payback').value;
-  var url = "http://www.oamkbank.com/oamk_bank/index.php/api/Bank/loans/loan_id/" + delete_loan_id;
+  var url = "http://localhost/oamk_bank/index.php/api/Bank/loans/loan_id/" + delete_loan_id;
   var xhttp = new XMLHttpRequest();
   xhttp.open('DELETE', url,true)
 
@@ -356,6 +344,7 @@ function delete_loan(){
         document.getElementById('formdiv').style.display = 'block';
         document.getElementById('formdiv').style.color = 'green';
         document.getElementById('formdiv').style.fontSize = '3vw';
+        document.getElementById('formdiv5').style.display = 'none';
         reload_yes = 1;
       }
       else{
@@ -363,6 +352,7 @@ function delete_loan(){
         document.getElementById('formdiv').style.display = 'block';
         document.getElementById('formdiv').style.color = 'red';
         document.getElementById('formdiv').style.fontSize = '3vw';
+        document.getElementById('formdiv5').style.display = 'none';
       }
   }
   xhttp.send();
@@ -375,3 +365,4 @@ function delete_loan(){
     }
   },2000);
 }
+    
