@@ -14,7 +14,7 @@
 
     <br/>
     Tel: 040 1000 0000<br/>
-    email: bank@oamkbank.gq
+    email: oamkbank@din17sp.com
   </p><br/>
     </div>
 <!-- SoMe Icon Section -->

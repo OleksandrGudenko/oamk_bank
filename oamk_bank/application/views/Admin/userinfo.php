@@ -46,7 +46,7 @@ foreach ($users_for_info as $row)
   echo '<td>'.'<input class="input_for_edit" type="text" value="'.$row['phone'].'" id="edit_phone'.$row['id'].'"></td>';
   echo '<td>'.'<input class="input_for_edit" type="text" value="'.$row['occupation'].'" id="edit_job'.$row['id'].'"></td>';
   echo '<td>'.'<input class="input_for_edit" type="text" value="'.$row['username'].'" id="edit_username'.$row['id'].'"></td>';
-  echo '<td colspan="2" class="text-center"><button onclick="edit_an_user('.$row['id'].')" class="btn btn-info">Edit an User</button></td>';
+  echo '<td colspan="2" class="text-center"><button onclick="edit_an_user('.$row['id'].')" class="btn btn-info">Edit User</button></td>';
   echo '</tr>';
 }
 ?>

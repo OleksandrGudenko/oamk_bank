@@ -67,7 +67,7 @@
 We hereby formulate the Terms and Conditions of Online Banking Services (the “Terms”) in order to provide you with better
 Online Banking Services, prevent risks inherent in the Online Banking, and specify the rights and obligations of the parties
 in the Online Banking. Please read the Terms carefully before you use any of our Online Banking Services. If you have any
-questions, DO NOT contact us, THIS ISN'T REAL. You can browse our website www.oamkbank.gq for the most up-to-date information.
+questions, DO NOT contact us, THIS ISN'T REAL. You can browse our website www.din17sp.com for the most up-to-date information.
 <br><br>
 Terms and Conditions of Online Banking Services<br>
 Scope of Application
@@ -93,7 +93,7 @@ private networks provided by us (hereinafter referred to as “Online Banking Se
 Content of Services
 <br>
 Online Banking Services
-Customers may enjoy Online Banking Services via our website at www.oamkbank.gq.
+Customers may enjoy Online Banking Services via our website at www.din17sp.com.
 <br><br><br>
 What is Lorem Ipsum?
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.

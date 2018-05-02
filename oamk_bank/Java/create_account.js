@@ -154,7 +154,7 @@ function check_account()
    document.getElementById('result').innerHTML = "Generating an account..." ;
    document.getElementById('formdiv8').style.display="none";
 
-   var url = "http://www.oamkbank.com/oamk_bank/index.php/api/Bank/accounts/";
+   var url = "http://localhost/oamk_bank/index.php/api/Bank/accounts/";
 
    var xhttp = new XMLHttpRequest();
    xhttp.open('GET', url, true);
@@ -224,7 +224,7 @@ function check_account()
 
  function account_generate(account_generated)
  {
-   var url = "http://www.oamkbank.com/oamk_bank/index.php/api/Bank/accounts/";
+   var url = "http://localhost/oamk_bank/index.php/api/Bank/accounts/";
    var xhttp = new XMLHttpRequest();
    xhttp.open('POST', url, true);
 

@@ -43,7 +43,7 @@ function account_own()
   document.getElementById('formdiv0').style.display = 'none';
   document.getElementById('formdiv1').innerHTML = ' ';
   var id_for_own_acc = document.getElementById('user_id_from_login').value;
-  var url = "http://www.oamkbank.com/oamk_bank/index.php/api/Bank/accounts/accountid/";
+  var url = "http://localhost/oamk_bank/index.php/api/Bank/accounts/accountid/";
   var xhttp = new XMLHttpRequest();
   var jsonData ='';
      xhttp.open('GET', url, true);
@@ -122,7 +122,7 @@ function get_trans_history(){
   document.getElementById('formdiv1').innerHTML = ' ';
   document.getElementById('li_button2').disabled = true;
   var user_accounts = document.getElementById('user_id_from_login').value;
-  var url = "http://www.oamkbank.com/oamk_bank/index.php/api/Bank/transactions/user_id/" + user_accounts;
+  var url = "http://localhost/oamk_bank/index.php/api/Bank/transactions/user_id/" + user_accounts;
   var jsonData='';
   var xhttp = new XMLHttpRequest();
   xhttp.open('GET', url, true);
@@ -131,7 +131,6 @@ function get_trans_history(){
     if(xhttp.readyState==4 && xhttp.status==200)
     {
       jsonData = JSON.parse(xhttp.responseText);
-
       for(x in jsonData)
       {
         if(jsonData[x].user_id == user_accounts)
@@ -183,10 +182,17 @@ function get_trans_history(){
         receiver_td.innerHTML = jsonData[x].receiver;
         receiver_td.id = 'new_cell';
         var amount_td = document.createElement('td');
-        amount_td.innerHTML = jsonData[x].amount + "€";
+        var amount_index = jsonData[x].amount;
+        amount_td.innerHTML = "- " + amount_index + "€";
+        if (jsonData[x].amount < 0) {
+            amount_td.innerHTML = "+ " + (-amount_index).toFixed(2) + "€";
+        }
         amount_td.id = 'new_cell';
         var reference_td = document.createElement('td');
         reference_td.innerHTML = jsonData[x].reference;
+        if (jsonData[x].reference == "Own Sending"){
+            amount_td.innerHTML = amount_index + "€";
+        }
         reference_td.id = 'new_cell';
         tr.appendChild(time_td);
         tr.appendChild(sender_td);
@@ -197,19 +203,26 @@ function get_trans_history(){
 
         document.getElementById('formdiv0').style.display = 'none';
         document.getElementById('formdiv1').style.display = 'block';
+        document.getElementById('li_button2').value = 'View transaction history';
+        document.getElementById('li_button2').classList.remove("LockedHover");
         }
       }
+    } 
+    if (jsonData == '') {
+     document.getElementById('li_button2').value = 'No transaction found';
+     document.getElementById('li_button2').classList.add("LockedHover");
     }
   };
-  xhttp.send();
 
+  xhttp.send();
 }
+
 
 function get_loan(){
   document.getElementById('formdiv1').innerHTML = ' ';
   document.getElementById('li_button1').disabled = true;
   var user_accounts = document.getElementById('user_id_from_login').value;
-  var url = "http://www.oamkbank.com/oamk_bank/index.php/api/Bank/loans/loan";
+  var url = "http://localhost/oamk_bank/index.php/api/Bank/loans/loan";
   var jsonData='';
   var xhttp = new XMLHttpRequest();
   xhttp.open('GET', url, true);
@@ -254,8 +267,13 @@ function get_loan(){
 
         document.getElementById('formdiv0').style.display = 'none';
         document.getElementById('formdiv1').style.display = 'block';
+        document.getElementById('li_button1').value = 'View all Loans';
+        document.getElementById('li_button1').classList.remove("LockedHover");
         }
-      }
+      } 
+    } else {
+     document.getElementById('li_button1').value = 'No Loan found';
+     document.getElementById('li_button1').classList.add("LockedHover");
     }
   };
   xhttp.send();

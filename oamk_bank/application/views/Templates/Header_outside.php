@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <!-- Scripts  -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script type="text/javascript" src="<?php echo base_url('java/top.js')?>"></script>
-  <script type="text/javascript" src="<?php echo base_url('java/registration.js')?>"></script>
+  <script type="text/javascript" src="<?php echo base_url('Java/top.js')?>"></script>
+  <script type="text/javascript" src="<?php echo base_url('Java/registration.js')?>"></script>
     <!-- CSS Stylesheet  -->
     <link rel="stylesheet" href="<?php echo base_url('css/style.css')?>">
 
@@ -31,12 +31,10 @@
           <li><a href="<?php echo site_url('Page_Controller/loan');?>">LOANS</a></li>
           <li><a href="<?php echo site_url('Page_Controller/About');?>">ABOUT</a></li>
           <li><a href="<?php echo site_url('Page_Controller/Contact');?>">CONTACT</a></li>
+          <div class="divlogin-btn">
+          <li><a class="login-btn" href="<?php echo site_url('Users/login'); ?>">LOGIN</a></li>
+          </div>
         </ul>
-        <div class="divlogin-btn">
-          <a href="<?php echo site_url('Users/login'); ?>">
-            <input type="button" class="login-btn" name="" value="LOGIN">
-          </a>
-        </div>
       </div>
     </div>
     <div id = "flash_message" class="container">

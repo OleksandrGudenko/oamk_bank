@@ -3,7 +3,6 @@
 
 <div class="loan-top">
         <img src="<?php echo base_url('img/fist.png');?>" alt="" class="" >
-        <h2><span>Quick loans from OAMK Bank</span></h2>
 </div>
 <div class="loan-text">
     <h2>Simple Unsecured Loans</h2>

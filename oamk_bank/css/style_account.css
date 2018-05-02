@@ -341,3 +341,11 @@ input.input_for_edit
 {
     width: 8vw;
 }
+
+.LockedHover{
+    background-color: white !important;
+    color: #F2882F !important;
+    border: 1px solid #F2882F !important;
+}
+}
+}

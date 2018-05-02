@@ -138,7 +138,7 @@ function request_add()
       document.getElementById('hide_form').style.display="none";
 
       document.getElementById('body').required=true;
-      var url = "http://www.oamkbank.com/oamk_bank/index.php/api/Bank/requests/";
+      var url = "http://localhost/oamk_bank/index.php/api/Bank/requests/";
       var xhttp = new XMLHttpRequest();
       xhttp.open('POST', url, true);
 

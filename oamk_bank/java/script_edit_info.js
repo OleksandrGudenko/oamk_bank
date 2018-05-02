@@ -44,7 +44,7 @@ function editCredFunction(){
 
   //from here about information
   var id_for_edit = document.getElementById('user_id_from_login').value;
-  var url = "http://www.oamkbank.com/oamk_bank/index.php/api/Bank/users/id/" + id_for_edit;
+  var url = "http://localhost/oamk_bank/index.php/api/Bank/users/id/" + id_for_edit;
   var xhttp = new XMLHttpRequest();
   var json='';
   xhttp.open('GET', url, true);
@@ -124,7 +124,16 @@ function editCredFunction(){
       email.setAttribute('type','text');
       email.setAttribute('id','email');
       email.setAttribute('value', json[0].email);
+      email.setAttribute('onchange', 'check_email_for_edit()')
       document.getElementById('formdiv7').appendChild(email);
+      
+      var emailcheck = document.createElement('input');
+      emailcheck.setAttribute('type','text');
+      emailcheck.setAttribute('id','emailcheck');
+      emailcheck.setAttribute('value', json[0].email);
+      emailcheck.style.display = 'none';
+      emailcheck.setAttribute('readonly', 'readonly');
+      document.getElementById('formdiv7').appendChild(emailcheck);
 
       createListFunction(7);
       var phone_label = document.createElement("label");
@@ -170,14 +179,13 @@ function editCredFunction(){
 function save_own_info()
 {
   var id_for_edit =  document.getElementById('user_id_from_login').value;
-  document.getElementById('loading').style.display = "block";
-  document.getElementById('loading').innerHTML = "Loading...";
   document.getElementById('formdiv7').style.display = "none";
 
-var url = "http://www.oamkbank.com/oamk_bank/index.php/api/Bank/users/id/" + id_for_edit;
+var url = "http://localhost/oamk_bank/index.php/api/Bank/users/id/" + id_for_edit;
 var xhttp = new XMLHttpRequest();
 xhttp.open('PUT', url, true);
 var data = {} ;
+
 data.id=id_for_edit;
 data.firstname=document.getElementById('fname').value;
 data.lastname=document.getElementById('lname').value;
@@ -189,7 +197,7 @@ data.phone=document.getElementById('phone').value;
 data.occupation=document.getElementById('job').value;
 
 var jsonData = JSON.stringify(data);
-
+if (document.getElementById('email').style.borderColor !== 'red' ){
 xhttp.onreadystatechange = function()
 {
   if(xhttp.readyState==4 && xhttp.status==201)
@@ -205,6 +213,7 @@ xhttp.onreadystatechange = function()
   }
   else
   {
+     
     document.getElementById('formdiv').style.display = "block";
     document.getElementById('formdiv').style.color = "red";
     document.getElementById('formdiv').style.fontSize = "3vw";
@@ -216,4 +225,67 @@ xhttp.onreadystatechange = function()
 };
 xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 xhttp.send(jsonData);
+}
+else {
+    document.getElementById('formdiv').innerHTML='Email is invalid.';
+    document.getElementById('formdiv').style.display = 'block';
+    document.getElementById('formdiv7').style.display = 'none';
+    setTimeout(function(){ 
+        document.getElementById('formdiv').innerHTML='Email is invalid.';
+        document.getElementById('formdiv').style.display = 'none';
+        document.getElementById('formdiv7').style.display = 'block';
+     }, 2000);
+
+}
+}
+
+function check_email_for_edit()
+{
+  var url = "http://localhost/oamk_bank/index.php/api/Bank/users/";
+  var jsonData='';
+  var email = document.getElementById('email').value;
+  var xhttp = new XMLHttpRequest();
+  var emailcheck = document.getElementById('emailcheck').value;
+  if (emailcheck == email) {
+      document.getElementById('email').style.borderColor = '#F2882F';
+      document.getElementById('email').style.borderWidth = '1px';
+  }
+  else {
+  xhttp.open('GET', url, true);
+  xhttp.onreadystatechange=function()
+  {
+    if (!validateEmail(email)) {
+        document.getElementById('email').style.borderColor='red';
+		document.getElementById('email').style.borderWidth='thick';
+        } else{
+    if(xhttp.readyState==4 && xhttp.status==200)
+    {
+      var check_array= new Array;
+      jsonData = JSON.parse(xhttp.responseText);
+      for(x in jsonData)
+      {
+        check_array.push(jsonData[x].email) ;
+      }
+      if(check_array.indexOf(email)==-1)
+      {
+			document.getElementById('email').style.borderColor='green';
+			document.getElementById('email').style.borderWidth='thick';
+			
+      }
+      else
+      {
+			document.getElementById('email').style.borderColor='red';
+			document.getElementById('email').style.borderWidth='thick';
+		
+      }
+    }
+    }
+  };
+  xhttp.send();
+  }
+}
+
+function validateEmail(email) {
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
 }

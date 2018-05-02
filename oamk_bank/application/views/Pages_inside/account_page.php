@@ -13,7 +13,7 @@
         <?php endif;?>
         <?php if (!$this->session->userdata('admin')) : ?>
         <button class="signout-btn" id="contact_btn" onclick="contact_show()">Contact Bank</button>
-        <button class="signout-btn" id="edit_btn" onclick="edit_show()">Edit Credentials</button>
+        <button class="signout-btn" id="edit_btn" onclick="edit_show()">Edit User Info</button>
         <button class="signout-btn" id="loan_btn" onclick="loan_show()">Loan</button>
         <button class="signout-btn" id="pay_btn" onclick="payment_show()" id="Payments">Payments</button>
         <?php endif;?>
@@ -34,18 +34,18 @@
         <button id="li_button" onclick="terms_conditions()">Create New Account</button>
     </div>
     <div style="display:none; text-align:center" id="formdiv1"></div>
-    <form id="ownsending_form">
+    <form id="ownsending_form" action="javascript:;" onsubmit="send_money_own();">
         <div style="display:none; text-align:center" id="formdiv2"></div>
     </form>
-    <form id="othersending_form">
+    <form id="othersending_form" action="javascript:;" onsubmit="payment_money();">
         <div style="display:block; text-align:center" id="formdiv3"></div>
     </form>
     <div style="display:block; text-align:center" id="formdiv4">
-        <form id="requestForm"></form>
+        <form id="requestForm" action="javascript:;" onsubmit="request_money(); request_money2()"></form>
     </div>
-    <div style="display:block; text-align:center" id="formdiv5">
-        <form id="Payment"></form>
-    </div>
+    <form id="Payment" action="javascript:;" onsubmit="payback_money(); payback_money2()">
+        <div style="display:block; text-align:center" id="formdiv5"></div>
+    </form>
     <div id="hide_form"><form id="requestform">
     <div style="display:block; text-align:center" id="formdiv6"></div>
     <div style="display:none; text-align:center" id="formdiv7"></div>

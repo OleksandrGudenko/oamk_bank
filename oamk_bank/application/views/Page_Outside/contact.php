@@ -2,7 +2,6 @@
 <!-- First Section -->
 <div class="contact-top">
     <img src="<?php echo base_url('img/contact.png');?>" alt="" class="" >
-    <h2><span>For Your Financial Well-Being</span></h2>
 </div>
 <!-- Middle + Map Section -->
 <div class="mapsect">
@@ -11,10 +10,10 @@
 <br>
 Mon - Fri: 08:00 - 16:00 <br>
 <br>
-email: bank@oamkbank.gp
+email: oamkbank@din17sp.com
 </p>
 </div>
-<div id="map" style="width:400px; height:400px;background: #F2882F; position: relative; overflow: hidden; margin-left: 55%; margin-top: -10%;"></div>
+<div id="map" ></div>
 
 <script>
 

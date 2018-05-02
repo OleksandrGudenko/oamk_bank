@@ -46,6 +46,7 @@
     <div class="btnonabtcontainer">
       <a href="<?php echo site_url('Page_Controller/everyBank');?>" class="btn">OUR SERVICES</a>
     </div>
+    <br>
     <div class="btnonabtoa">
       <a href="<?php echo site_url('Page_Controller/openAcct');?>" class="btnoa">OPEN ACCOUNT</a>
     </div>

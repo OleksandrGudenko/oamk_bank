@@ -386,7 +386,7 @@ public function loans_get()
             $this->response([
                 'status' => FALSE,
                 'message' => 'No loans were found'
-            ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
+            ]); // NOT_FOUND (404) being the HTTP response code
         }
     }
 
@@ -534,7 +534,7 @@ public function logins_get()
     {
         $this->set_response([
             'status' => FALSE,
-            'message' => 'login could not be found'
+            'message' => 'Login cound not be found'
         ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
     }
 }
@@ -619,7 +619,7 @@ public function transactions_get()
         $this->set_response([
             'status' => FALSE,
             'message' => 'Transaction could not be found'
-        ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
+        ]); // NOT_FOUND (404) being the HTTP response code
     }
 }
 

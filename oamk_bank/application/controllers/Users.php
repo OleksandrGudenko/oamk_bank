@@ -25,7 +25,13 @@ public function login_verify()
 		$enc_password = password_hash($passcode, PASSWORD_DEFAULT);
 		$mail=$this->User_model->mail_get($user);
 		$email = $mail[0]['email'];
-		$data['msg']='Password sent to '.$email.$passcode;
+		$from = "oamkbank@din17sp.com";
+		$to = $email;
+		$subject = "OTP Password from OAMK BANK";
+		$message = "Your one time login password:  ".$passcode;
+		$headers = "From: OAMK BANK <oamkbank@din17sp.com>";
+		mail($to, $subject, $message, $headers);
+		$data['msg']='Password sent to your registered email.';
 		$data['user'] = $user;
 		$this->User_model->passwords($user,$enc_password);
 		$data['body']='Users/password';

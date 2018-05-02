@@ -1,7 +1,0 @@
-Create account
-javascript
-implemented
-
-
-Bank model database get data changed
-

@@ -16,13 +16,25 @@ body {
   box-sizing: border-box;
 }
 
+
 .login-btn {
-  background-color: #F2882F;
+  background-color: rgba(255, 160, 122, 0.178);
   border: none;
-  color: white;
-  padding: 20% 35%;
+  color: #F2882F;
+  padding: 10% 15%;
+  margin-right: 1%;
+  margin-bottom: 1%;
   letter-spacing: 0.1vw;
 }
+
+
+.divlogin-btn {
+  float: right;
+  margin-right: 1%;
+  margin-left: 1%;
+  margin-bottom: 1%;
+}
+
 
 .openact {
   background-color: #F2882F;
@@ -41,15 +53,12 @@ body {
 }
 
 #nav-container {
-  width: 60%;
+  width: 70%;
   margin: 0 auto;
-  /* height: 70px; */
 }
 
 .nav-bar {
   background-color: #ffffff;
-  /* height: 70px; */
-  /* width: 100%; */
   text-align: center;
 
 }
@@ -58,21 +67,17 @@ body {
   padding: 0%;
   margin: 0%;
   text-align: center;
-  display:inline-block;
   vertical-align:top;
 }
 
 .nav-bar li {
   list-style-type: none;
   padding: 0%;
-  /* height: 24px;
-  margin-top: 4px;
-  margin-bottom: 4px; */
   display: inline;
 }
 
 .nav-bar li a {
-  color: #000000;
+  color: #F2882F;
   font-size: 1vw;
   font-family: Roboto;
   font-weight: 400;
@@ -83,16 +88,7 @@ body {
   opacity: 0.7;
 }
 .nav-bar a:hover {
-  color: #F2882F;
-}
-
-.divlogin-btn {
-  float: right;
-  margin-top: 1%;
-  margin-right: 1%;
-  margin-bottom: 1%;
-  margin-left: 1%;
-
+  color: black;
 }
 
 .logo {
@@ -335,6 +331,8 @@ body {
 
 .aboutslide {
   display:none;
+  position: relative;
+  max-width: 100%;
 }
 
 .abthistory h2 {
@@ -404,6 +402,7 @@ body {
 .contact-top img {
   position: relative;
   max-width: 100%;
+  height: auto;
 }
 
 .contact-top h2 {
@@ -433,17 +432,22 @@ body {
   letter-spacing: 0.1vw;
 }
 
-.map {
-  height: 40%;
-  width: 100%;
+#map {
+  height: 25vw;
+  width: 25vw;
   margin-left: 10%;
+  background: #F2882F; 
+  position: relative; 
+  overflow: hidden; 
+  margin-left: 55%; 
+  margin-top: -10%;
 }
 
 
 .mapsect p {
   position: inherit;
-  font-size: 1em;
-  font-weight: 100;
+  font-size: 1.2vw;
+  font-weight: 200;
   letter-spacing: 0.1vw;
   box-sizing: border-box;
   margin-left: 30%;
